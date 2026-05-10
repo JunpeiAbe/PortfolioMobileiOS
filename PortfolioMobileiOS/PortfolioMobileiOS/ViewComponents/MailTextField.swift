@@ -26,10 +26,14 @@ struct MailTextField: View {
         )
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
+        .frame(height: 48)
+        .background {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(.white)
+        }
         .overlay {
             RoundedRectangle(cornerRadius: 8)
                 .stroke(borderColor, lineWidth: 1.5)
-                .frame(height: 48)
         }
         .onSubmit {
             onSubmit(text)
