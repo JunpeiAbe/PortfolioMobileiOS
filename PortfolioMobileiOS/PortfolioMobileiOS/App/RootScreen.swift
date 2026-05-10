@@ -1,13 +1,6 @@
-//
-//  ContentView.swift
-//  PortfolioMobileiOS
-//
-//  Created by j on 2026/05/09.
-//
-
 import SwiftUI
 
-struct ContentView: View {
+struct RootScreen: View {
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -20,5 +13,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    RootScreen()
 }
