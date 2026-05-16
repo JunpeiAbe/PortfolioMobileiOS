@@ -19,6 +19,11 @@ enum AllowedCharacterRegex: String {
     case fullWidthKatakana = "[ァ-タダ-ヶー]"
     /// 全角文字、半角英数記号（混在）
     case mixedFullAndHalfWidth = "[^\t]"
+    /// パスワードポリシー
+    //　半角英数字8桁以上32桁以下 ^.{8,32}$
+    //  記号を含む (?=.*?[!\"#$%&'@_-])
+    //  英文字(大文字・小文字)、数字、記号をそれぞれ一つ以上含む (?=.*?[0-9])(?=.*?[a-zA-Z])
+    case passwordPolicy = "^(?=.*?[0-9])(?=.*?[a-zA-Z])(?=.*?[!\"#$%&'@_-])[0-9a-zA-Z!\"#$%&'@_-]{8,32}$"
 
     /// 正規表現を取得
     var pattern: String {

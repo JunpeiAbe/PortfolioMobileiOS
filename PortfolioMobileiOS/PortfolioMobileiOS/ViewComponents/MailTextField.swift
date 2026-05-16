@@ -27,6 +27,7 @@ struct MailTextField: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
         .frame(height: 48)
+        .autocorrectionDisabled()
         .background {
             RoundedRectangle(cornerRadius: 8)
                 .fill(.white)

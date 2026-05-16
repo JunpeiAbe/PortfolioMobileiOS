@@ -24,11 +24,15 @@ struct LoginScreen: View {
                     .foregroundStyle(.black)
                 MailTextField(
                     text: Bindable(state).emailText,
+                    isError: !state.isEmailErrorMessageHidden,
+                    isFocused: focusedField == .email,
                     onSubmit: { text in
-                        // TODO
+                        print("email text submit")
+                        state.onEmailTextSubmit(text)
                     },
                     onChange: { text in
-                        // TODO
+                        print("email text change")
+                        state.onEmailTextChange(text)
                     }
                 )
                 .focused($focusedField, equals: .email)
@@ -44,11 +48,15 @@ struct LoginScreen: View {
                     .foregroundStyle(.black)
                 PasswordTextField(
                     text: Bindable(state).passwordText,
+                    isError: !state.isPasswordErrorMessageHidden,
+                    isFocused: focusedField == .password,
                     onSubmit: { text in
-                        // TODO
+                        print("password text submit")
+                        state.onPasswordTextSubmit(text)
                     },
                     onChange: { text in
-                        // TODO
+                        print("password text change")
+                        state.onPasswordTextChange(text)
                     }
                 )
                 .focused($focusedField, equals: .password)
@@ -85,19 +93,21 @@ struct LoginScreen: View {
         .padding(16)
         .screenBackground(dismissing: $focusedField)
         .onChange(of: state.focusingField) { oldField, newField in
+            print("state focusingField change")
             // viewStateのfocusingFieldを更新時にViewのfocusedFieldを更新
             focusedField = newField
             if newField == nil,
                oldField == FocusableField.email {
-               // TDOD
+                state.onEmailTextSubmit(state.emailText)
             }
             
             if newField == nil,
                oldField == FocusableField.password {
-                // TDOD
+                state.onPasswordTextSubmit(state.passwordText)
             }
         }
         .onChange(of: focusedField) { _, newFocusedField in
+            print("focusedField change")
             state.onFocusedFieldChange(newFocusedField)
         }
     }
