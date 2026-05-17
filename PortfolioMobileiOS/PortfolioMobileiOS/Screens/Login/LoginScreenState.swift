@@ -121,54 +121,27 @@ final class LoginScreenState {
     
     /// メールアドレスのフォーマットに沿っているか
     func isMailAddressFormat(_ text: String) -> Bool {
-        guard !text.isEmpty else {
-            // 未入力チェック
-            return false
-        }
-        // 文字列：「@」
-        let AT_SIGN = Character("@")
-
-        // 文字列：「.」
-        let PERIOD = Character(".")
-
-        // 文字列：「..」
-        let CONSECUTIVE_PERIOD = ".."
-
-        if (text.contains(AT_SIGN)) {
-            if (text.first == AT_SIGN) {
-                // 先頭が「@」の場合、エラー
-                return false
-            } else {
-                if (text.filter({ $0 == AT_SIGN }).count < 2) {
-                    let ary1 = text.split(separator: AT_SIGN)
-                    if (ary1[1].contains(PERIOD)) {
-                        let ary2 = ary1[1]
-                        if (ary1[1].contains(CONSECUTIVE_PERIOD)) {
-                            // 「@」以降で「.」が連続する場合、エラー
-                            return false
-                        }
-                        if (PERIOD == ary2.first) {
-                            // 「@」直後が「.」の場合、エラー
-                            return false
-                        }
-                        if (PERIOD == ary2.last) {
-                            // 最後の「.」以降に許容文字が存在しない場合、エラー
-                            return false
-                        }
-                    } else {
-                        // 「@」以降に「.」を含まない場合、エラー
-                        return false
-                    }
-                } else {
-                    // 「@」が複数含まれている場合、エラー
-                    return false
-                }
-            }
-        } else {
-            // 「@」が含まれていない場合、エラー
-            return false
-        }
+        // 未入力でないこと
+        guard !text.isEmpty else { return false }
+        let atSign: String = "@"
+        let period: Character = "."
+        let consececutivePeriods = ".."
+        // @の前後に文字列が存在すること(// @が1つだけ含まれていること)
+        let parts = text.components(separatedBy: atSign)
+        guard parts.count == 2 else { return false }
+        
+        let localPart = parts[0]
+        let domainPart = parts[1]
+        // @の前後に文字列があること
+        guard !localPart.isEmpty else { return false }
+        guard !domainPart.isEmpty else { return false }
+        // ドメイン部に.が含まれていること
+        guard domainPart.contains(".") else { return false }
+        // ドメイン部で.が連続していないこと
+        guard !domainPart.contains("..") else { return false }
+        // ドメイン部の先頭・末尾が . ではないこと
+        guard !domainPart.hasPrefix(".") else { return false }
+        guard !domainPart.hasSuffix(".") else { return false }
         return true
     }
 }
-
