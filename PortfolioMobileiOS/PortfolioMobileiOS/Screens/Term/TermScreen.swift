@@ -8,7 +8,7 @@ struct TermScreen: View {
     
     var body: some View {
         VStack(spacing: .zero) {
-            WebView(url: URL(string: "https://google.com")!)
+            WebView(source: .localFile(name: "terms_stub", extension: "html"))
             Divider()
                 .foregroundStyle(.gray)
             bottomContent
