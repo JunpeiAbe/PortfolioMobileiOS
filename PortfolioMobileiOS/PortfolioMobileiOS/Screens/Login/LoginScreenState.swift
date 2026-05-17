@@ -41,7 +41,7 @@ final class LoginScreenState {
             return
         }
         // メールアドレスのフォーマットに該当するか
-        guard isMailAddressFormat(text) else {
+        guard MailAddressValidator().isValid(text) else {
             emailErrorMessage = "メールアドレスの形式で入力してください。"
             return
         }
@@ -66,7 +66,7 @@ final class LoginScreenState {
             return
         }
         // メールアドレスのフォーマットに該当するか
-        guard isPasswordFormat(text) else {
+        guard PasswordValidator().isValid(text) else {
             passwordErrorMessage = "パスワードの形式で入力してください。"
             return
         }
@@ -109,39 +109,5 @@ final class LoginScreenState {
         case .confirmPassword:
             break
         }
-    }
-    /// パスワードのフォーマットに沿っているかどうか
-    func isPasswordFormat(_ text: String) -> Bool {
-        guard let regex = try? NSRegularExpression(pattern: AllowedCharacterRegex.passwordPolicy.pattern) else { return false }
-        guard regex.firstMatch(in: text, range: NSRange(0..<text.count)) != nil else {
-            return false
-        }
-        return true
-    }
-    
-    /// メールアドレスのフォーマットに沿っているか
-    func isMailAddressFormat(_ text: String) -> Bool {
-        // 未入力でないこと
-        guard !text.isEmpty else { return false }
-        let atSign: String = "@"
-        let period: Character = "."
-        let consececutivePeriods = ".."
-        // @の前後に文字列が存在すること(// @が1つだけ含まれていること)
-        let parts = text.components(separatedBy: atSign)
-        guard parts.count == 2 else { return false }
-        
-        let localPart = parts[0]
-        let domainPart = parts[1]
-        // @の前後に文字列があること
-        guard !localPart.isEmpty else { return false }
-        guard !domainPart.isEmpty else { return false }
-        // ドメイン部に.が含まれていること
-        guard domainPart.contains(".") else { return false }
-        // ドメイン部で.が連続していないこと
-        guard !domainPart.contains("..") else { return false }
-        // ドメイン部の先頭・末尾が . ではないこと
-        guard !domainPart.hasPrefix(".") else { return false }
-        guard !domainPart.hasSuffix(".") else { return false }
-        return true
     }
 }
