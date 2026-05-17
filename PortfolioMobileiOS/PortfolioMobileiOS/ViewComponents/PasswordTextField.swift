@@ -26,11 +26,17 @@ struct PasswordTextField: View {
                     placeHolder,
                     text: $text
                 )
+                .textContentType(.password)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
             } else {
                 TextField(
                     placeHolder,
                     text: $text
                 )
+                .textContentType(.password)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
             }
             Button {
                 isSecure.toggle()
@@ -42,7 +48,6 @@ struct PasswordTextField: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
-        .autocorrectionDisabled()
         .frame(height: 48)
         .background {
             RoundedRectangle(cornerRadius: 8)
