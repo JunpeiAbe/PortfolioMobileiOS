@@ -78,12 +78,13 @@ final class LoginScreenState {
         validateAllowCharacters(text, field: .password, regex: .passwordSymbols)
     }
     
-    func loginButtonPressed() {
+    func loginButtonPressed(completion: @escaping () -> Void) {
         guard !isLoginButtonDisabled else { return }
         loadingState = .loading
         onEmailTextSubmit(emailText)
         onPasswordTextSubmit(passwordText)
         loadingState = .idle
+        completion()
     }
     
     func signUpButtonPressed() {

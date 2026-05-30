@@ -4,6 +4,7 @@ struct LoginScreen: View {
     
     @State var state: LoginScreenState
     @FocusState var focusedField: FocusableField?
+    @Environment(NavigationFlow.self) private var navigationFlow
     init(state: LoginScreenState) {
         self.state = state
     }
@@ -67,7 +68,9 @@ struct LoginScreen: View {
             }
             
             Button("Login") {
-                state.loginButtonPressed()
+                state.loginButtonPressed {
+                    navigationFlow.push(.term)
+                }
             }
             .buttonStyle(
                 .filled(

@@ -7,6 +7,6 @@ final class AppRouter {
     var mainNavigationFlow: NavigationFlow
     
     init() {
-        self.mainNavigationFlow = NavigationFlow()
+        mainNavigationFlow = NavigationFlow()
     }
 }
