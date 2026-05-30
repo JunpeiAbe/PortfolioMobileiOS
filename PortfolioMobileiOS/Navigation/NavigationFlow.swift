@@ -17,6 +17,12 @@ final class NavigationFlow {
     func push(_ destination: PushDestination) {
         pushDestinations.append(destination)
     }
+    /// 一画面前に戻る
+    func pop() {
+        if !pushDestinations.isEmpty {
+            pushDestinations.removeLast()
+        }
+    }
     /// 指定画面に戻る
     func pop(_ destination: PushDestination) {
         for _ in pushDestinations {

@@ -84,7 +84,7 @@ struct LoginScreen: View {
             HStack(spacing: .zero) {
                 Spacer()
                 Button("To Sign Up") {
-                    state.signUpButtonPressed()
+                    navigationFlow.push(.register)
                 }
                 .buttonStyle(.plain)
                 .foregroundStyle(.blue)

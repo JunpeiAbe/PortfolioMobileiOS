@@ -4,6 +4,7 @@ struct RegisterScreen: View {
     
     @State var state: RegisterScreenState
     @FocusState var focusedField: FocusableField?
+    @Environment(NavigationFlow.self) private var navigationFlow
     init(state: RegisterScreenState) {
         self.state = state
     }
@@ -106,6 +107,14 @@ struct RegisterScreen: View {
         }
         .padding(16)
         .screenBackground(dismissing: $focusedField)
+        .toolBar(
+            title: "Register",
+            isRightButtonHidden: true,
+            leftButtonAction: {
+                navigationFlow.pop()
+            },
+            rightButtonAction: {},
+        )
         .onChange(of: state.focusingField) { oldField, newField in
             print("state focusingField change")
             // viewStateのfocusingFieldを更新時にViewのfocusedFieldを更新

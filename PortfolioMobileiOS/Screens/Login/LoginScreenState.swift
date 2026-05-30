@@ -87,10 +87,6 @@ final class LoginScreenState {
         completion()
     }
     
-    func signUpButtonPressed() {
-        
-    }
-    
     func onFocusedFieldChange(_ field: FocusableField?) {
         focusingField = field
     }

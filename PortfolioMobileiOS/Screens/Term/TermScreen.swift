@@ -14,6 +14,13 @@ struct TermScreen: View {
             bottomContent
         }
         .screenBackground()
+        .toolBar(
+            title: "Terms",
+            isLeftButtonHidden: true,
+            isRightButtonHidden: true,
+            leftButtonAction: {},
+            rightButtonAction: {},
+        )
     }
     
     private var bottomContent: some View {
