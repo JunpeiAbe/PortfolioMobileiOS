@@ -15,5 +15,7 @@ final class TermScreenState {
         isChecked.toggle()
     }
     
-    func agreeButtonPressed() {}
+    func agreeButtonPressed(completion: @escaping () -> Void) {
+        completion()
+    }
 }

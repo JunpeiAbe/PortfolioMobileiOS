@@ -8,7 +8,15 @@ struct HomeScreen: View {
     }
     
     var body: some View {
-        EmptyView()
+        VStack(spacing: .zero) {
+            EmptyView()
+        }
+        .screenBackground()
+        .toolBar(
+            title: "Home",
+            isLeftButtonHidden: true,
+            leftButtonAction: {},
+            rightButtonAction: {})
     }
 }
 
