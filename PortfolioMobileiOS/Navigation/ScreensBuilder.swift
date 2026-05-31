@@ -20,6 +20,7 @@ struct ScreensBuilder {
         case .login: LoginScreen(state: dependency.makeLoginState())
         case .register: RegisterScreen(state: dependency.makeRegisterState())
         case .term: TermScreen(state: dependency.makeTermState())
+        case .home: HomeScreen(state: dependency.makeHomeState())
         }
     }
 }

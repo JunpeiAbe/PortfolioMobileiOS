@@ -9,4 +9,6 @@ enum PushDestination: Hashable {
     case register
     /// 利用規約同意画面
     case term
+    /// ホーム画面
+    case home
 }

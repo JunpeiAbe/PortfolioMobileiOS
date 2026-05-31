@@ -5,6 +5,7 @@ struct ScreenDependency {
     var makeLoginState: @MainActor () -> LoginScreenState
     var makeRegisterState: @MainActor () -> RegisterScreenState
     var makeTermState: @MainActor () -> TermScreenState
+    var makeHomeState: @MainActor () -> HomeScreenState
     
     static let debug: Self = .init(
         makeSplashState: {
@@ -18,6 +19,9 @@ struct ScreenDependency {
         },
         makeTermState: {
             TermScreenState()
+        },
+        makeHomeState: {
+            HomeScreenState()
         }
     )
     
@@ -33,6 +37,9 @@ struct ScreenDependency {
         },
         makeTermState: {
             TermScreenState()
+        },
+        makeHomeState: {
+            HomeScreenState()
         }
     )
 }
