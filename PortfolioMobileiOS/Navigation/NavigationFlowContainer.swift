@@ -21,6 +21,7 @@ struct NavigationFlowContainer<
     private let flow: NavigationFlow
     private let rootScreen: () -> RootScreen
     private let pushDestination: (PushDestination) -> DestinationScreen
+    @State var isLoading: Bool = false
     
     init(
         flow: NavigationFlow,
@@ -60,6 +61,17 @@ struct NavigationFlowContainer<
                 Text(alert.message)
             }
         )
+        .loading(
+            isPresented: $isLoading
+        )
+        .environment(\.loading, .init(
+            show: {
+                isLoading = true
+            },
+            hide: {
+                isLoading = false
+            }
+        ))
         .environment(flow)
     }
 }

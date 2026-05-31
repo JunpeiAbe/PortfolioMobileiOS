@@ -5,6 +5,7 @@ struct LoginScreen: View {
     @State var state: LoginScreenState
     @FocusState var focusedField: FocusableField?
     @Environment(NavigationFlow.self) private var navigationFlow
+    @Environment(\.loading) var loading
     init(state: LoginScreenState) {
         self.state = state
     }
@@ -112,6 +113,13 @@ struct LoginScreen: View {
         .onChange(of: focusedField) { _, newFocusedField in
             print("focusedField change")
             state.onFocusedFieldChange(newFocusedField)
+        }
+        .onChange(of: state.loadingState.isLoading) { _, newValue in
+            if newValue {
+                loading.show()
+            } else {
+                loading.hide()
+            }
         }
     }
 }

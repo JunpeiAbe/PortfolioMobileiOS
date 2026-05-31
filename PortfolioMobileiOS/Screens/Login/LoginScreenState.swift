@@ -80,11 +80,14 @@ final class LoginScreenState {
     
     func loginButtonPressed(completion: @escaping () -> Void) {
         guard !isLoginButtonDisabled else { return }
-        loadingState = .loading
-        onEmailTextSubmit(emailText)
-        onPasswordTextSubmit(passwordText)
-        loadingState = .idle
-        completion()
+        Task {
+            loadingState = .loading
+            try await Task.sleep(for: .milliseconds(500))
+            onEmailTextSubmit(emailText)
+            onPasswordTextSubmit(passwordText)
+            loadingState = .idle
+            completion()
+        }
     }
     
     func onFocusedFieldChange(_ field: FocusableField?) {
