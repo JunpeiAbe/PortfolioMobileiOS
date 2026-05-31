@@ -1,0 +1,15 @@
+import Foundation
+
+struct RegisterResponse: Codable {
+    let accessToken: String?
+    let refreshToken: String?
+    let expiresIn: Int?
+    let error: CommonResponseError?
+    
+    enum CodingKeys: String, CodingKey {
+        case accessToken = "access_token"
+        case refreshToken = "refresh_token"
+        case expiresIn = "expires_in"
+        case error
+    }
+}
