@@ -51,7 +51,7 @@ extension View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbarBackground(.visible, for: .navigationBar)
-        .toolbarBackground(.clear, for: .navigationBar)
+        .toolbarBackground(.white, for: .navigationBar)
     }
 }
 

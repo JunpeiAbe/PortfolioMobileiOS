@@ -41,6 +41,25 @@ struct NavigationFlowContainer<
                     pushDestination(destination)
                 }
         }
+        .alert(
+            flow.presentedAlert?.title ?? .init(),
+            isPresented: .init(
+                get: { flow.presentedAlert != nil },
+                set: { _ in flow.presentedAlert = nil }
+            ),
+            presenting: flow.presentedAlert,
+            actions: { alert in
+                ForEach(alert.actions) { action in
+                    Button(action.title, role: action.role) {
+                        flow.dismissAlert()
+                        action.action()
+                    }
+                }
+            },
+            message: { alert in
+                Text(alert.message)
+            }
+        )
         .environment(flow)
     }
 }

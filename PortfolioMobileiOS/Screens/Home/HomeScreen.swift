@@ -9,7 +9,39 @@ struct HomeScreen: View {
     
     var body: some View {
         VStack(spacing: .zero) {
-            EmptyView()
+            Button("Show Alert") {
+                navigationFlow
+                    .showAlert(
+                        .init(
+                            title: AlertContent.sample.title,
+                            message: AlertContent.sample.message,
+                            actions: AlertContent.sample.actions
+                        )
+                    )
+                navigationFlow
+                    .showAlert(
+                        .init(
+                            title: "2つ目のアラート",
+                            message: AlertContent.sample.message,
+                            actions: AlertContent.sample.actions
+                        )
+                    )
+                navigationFlow
+                    .showAlert(
+                        .init(
+                            title: "3つ目のアラート",
+                            message: AlertContent.sample.message,
+                            actions: AlertContent.sample.actions
+                        )
+                    )
+            }
+            .buttonStyle(
+                .filled(
+                    backgroundColor: Color.main
+                )
+            )
+            .headlineFont()
+            .frame(height: 48)
         }
         .screenBackground()
         .toolBar(
