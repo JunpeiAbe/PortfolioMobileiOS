@@ -4,11 +4,11 @@ struct RootScreen: View {
     private let screenBuilder: ScreensBuilder = .init()
     @State private var appRouter: AppRouter = .init()
     var body: some View {
-        @Bindable var appRouter = appRouter
+        @Bindable var bindableAppRouter = appRouter
         NavigationFlowContainer(
-            flow: appRouter.mainNavigationFlow,
+            flow: bindableAppRouter.mainNavigationFlow,
             rootScreen: { LoginScreen(state: .init()) },
-            pushDestinationBuilder: screenBuilder.pushDestination
+            pushDestination: screenBuilder.pushDestination
         )
     }
 }
