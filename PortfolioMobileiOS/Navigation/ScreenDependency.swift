@@ -1,20 +1,38 @@
 import Foundation
 
 struct ScreenDependency {
+    var makeSplashState: @MainActor () -> SplashScreenState
+    var makeLoginState: @MainActor () -> LoginScreenState
+    var makeRegisterState: @MainActor () -> RegisterScreenState
+    var makeTermState: @MainActor () -> TermScreenState
     
-    func makeSplashState() -> SplashScreenState {
-        return SplashScreenState()
-    }
+    static let debug: Self = .init(
+        makeSplashState: {
+            SplashScreenState()
+        },
+        makeLoginState: {
+            LoginScreenState()
+        },
+        makeRegisterState: {
+            RegisterScreenState()
+        },
+        makeTermState: {
+            TermScreenState()
+        }
+    )
     
-    func makeLoginState() -> LoginScreenState {
-        return LoginScreenState()
-    }
-    
-    func makeRegisterState() -> RegisterScreenState {
-        return RegisterScreenState()
-    }
-    
-    func makeTermState() -> TermScreenState {
-        return TermScreenState()
-    }
+    static let release: Self = .init(
+        makeSplashState: {
+            SplashScreenState()
+        },
+        makeLoginState: {
+            LoginScreenState()
+        },
+        makeRegisterState: {
+            RegisterScreenState()
+        },
+        makeTermState: {
+            TermScreenState()
+        }
+    )
 }
