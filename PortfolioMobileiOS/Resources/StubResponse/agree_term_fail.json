@@ -1,0 +1,6 @@
+{
+    "error": {
+        "code": "TERM_AGREEMENT_FAILED",
+        "message": "利用規約への同意に失敗しました。"
+    }
+}

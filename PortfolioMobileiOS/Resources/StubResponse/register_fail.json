@@ -1,0 +1,19 @@
+{
+    "access_token": null,
+    "refresh_token": null,
+    "expires_in": null,
+    "error": {
+        "code": "REGISTER_FAILED",
+        "message": "会員登録に失敗しました。"
+    }
+}
+
+//{
+//  "access_token": null,
+//  "refresh_token": null,
+//  "expires_in": null,
+//  "error": {
+//    "code": "DUPLICATED_MAIL_ADDRESS",
+//    "message": "このメールアドレスは既に登録されています。"
+//  }
+//}

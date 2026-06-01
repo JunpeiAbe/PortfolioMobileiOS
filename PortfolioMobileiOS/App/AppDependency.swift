@@ -25,7 +25,11 @@ struct AppDependency {
             HomeScreenState()
         },
         makeURLSessionClient: {
-            return URLSessionAPIClient(configuration: .init(baseURL: URL(string: "https://debug-api.example.com")!))
+            StubResponseConfigurator.configure()
+            return URLSessionAPIClient(
+                session: .stub,
+                configuration: .init(baseURL: URL(string: "https://debug-api.example.com")!)
+            )
         }
     )
     

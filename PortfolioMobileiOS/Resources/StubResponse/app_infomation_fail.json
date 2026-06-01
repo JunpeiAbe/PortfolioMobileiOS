@@ -1,0 +1,12 @@
+{
+    "maintenance_flag": null,
+    "android_min_app_version": null,
+    "ios_min_app_version": null,
+    "app_term_url": null,
+    "app_term_version": null,
+    "qa_url": null,
+    "error": {
+        "code": "APP_INFORMATION_FAILED",
+        "message": "アプリ情報の取得に失敗しました。"
+    }
+}

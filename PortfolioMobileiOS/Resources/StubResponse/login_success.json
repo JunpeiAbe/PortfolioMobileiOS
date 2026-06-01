@@ -1,0 +1,7 @@
+{
+    "access_token": "debug_access_token",
+    "refresh_token": "debug_refresh_token",
+    "expires_in": 3600,
+    "app_terms_agreed": false,
+    "error": null
+}

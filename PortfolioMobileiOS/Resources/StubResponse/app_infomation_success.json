@@ -1,0 +1,9 @@
+{
+    "maintenance_flag": false,
+    "android_min_app_version": "1.0.0",
+    "ios_min_app_version": "1.0.0",
+    "app_term_url": "https://example.com/terms",
+    "app_term_version": "1.0.0",
+    "qa_url": "https://example.com/qa",
+    "error": null
+}

@@ -1,0 +1,21 @@
+{
+    "access_token": null,
+    "refresh_token": null,
+    "expires_in": null,
+    "app_terms_agreed": null,
+    "error": {
+        "code": "TOKEN_REFRESH_FAILED",
+        "message": "認証情報の更新に失敗しました。"
+    }
+}
+
+//{
+//    "access_token": null,
+//    "refresh_token": null,
+//    "expires_in": null,
+//    "app_terms_agreed": null,
+//    "error": {
+//        "code": "EXPIRED_REFRESH_TOKEN",
+//        "message": "ログインの有効期限が切れました。再度ログインしてください。"
+//    }
+//}
