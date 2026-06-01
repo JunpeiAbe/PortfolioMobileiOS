@@ -1,6 +1,6 @@
 import Foundation
 
-struct AppInformationResponse: Codable {
+struct AppInformationResponse: @MainActor APIResponse {
     let isMaintenance: Bool?
     let androidMinAppVersion: String?
     let iOSMinAppVersion: String?

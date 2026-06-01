@@ -1,13 +1,23 @@
 import Foundation
 
-struct LoginRequest: Codable {
-    let mailAddress: String
-    let password: String
-    let deviceToken: String?
-
-    enum CodingKeys: String, CodingKey {
-        case mailAddress = "mail_address"
-        case password
-        case deviceToken = "device_token"
+struct LoginRequest: @MainActor APIRequest {
+    typealias Response = LoginResponse
+    
+    typealias HttpBody = LoginRequestBody
+    
+    var path: String = "/login"
+    
+    var httpMethod: HttpMethod = .post
+    
+    var httpHeaderFields: [String : String] = [:]
+    
+    var requiresAuthorization: Bool = false
+    
+    var httpBody: LoginRequestBody?
+    
+    init(
+        httpBody: LoginRequestBody
+    ) {
+        self.httpBody = httpBody
     }
 }

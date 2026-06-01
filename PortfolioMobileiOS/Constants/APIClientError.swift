@@ -1,8 +1,8 @@
 import Foundation
 
 enum APIClientError: Error, Equatable {
-    /// urlリクエスト生成失敗
-    case requestBuildFailed
+    /// トークン取得失敗
+    case getAccessTokenFailed
     /// 不正なレスポンス(200番台以外)
     case invalidResponse(_ statusCode: Int)
     /// エンコード失敗

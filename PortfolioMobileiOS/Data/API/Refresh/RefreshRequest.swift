@@ -1,9 +1,23 @@
 import Foundation
 
-struct RefreshRequest: Codable {
-    let refreshToken: String
-
-    enum CodingKeys: String, CodingKey {
-        case refreshToken = "refrexh_token"
+struct RefreshRequest: @MainActor APIRequest {
+    typealias Response = RefreshResponse
+    
+    typealias HttpBody = RefreshRequestBody
+    
+    var path: String = "refresh"
+    
+    var httpMethod: HttpMethod = .post
+    
+    var httpHeaderFields: [String : String] = [:]
+    
+    var requiresAuthorization: Bool = true
+    
+    var httpBody: RefreshRequestBody?
+    
+    init(
+        httpBody: RefreshRequestBody
+    ) {
+        self.httpBody = httpBody
     }
 }

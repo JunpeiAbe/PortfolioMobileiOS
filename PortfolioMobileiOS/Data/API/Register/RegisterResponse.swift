@@ -1,6 +1,6 @@
 import Foundation
 
-struct RegisterResponse: Codable {
+struct RegisterResponse: @MainActor APIResponse {
     let accessToken: String?
     let refreshToken: String?
     let expiresIn: Int?

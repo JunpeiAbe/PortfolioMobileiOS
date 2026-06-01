@@ -1,11 +1,23 @@
 import Foundation
 
-struct RegisterRequest: Codable {
-    let mailAddress: String
-    let password: String
-
-    enum CodingKeys: String, CodingKey {
-        case mailAddress = "mail_address"
-        case password
+struct RegisterRequest: @MainActor APIRequest {
+    typealias Response = RegisterResponse
+    
+    typealias HttpBody = RegisterRequestBody
+    
+    var path: String = "register"
+    
+    var httpMethod: HttpMethod = .post
+    
+    var httpHeaderFields: [String : String] = [:]
+    
+    var requiresAuthorization: Bool = false
+    
+    var httpBody: RegisterRequestBody?
+    
+    init(
+        httpBody: RegisterRequestBody
+    ) {
+        self.httpBody = httpBody
     }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-struct AgreeTermResponse: Codable {
+struct AgreeTermResponse: @MainActor APIResponse {
     let error: CommonResponseError?
     
     enum CodingKeys: String, CodingKey {

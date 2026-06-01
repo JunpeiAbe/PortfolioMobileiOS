@@ -1,6 +1,6 @@
 import Foundation
 
-struct LoginResponse: Codable {
+struct LoginResponse: @MainActor APIResponse {
     let accessToken: String?
     let refreshToken: String?
     let expiresIn: Int?
