@@ -1,6 +1,6 @@
 import Foundation
 
-struct CommonResponseError: Codable {
+struct CommonResponseError: Codable, Error {
     let code: String
     let message: String
 

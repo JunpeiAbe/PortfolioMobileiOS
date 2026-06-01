@@ -1,11 +1,12 @@
 import Foundation
 
-struct ScreenDependency {
+struct AppDependency {
     var makeSplashState: @MainActor () -> SplashScreenState
     var makeLoginState: @MainActor () -> LoginScreenState
     var makeRegisterState: @MainActor () -> RegisterScreenState
     var makeTermState: @MainActor () -> TermScreenState
     var makeHomeState: @MainActor () -> HomeScreenState
+    var makeURLSessionClient: @MainActor () -> URLSessionAPIClient
     
     static let debug: Self = .init(
         makeSplashState: {
@@ -22,6 +23,9 @@ struct ScreenDependency {
         },
         makeHomeState: {
             HomeScreenState()
+        },
+        makeURLSessionClient: {
+            return URLSessionAPIClient(configuration: .init(baseURL: URL(string: "https://debug-api.example.com")!))
         }
     )
     
@@ -40,6 +44,9 @@ struct ScreenDependency {
         },
         makeHomeState: {
             HomeScreenState()
+        },
+        makeURLSessionClient: {
+            return URLSessionAPIClient(configuration: .init(baseURL: URL(string: "https://release-api.example.com")!))
         }
     )
 }

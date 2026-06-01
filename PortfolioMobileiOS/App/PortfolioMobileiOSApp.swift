@@ -3,7 +3,7 @@ import SwiftUI
 @main
 struct PortfolioMobileiOSApp: App {
     
-    private var dependency: ScreenDependency {
+    private var dependency: AppDependency {
         #if DEBUG
         return .debug
         #elseif STAGING

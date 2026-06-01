@@ -2,9 +2,9 @@ import SwiftUI
 
 @MainActor
 struct ScreensBuilder {
-    private let dependency: ScreenDependency
+    private let dependency: AppDependency
     
-    init(dependency: ScreenDependency) {
+    init(dependency: AppDependency) {
         self.dependency = dependency
     }
     

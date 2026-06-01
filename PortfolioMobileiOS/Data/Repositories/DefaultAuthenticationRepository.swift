@@ -1,0 +1,50 @@
+import Foundation
+
+struct DefaultAuthenticationRepository: AuthenticationRepository {
+    private let apiClient: APIClient
+    
+    init(apiClient: APIClient) {
+        self.apiClient = apiClient
+    }
+    
+    func login(mailAddress: String, password: String, deviceToken: String) async throws -> AuthSession {
+        let response = try await apiClient.send(LoginRequest(httpBody: .init(mailAddress: mailAddress, password: password, deviceToken: deviceToken)))
+        if let error = response.error {
+            throw error
+        }
+        return AuthSession(
+            accessToken: response.accessToken,
+            refreshToken: response.refreshToken,
+            expiresIn: response.expiresIn,
+            appTermsAgreed: response.appTermsAgreed
+        )
+    }
+    
+    func register(mailAddress: String, password: String) async throws -> AuthSession {
+        let response = try await apiClient.send(RegisterRequest(httpBody: .init(mailAddress: mailAddress, password: password)))
+        if let error = response.error {
+            throw error
+        }
+        return AuthSession(
+            accessToken: response.accessToken,
+            refreshToken: response.refreshToken,
+            expiresIn: response.expiresIn,
+            appTermsAgreed: nil
+        )
+    }
+    
+    func tokenRefresh(refreshToken: String) async throws -> AuthSession {
+        let response = try await apiClient.send(RefreshRequest(httpBody: .init(refreshToken: refreshToken)))
+        if let error = response.error {
+            throw error
+        }
+        return AuthSession(
+            accessToken: response.accessToken,
+            refreshToken: response.refreshToken,
+            expiresIn: response.expiresIn,
+            appTermsAgreed: nil
+        )
+    }
+    
+    func logout() async throws {}
+}

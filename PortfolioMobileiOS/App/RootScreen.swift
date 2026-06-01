@@ -4,7 +4,7 @@ struct RootScreen: View {
     private let screenBuilder: ScreensBuilder
     @State private var appRouter: AppRouter = .init()
     
-    init(dependency: ScreenDependency) {
+    init(dependency: AppDependency) {
         screenBuilder = ScreensBuilder(dependency: dependency)
     }
     
@@ -19,5 +19,5 @@ struct RootScreen: View {
 }
 
 #Preview {
-    RootScreen(dependency: ScreenDependency.debug)
+    RootScreen(dependency: AppDependency.debug)
 }
