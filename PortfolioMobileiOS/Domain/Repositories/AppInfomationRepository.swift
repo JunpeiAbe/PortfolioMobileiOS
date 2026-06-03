@@ -1,5 +1,5 @@
 import Foundation
 
-protocol AppInfomationRepository {
+protocol AppInfomationRepository: Sendable {
     func fetchAppInfomation() async throws -> AppInfomation
 }

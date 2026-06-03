@@ -1,6 +1,6 @@
 import Foundation
 
-struct RegisterRequest: @MainActor APIRequest {
+struct RegisterRequest: APIRequest {
     typealias Response = RegisterResponse
     
     typealias HttpBody = RegisterRequestBody

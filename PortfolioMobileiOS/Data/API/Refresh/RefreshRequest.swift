@@ -1,6 +1,6 @@
 import Foundation
 
-struct RefreshRequest: @MainActor APIRequest {
+struct RefreshRequest: APIRequest {
     typealias Response = RefreshResponse
     
     typealias HttpBody = RefreshRequestBody

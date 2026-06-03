@@ -6,6 +6,10 @@ struct AppDependency {
     var makeRegisterState: @MainActor () -> RegisterScreenState
     var makeTermState: @MainActor () -> TermScreenState
     var makeHomeState: @MainActor () -> HomeScreenState
+    var makeMenuState: @MainActor () -> MenuScreenState
+    var makeHistoryState: @MainActor () -> HistoryScreenState
+    var makeNotificationState: @MainActor () -> NotificationScreenState
+    var makeSettingState: @MainActor () -> SettingScreenState
     var makeURLSessionClient: @MainActor () -> URLSessionAPIClient
     
     static let debug: Self = .init(
@@ -23,6 +27,18 @@ struct AppDependency {
         },
         makeHomeState: {
             HomeScreenState()
+        },
+        makeMenuState: {
+            MenuScreenState()
+        },
+        makeHistoryState: {
+            HistoryScreenState()
+        },
+        makeNotificationState: {
+            NotificationScreenState()
+        },
+        makeSettingState: {
+            SettingScreenState()
         },
         makeURLSessionClient: {
             StubResponseConfigurator.configure()
@@ -48,6 +64,18 @@ struct AppDependency {
         },
         makeHomeState: {
             HomeScreenState()
+        },
+        makeMenuState: {
+            MenuScreenState()
+        },
+        makeHistoryState: {
+            HistoryScreenState()
+        },
+        makeNotificationState: {
+            NotificationScreenState()
+        },
+        makeSettingState: {
+            SettingScreenState()
         },
         makeURLSessionClient: {
             return URLSessionAPIClient(configuration: .init(baseURL: URL(string: "https://release-api.example.com")!))

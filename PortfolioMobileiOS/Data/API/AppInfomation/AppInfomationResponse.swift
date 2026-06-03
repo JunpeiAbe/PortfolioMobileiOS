@@ -1,6 +1,6 @@
 import Foundation
 
-struct AppInformationResponse: @MainActor APIResponse {
+struct AppInformationResponse: APIResponse {
     let isMaintenance: Bool?
     let androidMinAppVersion: String?
     let iOSMinAppVersion: String?

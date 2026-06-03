@@ -1,5 +1,5 @@
 import Foundation
 
-protocol AgreeTermRepository {
+protocol AgreeTermRepository: Sendable {
     func agreeTerm(mailAddress: String, termsVersion: String) async throws
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-struct AppInformationRequest: @MainActor APIRequest {
+struct AppInformationRequest: APIRequest {
     typealias Response = AppInformationResponse
     
     typealias HttpBody = EmptyBody

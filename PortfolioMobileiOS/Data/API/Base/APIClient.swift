@@ -1,5 +1,5 @@
 import Foundation
 
-protocol APIClient {
+protocol APIClient: Sendable {
     func send<Request: APIRequest>(_ request: Request) async throws -> Request.Response
 }

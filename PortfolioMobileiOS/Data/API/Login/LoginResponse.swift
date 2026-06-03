@@ -1,6 +1,6 @@
 import Foundation
 
-struct LoginResponse: @MainActor APIResponse {
+struct LoginResponse: APIResponse {
     let accessToken: String?
     let refreshToken: String?
     let expiresIn: Int?

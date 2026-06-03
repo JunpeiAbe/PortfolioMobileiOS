@@ -1,6 +1,6 @@
 import Foundation
 
-protocol AuthenticationRepository {
+protocol AuthenticationRepository: Sendable {
     func login(mailAddress: String, password: String, deviceToken: String) async throws -> AuthSession
     func register(mailAddress: String, password: String) async throws -> AuthSession
     func tokenRefresh(refreshToken: String) async throws -> AuthSession

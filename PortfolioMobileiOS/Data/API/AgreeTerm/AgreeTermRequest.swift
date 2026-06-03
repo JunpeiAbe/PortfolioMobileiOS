@@ -1,6 +1,6 @@
 import Foundation
 
-struct AgreeTermRequest: @MainActor APIRequest {
+struct AgreeTermRequest: APIRequest {
     typealias Response = AgreeTermResponse
     
     typealias HttpBody = AgreeTermRequestBody

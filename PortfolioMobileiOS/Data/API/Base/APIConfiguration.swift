@@ -1,6 +1,6 @@
 import Foundation
 
-struct APIConfiguration {
+struct APIConfiguration: Sendable {
     let baseURL: URL
     let defaultHeaders: [String : String]
     

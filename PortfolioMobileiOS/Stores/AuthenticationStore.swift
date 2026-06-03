@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 protocol AuthenticationStore {
     var authSession: AuthSession? { get }
     var isLoggedIn: Bool { get }

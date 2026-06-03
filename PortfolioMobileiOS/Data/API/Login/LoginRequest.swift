@@ -1,6 +1,6 @@
 import Foundation
 
-struct LoginRequest: @MainActor APIRequest {
+struct LoginRequest: APIRequest {
     typealias Response = LoginResponse
     
     typealias HttpBody = LoginRequestBody
