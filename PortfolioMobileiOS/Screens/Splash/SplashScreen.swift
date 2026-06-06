@@ -3,6 +3,8 @@ import SwiftUI
 struct SplashScreen: View {
     
     @State var state: SplashScreenState
+    @Environment(AppRouter.self) private var appRouter
+    @Environment(\.loading) var loading
     init(state: SplashScreenState) {
         self.state = state
     }
@@ -15,6 +17,9 @@ struct SplashScreen: View {
                 .frame(width: 100, height: 100)
         }
         .screenBackground()
+        .onAppear {
+            appRouter.showMain()
+        }
     }
 }
 

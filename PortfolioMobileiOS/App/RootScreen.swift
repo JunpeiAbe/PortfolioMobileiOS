@@ -10,48 +10,53 @@ struct RootScreen: View {
     
     var body: some View {
         @Bindable var bindableAppRouter = appRouter
-        TabView(selection: $bindableAppRouter.selectedTab) {
-            Tab(SelectableTab.home.title, systemImage: "house", value: .home) {
+        Group {
+            switch appRouter.appScene {
+            case .splash:
+                screenBuilder.splashScreen()
+            case .auth:
                 NavigationFlowContainer(
-                    flow: bindableAppRouter.homeNavigationFlow,
-                    rootScreen: { screenBuilder.homeRootScreen() },
+                    flow: bindableAppRouter.authNavigationFlow,
+                    rootScreen: { screenBuilder.loginScreen() },
                     pushDestination: screenBuilder.pushDestination
                 )
-            }
-            Tab(SelectableTab.menu.title, systemImage: "list.bullet", value: .menu) {
-                NavigationFlowContainer(
-                    flow: bindableAppRouter.menuNavigationFlow,
-                    rootScreen: { screenBuilder.menuRootScreen() },
-                    pushDestination: screenBuilder.pushDestination
-                )
-            }
-            Tab(SelectableTab.history.title, systemImage: "clock.arrow.circlepath", value: .history) {
-                NavigationFlowContainer(
-                    flow: bindableAppRouter.historyNavigationFlow,
-                    rootScreen: { screenBuilder.historyRootScreen() },
-                    pushDestination: screenBuilder.pushDestination
-                )
-            }
-            Tab(SelectableTab.notification.title, systemImage: "bell", value: .notification) {
-                NavigationFlowContainer(
-                    flow: bindableAppRouter.notificationsNavigationFlow,
-                    rootScreen: { screenBuilder.notificationRootScreen() },
-                    pushDestination: screenBuilder.pushDestination
-                )
-            }
-            Tab(SelectableTab.setting.title, systemImage: "gearshape", value: .setting) {
-                NavigationFlowContainer(
-                    flow: bindableAppRouter.settignsNavigationFlow,
-                    rootScreen: { screenBuilder.settingRootScreen() },
-                    pushDestination: screenBuilder.pushDestination
+            case .main:
+                MainScreen(
+                    screenBuilder: screenBuilder
                 )
             }
         }
-//        NavigationFlowContainer(
-//            flow: bindableAppRouter.mainNavigationFlow,
-//            rootScreen: { screenBuilder.rootScreen() },
-//            pushDestination: screenBuilder.pushDestination
-//        )
+        .environment(appRouter)
+        .loading(
+            isPresented: $appRouter.isLoading
+        )
+        .environment(\.loading, .init(
+            show: {
+                appRouter.showLoading()
+            },
+            hide: {
+                appRouter.hideLoading()
+            }
+        ))
+        .alert(
+            appRouter.presentedAlert?.title ?? .init(),
+            isPresented: .init(
+                get: { appRouter.presentedAlert != nil },
+                set: { _ in appRouter.presentedAlert = nil }
+            ),
+            presenting: appRouter.presentedAlert,
+            actions: { alert in
+                ForEach(alert.actions) { action in
+                    Button(action.title, role: action.role) {
+                        appRouter.dismissAlert()
+                        action.action()
+                    }
+                }
+            },
+            message: { alert in
+                Text(alert.message)
+            }
+        )
     }
 }
 

@@ -21,7 +21,6 @@ struct NavigationFlowContainer<
     private let flow: NavigationFlow
     private let rootScreen: () -> RootScreen
     private let pushDestination: (PushDestination) -> DestinationScreen
-    @State var isLoading: Bool = false
     
     init(
         flow: NavigationFlow,
@@ -42,36 +41,6 @@ struct NavigationFlowContainer<
                     pushDestination(destination)
                 }
         }
-        .alert(
-            flow.presentedAlert?.title ?? .init(),
-            isPresented: .init(
-                get: { flow.presentedAlert != nil },
-                set: { _ in flow.presentedAlert = nil }
-            ),
-            presenting: flow.presentedAlert,
-            actions: { alert in
-                ForEach(alert.actions) { action in
-                    Button(action.title, role: action.role) {
-                        flow.dismissAlert()
-                        action.action()
-                    }
-                }
-            },
-            message: { alert in
-                Text(alert.message)
-            }
-        )
-        .loading(
-            isPresented: $isLoading
-        )
-        .environment(\.loading, .init(
-            show: {
-                isLoading = true
-            },
-            hide: {
-                isLoading = false
-            }
-        ))
         .environment(flow)
     }
 }

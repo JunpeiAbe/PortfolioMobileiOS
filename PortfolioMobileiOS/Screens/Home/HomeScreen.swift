@@ -2,7 +2,8 @@ import SwiftUI
 
 struct HomeScreen: View {
     @State var state: HomeScreenState
-    @Environment(NavigationFlow.self) private var navigationFlow
+    @Environment(AppRouter.self) private var appRouter
+    @Environment(\.loading) var loading
     init(state: HomeScreenState) {
         self.state = state
     }
@@ -10,7 +11,7 @@ struct HomeScreen: View {
     var body: some View {
         VStack(spacing: .zero) {
             Button("Show Alert") {
-                navigationFlow
+                appRouter
                     .showAlert(
                         .init(
                             title: AlertContent.sample.title,
@@ -18,7 +19,7 @@ struct HomeScreen: View {
                             actions: AlertContent.sample.actions
                         )
                     )
-                navigationFlow
+                appRouter
                     .showAlert(
                         .init(
                             title: "2つ目のアラート",
@@ -26,7 +27,7 @@ struct HomeScreen: View {
                             actions: AlertContent.sample.actions
                         )
                     )
-                navigationFlow
+                appRouter
                     .showAlert(
                         .init(
                             title: "3つ目のアラート",
@@ -49,6 +50,13 @@ struct HomeScreen: View {
             isLeftButtonHidden: true,
             leftButtonAction: {},
             rightButtonAction: {})
+        .onChange(of: state.loadingState.isLoading) { _, newValue in
+            if newValue {
+                loading.show()
+            } else {
+                loading.hide()
+            }
+        }
     }
 }
 

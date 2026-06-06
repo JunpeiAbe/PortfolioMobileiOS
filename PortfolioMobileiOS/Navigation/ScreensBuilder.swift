@@ -9,7 +9,11 @@ struct ScreensBuilder {
     }
     
     @ViewBuilder
-    func rootScreen() -> some View {
+    func splashScreen() -> some View {
+        SplashScreen(state: dependency.makeSplashState())
+    }
+    @ViewBuilder
+    func loginScreen() -> some View {
         LoginScreen(state: dependency.makeLoginState())
     }
     @ViewBuilder
@@ -36,7 +40,6 @@ struct ScreensBuilder {
     @ViewBuilder
     func pushDestination(for destination: PushDestination) -> some View {
         switch destination {
-        case .splash: SplashScreen(state: dependency.makeSplashState())
         case .login: LoginScreen(state: dependency.makeLoginState())
         case .register: RegisterScreen(state: dependency.makeRegisterState())
         case .term: TermScreen(state: dependency.makeTermState())
