@@ -42,8 +42,7 @@ struct PresentAlertAction: Identifiable, Equatable {
 
 extension PresentAlertAction {
     static let ok = PresentAlertAction(
-        title: "OK",
-        role: .close
+        title: "OK"
     )
     static let cancel = PresentAlertAction(
         title: "キャンセル",

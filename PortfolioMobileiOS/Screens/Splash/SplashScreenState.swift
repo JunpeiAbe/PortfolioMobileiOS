@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 @MainActor
 @Observable
@@ -22,11 +23,16 @@ final class SplashScreenState {
                 print("appInfomationStore.appInfomation",appInfomationStore.appInfomation)
                 // メンテナンス中フラグtrueの場合
                 if appInfomationStore.isMaintenance {
-                    // TODO: メンテナンス中ダイアログを表示する
+                    alertContent = AlertContent.maintenance
                 }
                 // 最低アプリバージョン > 現在のアプリバージョンの場合
                 if appInfomationStore.needsForceUpdate {
-                    // TODO: 強制バージョンアップーデートダイアログを表示する
+                    alertContent = AlertContent.forceUpdate {
+                        // TODO: アプリストアに遷移する
+                        if let url = URL(string: "https://apps.apple.com") {
+                            UIApplication.shared.open(url)
+                        }
+                    }
                 }
             } catch let error as APIClientError {
                 // TODO: error handling
