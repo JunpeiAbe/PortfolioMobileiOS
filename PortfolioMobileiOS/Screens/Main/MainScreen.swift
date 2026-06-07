@@ -3,7 +3,6 @@ import SwiftUI
 struct MainScreen: View {
     
     private let screenBuilder: ScreensBuilder
-    //private let appRouter: AppRouter
     @Environment(AppRouter.self) private var appRouter
     init(
         screenBuilder: ScreensBuilder
@@ -54,5 +53,5 @@ struct MainScreen: View {
 }
 
 #Preview {
-    MainScreen(screenBuilder: .init(dependency: .debug))
+    MainScreen(screenBuilder: .init(dependency: .debug()))
 }

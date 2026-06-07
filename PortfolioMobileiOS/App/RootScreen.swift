@@ -83,5 +83,5 @@ struct RootScreen: View {
 }
 
 #Preview {
-    RootScreen(state: AppDependency.debug.makeRootState())
+    RootScreen(state: AppDependency.debug().makeRootState())
 }

@@ -29,6 +29,6 @@ struct SplashScreen: View {
 }
 
 #Preview {
-    @Previewable var state: SplashScreenState = AppDependency.debug.makeSplashState()
+    @Previewable var state: SplashScreenState = AppDependency.debug().makeSplashState()
     SplashScreen(state: state)
 }

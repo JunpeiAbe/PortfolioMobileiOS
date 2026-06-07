@@ -5,11 +5,11 @@ struct PortfolioMobileiOSApp: App {
     
     private var dependency: AppDependency {
         #if DEBUG
-        return .debug
+        return .debug()
         #elseif STAGING
-        return .debug
+        return .debug()
         #else
-        return .release
+        return .release()
         #endif
     }
     

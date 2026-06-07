@@ -11,131 +11,152 @@ struct AppDependency {
     var makeHistoryState: @MainActor () -> HistoryScreenState
     var makeNotificationState: @MainActor () -> NotificationScreenState
     var makeSettingState: @MainActor () -> SettingScreenState
-    var makeURLSessionClient: @MainActor () -> URLSessionAPIClient
-    var makeKeychainClient: @MainActor () -> DefaultKeychainClient
+    @MainActor
+    static func debug() -> Self {
+        StubResponseConfigurator.configure()
+        
+        let keychainClient = DefaultKeychainClient(
+            service: "debug"
+        )
+        
+        let apiClient = URLSessionAPIClient(
+            session: .stub,
+            configuration: .init(
+                baseURL: URL(string: "https://debug-api.example.com")!
+            )
+        )
+        
+        let appInfomationRepository = DefaultAppInfomationRepository(
+            apiClient: apiClient
+        )
+        
+        let authenticationRepository = DefaultAuthenticationRepository(
+            apiClient: apiClient,
+            keychainclient: keychainClient
+        )
+        
+        let agreeTermRepository = DefaultAgreeTermRepository(
+            apiClient: apiClient
+        )
+        
+        let appInfomationStore = DefaultAppInfomationStore(
+            appInfomationRepository: appInfomationRepository
+        )
+        
+        let authenticationStore = DefaultAuthenticationStore(
+            authenticationRepository: authenticationRepository,
+            agreeTermRepository: agreeTermRepository
+        )
+        
+        return .init(
+            makeRootState: {
+                RootScreenState(
+                    dependency: .debug(),
+                    appInfomationStore: appInfomationStore,
+                    authenticationStore: authenticationStore
+                )
+            },
+            makeSplashState: {
+                SplashScreenState(
+                    appInfomationStore: appInfomationStore
+                )
+            },
+            makeLoginState: {
+                LoginScreenState()
+            },
+            makeRegisterState: {
+                RegisterScreenState()
+            },
+            makeTermState: {
+                TermScreenState()
+            },
+            makeHomeState: {
+                HomeScreenState()
+            },
+            makeMenuState: {
+                MenuScreenState()
+            },
+            makeHistoryState: {
+                HistoryScreenState()
+            },
+            makeNotificationState: {
+                NotificationScreenState()
+            },
+            makeSettingState: {
+                SettingScreenState()
+            }
+        )
+    }
     
-    static let debug: Self = .init(
-        makeRootState: {
-            RootScreenState(
-                dependency: .debug,
-                appInfomationStore: DefaultAppInfomationStore(
-                    appInfomationRepository: DefaultAppInfomationRepository(
-                        apiClient: Self.debug.makeURLSessionClient()
-                    )
-                ),
-                authenticationStore: DefaultAuthenticationStore(
-                    authenticationRepository: DefaultAuthenticationRepository(
-                        apiClient: Self.debug.makeURLSessionClient(),
-                        keychainclient: Self.debug.makeKeychainClient()
-                    ),
-                    agreeTermRepository: DefaultAgreeTermRepository(
-                        apiClient:  Self.debug.makeURLSessionClient()
-                    )
-                )
+    @MainActor
+    static func release() -> Self {
+        let keychainClient = DefaultKeychainClient()
+        
+        let apiClient = URLSessionAPIClient(
+            configuration: .init(
+                baseURL: URL(string: "https://release-api.example.com")!
             )
-        },
-        makeSplashState: {
-            StubResponseConfigurator.configure()
-            return SplashScreenState(
-                appInfomationStore: DefaultAppInfomationStore(
-                    appInfomationRepository: DefaultAppInfomationRepository(
-                        apiClient: Self.debug.makeURLSessionClient()
-                    )
+        )
+        
+        let appInfomationRepository = DefaultAppInfomationRepository(
+            apiClient: apiClient
+        )
+        
+        let authenticationRepository = DefaultAuthenticationRepository(
+            apiClient: apiClient,
+            keychainclient: keychainClient
+        )
+        
+        let agreeTermRepository = DefaultAgreeTermRepository(
+            apiClient: apiClient
+        )
+        
+        let appInfomationStore = DefaultAppInfomationStore(
+            appInfomationRepository: appInfomationRepository
+        )
+        
+        let authenticationStore = DefaultAuthenticationStore(
+            authenticationRepository: authenticationRepository,
+            agreeTermRepository: agreeTermRepository
+        )
+        
+        return .init(
+            makeRootState: {
+                RootScreenState(
+                    dependency: .release(),
+                    appInfomationStore: appInfomationStore,
+                    authenticationStore: authenticationStore
                 )
-            )
-        },
-        makeLoginState: {
-            LoginScreenState()
-        },
-        makeRegisterState: {
-            RegisterScreenState()
-        },
-        makeTermState: {
-            TermScreenState()
-        },
-        makeHomeState: {
-            HomeScreenState()
-        },
-        makeMenuState: {
-            MenuScreenState()
-        },
-        makeHistoryState: {
-            HistoryScreenState()
-        },
-        makeNotificationState: {
-            NotificationScreenState()
-        },
-        makeSettingState: {
-            SettingScreenState()
-        },
-        makeURLSessionClient: {
-            StubResponseConfigurator.configure()
-            return URLSessionAPIClient(
-                session: .stub,
-                configuration: .init(baseURL: URL(string: "https://debug-api.example.com")!)
-            )
-        },
-        makeKeychainClient: {
-            return DefaultKeychainClient(service: "debug")
-        }
-    )
-    
-    static let release: Self = .init(
-        makeRootState: {
-            RootScreenState(
-                dependency: .release,
-                appInfomationStore: DefaultAppInfomationStore(
-                    appInfomationRepository: DefaultAppInfomationRepository(
-                        apiClient: Self.release.makeURLSessionClient()
-                    )
-                ),
-                authenticationStore: DefaultAuthenticationStore(
-                    authenticationRepository: DefaultAuthenticationRepository(
-                        apiClient: Self.release.makeURLSessionClient(),
-                        keychainclient: Self.release.makeKeychainClient()
-                    ),
-                    agreeTermRepository: DefaultAgreeTermRepository(
-                        apiClient:  Self.release.makeURLSessionClient()
-                    )
+            },
+            makeSplashState: {
+                SplashScreenState(
+                    appInfomationStore: appInfomationStore
                 )
-            )
-        },
-        makeSplashState: {
-            SplashScreenState(appInfomationStore: DefaultAppInfomationStore(
-                appInfomationRepository: DefaultAppInfomationRepository(
-                    apiClient: Self.release.makeURLSessionClient()
-                )
-            ))
-        },
-        makeLoginState: {
-            LoginScreenState()
-        },
-        makeRegisterState: {
-            RegisterScreenState()
-        },
-        makeTermState: {
-            TermScreenState()
-        },
-        makeHomeState: {
-            HomeScreenState()
-        },
-        makeMenuState: {
-            MenuScreenState()
-        },
-        makeHistoryState: {
-            HistoryScreenState()
-        },
-        makeNotificationState: {
-            NotificationScreenState()
-        },
-        makeSettingState: {
-            SettingScreenState()
-        },
-        makeURLSessionClient: {
-            return URLSessionAPIClient(configuration: .init(baseURL: URL(string: "https://release-api.example.com")!))
-        },
-        makeKeychainClient: {
-            return DefaultKeychainClient()
-        }
-    )
+            },
+            makeLoginState: {
+                LoginScreenState()
+            },
+            makeRegisterState: {
+                RegisterScreenState()
+            },
+            makeTermState: {
+                TermScreenState()
+            },
+            makeHomeState: {
+                HomeScreenState()
+            },
+            makeMenuState: {
+                MenuScreenState()
+            },
+            makeHistoryState: {
+                HistoryScreenState()
+            },
+            makeNotificationState: {
+                NotificationScreenState()
+            },
+            makeSettingState: {
+                SettingScreenState()
+            }
+        )
+    }
 }
