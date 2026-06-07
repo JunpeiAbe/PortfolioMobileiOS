@@ -1,65 +1,87 @@
 import SwiftUI
 
 struct RootScreen: View {
-    private let screenBuilder: ScreensBuilder
+    @Environment(\.scenePhase) private var scenePhase
     @State private var appRouter: AppRouter = .init()
+    @State private var state: RootScreenState
     
-    init(dependency: AppDependency) {
-        screenBuilder = ScreensBuilder(dependency: dependency)
+    init(state: RootScreenState) {
+        self.state = state
     }
     
     var body: some View {
         @Bindable var bindableAppRouter = appRouter
-        Group {
-            switch appRouter.appScene {
-            case .splash:
-                screenBuilder.splashScreen()
-            case .auth:
-                NavigationFlowContainer(
-                    flow: bindableAppRouter.authNavigationFlow,
-                    rootScreen: { screenBuilder.loginScreen() },
-                    pushDestination: screenBuilder.pushDestination
-                )
-            case .main:
-                MainScreen(
-                    screenBuilder: screenBuilder
-                )
-            }
-        }
-        .environment(appRouter)
-        .loading(
-            isPresented: $appRouter.isLoading
-        )
-        .environment(\.loading, .init(
-            show: {
-                appRouter.showLoading()
-            },
-            hide: {
-                appRouter.hideLoading()
-            }
-        ))
-        .alert(
-            appRouter.presentedAlert?.title ?? .init(),
-            isPresented: .init(
-                get: { appRouter.presentedAlert != nil },
-                set: { _ in appRouter.presentedAlert = nil }
-            ),
-            presenting: appRouter.presentedAlert,
-            actions: { alert in
-                ForEach(alert.actions) { action in
-                    Button(action.title, role: action.role) {
-                        appRouter.dismissAlert()
-                        action.action()
-                    }
+        rootContent
+            .environment(appRouter)
+            .loading(
+                isPresented: $appRouter.isLoading
+            )
+            .environment(\.loading, .init(
+                show: {
+                    appRouter.showLoading()
+                },
+                hide: {
+                    appRouter.hideLoading()
                 }
-            },
-            message: { alert in
-                Text(alert.message)
+            ))
+            .alert(
+                appRouter.presentedAlert?.title ?? .init(),
+                isPresented: .init(
+                    get: { appRouter.presentedAlert != nil },
+                    set: { _ in appRouter.presentedAlert = nil }
+                ),
+                presenting: appRouter.presentedAlert,
+                actions: { alert in
+                    ForEach(alert.actions) { action in
+                        Button(action.title, role: action.role) {
+                            appRouter.dismissAlert()
+                            action.action()
+                        }
+                    }
+                },
+                message: { alert in
+                    Text(alert.message)
+                }
+            )
+            .onChange(of: scenePhase) { _, newPhase in
+                guard newPhase == .active else { return }
+                guard state.authenticationStore.isLoggedIn else { return }
+                Task {
+                    await state.checkAppStatus()
+                }
             }
-        )
+            .onChange(of: state.alertContent) { _, newContent in
+                if let newContent {
+                    appRouter.showAlert(newContent)
+                }
+            }
+    }
+    
+    @ViewBuilder
+    private var rootContent: some View {
+        @Bindable var bindableAppRouter = appRouter
+        
+        switch appRouter.appScene {
+        case .splash:
+            state.screenBuilder.splashScreen()
+            
+        case .auth:
+            NavigationFlowContainer(
+                flow: bindableAppRouter.authNavigationFlow,
+                rootScreen: {
+                    state.screenBuilder.loginScreen()
+                },
+                pushDestination: state.screenBuilder.pushDestination
+            )
+            
+        case .main:
+            MainScreen(
+                screenBuilder: state.screenBuilder
+            )
+        }
     }
 }
 
 #Preview {
-    RootScreen(dependency: AppDependency.debug)
+    RootScreen(state: AppDependency.debug.makeRootState())
 }
