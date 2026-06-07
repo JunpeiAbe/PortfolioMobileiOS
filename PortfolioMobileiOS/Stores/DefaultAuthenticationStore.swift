@@ -39,6 +39,10 @@ final class DefaultAuthenticationStore: AuthenticationStore {
         authSession = session
     }
     
+    func logout() async throws {
+        try await authenticationRepository.logout()
+    }
+    
     func agreeTerm(mailAddress: String, termsVersion: String) async throws {
         try await agreeTermRepository.agreeTerm(mailAddress: mailAddress, termsVersion: termsVersion)
     }

@@ -2,15 +2,33 @@ import Foundation
 
 struct DefaultAuthenticationRepository: AuthenticationRepository {
     private let apiClient: APIClient
+    private let keychainclient: KeychainClient
     
-    init(apiClient: APIClient) {
+    init(
+        apiClient: APIClient,
+        keychainclient: KeychainClient
+    ) {
         self.apiClient = apiClient
+        self.keychainclient = keychainclient
     }
     
     func login(mailAddress: String, password: String, deviceToken: String) async throws -> AuthSession {
-        let response = try await apiClient.send(LoginRequest(httpBody: .init(mailAddress: mailAddress, password: password, deviceToken: deviceToken)))
+        let response = try await apiClient.send(
+            LoginRequest(
+                httpBody: .init(
+                    mailAddress: mailAddress,
+                    password: password,
+                    deviceToken: deviceToken
+                )
+            )
+        )
         if let error = response.error {
             throw error
+        }
+        if let accessToken = response.accessToken,
+           let refreshToken = response.refreshToken {
+            try await keychainclient.save(accessToken, for: .accessToken)
+            try await keychainclient.save(refreshToken, for: .refreshToken)
         }
         return AuthSession(
             accessToken: response.accessToken,
@@ -21,9 +39,21 @@ struct DefaultAuthenticationRepository: AuthenticationRepository {
     }
     
     func register(mailAddress: String, password: String) async throws -> AuthSession {
-        let response = try await apiClient.send(RegisterRequest(httpBody: .init(mailAddress: mailAddress, password: password)))
+        let response = try await apiClient.send(
+            RegisterRequest(
+                httpBody: .init(
+                    mailAddress: mailAddress,
+                    password: password
+                )
+            )
+        )
         if let error = response.error {
             throw error
+        }
+        if let accessToken = response.accessToken,
+           let refreshToken = response.refreshToken {
+            try await keychainclient.save(accessToken, for: .accessToken)
+            try await keychainclient.save(refreshToken, for: .refreshToken)
         }
         return AuthSession(
             accessToken: response.accessToken,
@@ -34,9 +64,20 @@ struct DefaultAuthenticationRepository: AuthenticationRepository {
     }
     
     func tokenRefresh(refreshToken: String) async throws -> AuthSession {
-        let response = try await apiClient.send(RefreshRequest(httpBody: .init(refreshToken: refreshToken)))
+        let response = try await apiClient.send(
+            RefreshRequest(
+                httpBody: .init(
+                    refreshToken: refreshToken
+                )
+            )
+        )
         if let error = response.error {
             throw error
+        }
+        if let accessToken = response.accessToken,
+           let refreshToken = response.refreshToken {
+            try await keychainclient.save(accessToken, for: .accessToken)
+            try await keychainclient.save(refreshToken, for: .refreshToken)
         }
         return AuthSession(
             accessToken: response.accessToken,
@@ -46,5 +87,7 @@ struct DefaultAuthenticationRepository: AuthenticationRepository {
         )
     }
     
-    func logout() async throws {}
+    func logout() async throws {
+        try await keychainclient.deleteAll()
+    }
 }
