@@ -17,13 +17,18 @@ struct SplashScreen: View {
                 .frame(width: 100, height: 100)
         }
         .screenBackground()
-        .onAppear {
-            appRouter.showMain()
+        .onAppearOnce {
+            state.onAppear()
+        }
+        .onChange(of: state.alertContent) { _, newContent in
+            if let newContent {
+                appRouter.showAlert(newContent)
+            }
         }
     }
 }
 
 #Preview {
-    @Previewable var state: SplashScreenState = .init()
+    @Previewable var state: SplashScreenState = AppDependency.debug.makeSplashState()
     SplashScreen(state: state)
 }

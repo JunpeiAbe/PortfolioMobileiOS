@@ -1,6 +1,6 @@
 import SwiftUI
 /// 表示可能な標準アラート
-struct PresentAlert {
+struct PresentAlert: Equatable {
     let title: String
     let message: String
     let actions: [PresentAlertAction]
@@ -20,7 +20,11 @@ struct PresentAlert {
 }
 
 /// 標準アラートに表示するボタン
-struct PresentAlertAction: Identifiable {
+struct PresentAlertAction: Identifiable, Equatable {
+    static func == (lhs: PresentAlertAction, rhs: PresentAlertAction) -> Bool {
+        lhs.id == rhs.id && lhs.title == rhs.title && lhs.role == rhs.role
+    }
+    
     let id = UUID()
     let title: String
     let role: ButtonRole?
@@ -47,7 +51,7 @@ extension PresentAlertAction {
     )
 }
 
-enum AlertPresentationPolicy {
+enum AlertPresentationPolicy: Equatable {
     /// 順番に表示
     case enqueue
     /// 表示中なら無視

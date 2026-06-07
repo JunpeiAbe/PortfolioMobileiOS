@@ -1,6 +1,6 @@
 import Foundation
 
-enum AlertContent {
+enum AlertContent: Equatable {
     static let sample: PresentAlert = .init(title: "タイトル", message: "メッセージ", actions: [.cancel, .ok])
 }
 

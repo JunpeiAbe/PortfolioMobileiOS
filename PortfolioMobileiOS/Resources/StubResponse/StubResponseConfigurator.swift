@@ -13,7 +13,7 @@ enum StubResponseConfigurator {
                 statusCode: 200,
                 httpVersion: "HTTP/1.1",
                 headerFields: [
-                    "COntent-Type": "application/json"
+                    "Content-Type": "application/json"
                 ]
             )!
             return (response, data)
@@ -25,7 +25,7 @@ enum StubResponseConfigurator {
             throw APIClientError.requestBuildFailed
         }
         switch path {
-        case "/app-information":
+        case "/information":
             return "app_information_success"
         case "/login":
             return "login_success"
@@ -33,7 +33,7 @@ enum StubResponseConfigurator {
             return "register_success"
         case "/refresh":
             return "refresh_success"
-        case "/agree-term":
+        case "/term":
             return "agree_term_success"
         default:
             throw APIClientError.requestBuildFailed
@@ -43,8 +43,7 @@ enum StubResponseConfigurator {
     static func loadJSON(fileName: String) throws -> Data {
         guard let url = Bundle.main.url(
             forResource: fileName,
-            withExtension: "json",
-            subdirectory: "StubResponses"
+            withExtension: "json"
         ) else {
             throw APIClientError.requestBuildFailed
         }

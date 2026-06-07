@@ -14,7 +14,14 @@ struct AppDependency {
     
     static let debug: Self = .init(
         makeSplashState: {
-            SplashScreenState()
+            StubResponseConfigurator.configure()
+            return SplashScreenState(
+                appInfomationStore: DefaultAppInfomationStore(
+                    appInfomationRepository: DefaultAppInfomationRepository(
+                        apiClient: Self.debug.makeURLSessionClient()
+                    )
+                )
+            )
         },
         makeLoginState: {
             LoginScreenState()
@@ -51,7 +58,11 @@ struct AppDependency {
     
     static let release: Self = .init(
         makeSplashState: {
-            SplashScreenState()
+            SplashScreenState(appInfomationStore: DefaultAppInfomationStore(
+                appInfomationRepository: DefaultAppInfomationRepository(
+                    apiClient: Self.release.makeURLSessionClient()
+                )
+            ))
         },
         makeLoginState: {
             LoginScreenState()
