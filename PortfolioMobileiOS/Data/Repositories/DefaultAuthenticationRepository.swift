@@ -12,14 +12,12 @@ struct DefaultAuthenticationRepository: AuthenticationRepository {
         self.keychainclient = keychainclient
     }
     
-    func login(mailAddress: String, password: String, deviceToken: String) async throws -> AuthSession {
+    func login(mailAddress: String, password: String?, accessToken: String?, deviceToken: String) async throws -> AuthSession {
         let response = try await apiClient.send(
             LoginRequest(
-                httpBody: .init(
-                    mailAddress: mailAddress,
-                    password: password,
-                    deviceToken: deviceToken
-                )
+                httpBody: accessToken == nil && password != nil
+                ? .init(mailAddress: mailAddress, password: password, deviceToken: deviceToken)
+                : .init(mailAddress: mailAddress, accessToken: accessToken, deviceToken: deviceToken)
             )
         )
         if let error = response.error {
@@ -27,8 +25,8 @@ struct DefaultAuthenticationRepository: AuthenticationRepository {
         }
         if let accessToken = response.accessToken,
            let refreshToken = response.refreshToken {
-            try await keychainclient.save(accessToken, for: .accessToken)
-            try await keychainclient.save(refreshToken, for: .refreshToken)
+            try keychainclient.save(accessToken, for: .accessToken)
+            try keychainclient.save(refreshToken, for: .refreshToken)
         }
         return AuthSession(
             accessToken: response.accessToken,
@@ -52,8 +50,8 @@ struct DefaultAuthenticationRepository: AuthenticationRepository {
         }
         if let accessToken = response.accessToken,
            let refreshToken = response.refreshToken {
-            try await keychainclient.save(accessToken, for: .accessToken)
-            try await keychainclient.save(refreshToken, for: .refreshToken)
+            try keychainclient.save(accessToken, for: .accessToken)
+            try keychainclient.save(refreshToken, for: .refreshToken)
         }
         return AuthSession(
             accessToken: response.accessToken,
@@ -76,8 +74,8 @@ struct DefaultAuthenticationRepository: AuthenticationRepository {
         }
         if let accessToken = response.accessToken,
            let refreshToken = response.refreshToken {
-            try await keychainclient.save(accessToken, for: .accessToken)
-            try await keychainclient.save(refreshToken, for: .refreshToken)
+            try keychainclient.save(accessToken, for: .accessToken)
+            try keychainclient.save(refreshToken, for: .refreshToken)
         }
         return AuthSession(
             accessToken: response.accessToken,
@@ -88,6 +86,6 @@ struct DefaultAuthenticationRepository: AuthenticationRepository {
     }
     
     func logout() async throws {
-        try await keychainclient.deleteAll()
+        try keychainclient.deleteAll()
     }
 }

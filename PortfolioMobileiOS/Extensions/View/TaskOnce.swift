@@ -22,7 +22,7 @@ extension View {
     /// 画面描画時に一度だけ非同期処理を実行するモディファイア
     /// - Parameter perform: 実行する非同期処理
     /// - Returns: モディファイアが適用されたビュー
-    func taskOnce(perform action: @escaping @Sendable () async -> Void) -> some View {
+    func taskOnce(perform action: @escaping @MainActor @Sendable () async -> Void) -> some View {
         modifier(TaskOnceModifier(action: action))
     }
 }

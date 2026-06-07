@@ -8,7 +8,7 @@ struct DefaultKeychainClient: KeychainClient {
         self.service = service
     }
 
-    func save(_ value: String, for key: KeychainKey) async throws {
+    func save(_ value: String, for key: KeychainKey) throws {
         let data = Data(value.utf8)
 
         let query: [String: Any] = [
@@ -46,7 +46,7 @@ struct DefaultKeychainClient: KeychainClient {
         throw KeychainError.unhandledStatus(status)
     }
 
-    func load(for key: KeychainKey) async throws -> String? {
+    func load(for key: KeychainKey) throws -> String? {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
@@ -77,7 +77,7 @@ struct DefaultKeychainClient: KeychainClient {
         return String(data: data, encoding: .utf8)
     }
 
-    func delete(for key: KeychainKey) async throws {
+    func delete(for key: KeychainKey) throws {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
@@ -91,9 +91,9 @@ struct DefaultKeychainClient: KeychainClient {
         }
     }
 
-    func deleteAll() async throws {
+    func deleteAll() throws {
         for key in KeychainKey.allCases {
-            try await delete(for: key)
+            try delete(for: key)
         }
     }
 }

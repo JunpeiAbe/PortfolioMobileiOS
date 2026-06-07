@@ -15,6 +15,8 @@ struct AppDependency {
     static func debug() -> Self {
         StubResponseConfigurator.configure()
         
+        let userDefaultsClient = DefaultUserDefaultsClient()
+        
         let keychainClient = DefaultKeychainClient(
             service: "debug"
         )
@@ -45,7 +47,9 @@ struct AppDependency {
         
         let authenticationStore = DefaultAuthenticationStore(
             authenticationRepository: authenticationRepository,
-            agreeTermRepository: agreeTermRepository
+            agreeTermRepository: agreeTermRepository,
+            userDefaultClient: userDefaultsClient,
+            keychainClient: keychainClient
         )
         
         return .init(
@@ -58,7 +62,8 @@ struct AppDependency {
             },
             makeSplashState: {
                 SplashScreenState(
-                    appInfomationStore: appInfomationStore
+                    appInfomationStore: appInfomationStore,
+                    authenticationStore: authenticationStore
                 )
             },
             makeLoginState: {
@@ -90,6 +95,7 @@ struct AppDependency {
     
     @MainActor
     static func release() -> Self {
+        let userDefaultsClient = DefaultUserDefaultsClient()
         let keychainClient = DefaultKeychainClient()
         
         let apiClient = URLSessionAPIClient(
@@ -117,7 +123,9 @@ struct AppDependency {
         
         let authenticationStore = DefaultAuthenticationStore(
             authenticationRepository: authenticationRepository,
-            agreeTermRepository: agreeTermRepository
+            agreeTermRepository: agreeTermRepository,
+            userDefaultClient: userDefaultsClient,
+            keychainClient: keychainClient
         )
         
         return .init(
@@ -130,7 +138,8 @@ struct AppDependency {
             },
             makeSplashState: {
                 SplashScreenState(
-                    appInfomationStore: appInfomationStore
+                    appInfomationStore: appInfomationStore,
+                    authenticationStore: authenticationStore
                 )
             },
             makeLoginState: {

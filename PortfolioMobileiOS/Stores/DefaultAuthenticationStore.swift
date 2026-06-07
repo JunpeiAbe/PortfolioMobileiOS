@@ -4,23 +4,47 @@ import Foundation
 final class DefaultAuthenticationStore: AuthenticationStore {
     private let authenticationRepository: AuthenticationRepository
     private let agreeTermRepository: AgreeTermRepository
+    private let userDefaultClient: UserDefaultsClient
+    private let keychainClient: KeychainClient
     private(set) var authSession: AuthSession?
     var isLoggedIn: Bool {
         authSession?.accessToken != nil
     }
+    var terminalID: String? {
+        return userDefaultClient.string(for: .terminalID)
+    }
+    var accessToken: String? {
+        do {
+            return try keychainClient.load(for: .accessToken)
+        } catch {
+            return nil
+        }
+    }
+    var mailAddress: String? {
+        do {
+            return try keychainClient.load(for: .mailAddress)
+        } catch {
+            return nil
+        }
+    }
     
     init(
         authenticationRepository: AuthenticationRepository,
-        agreeTermRepository: AgreeTermRepository
+        agreeTermRepository: AgreeTermRepository,
+        userDefaultClient: UserDefaultsClient,
+        keychainClient: KeychainClient
     ) {
         self.authenticationRepository = authenticationRepository
         self.agreeTermRepository = agreeTermRepository
+        self.userDefaultClient = userDefaultClient
+        self.keychainClient = keychainClient
     }
     
-    func login(mailAddress: String, password: String, deviceToken: String) async throws {
+    func login(mailAddress: String, password: String?, accessToken: String?, deviceToken: String) async throws {
         let session = try await authenticationRepository.login(
             mailAddress: mailAddress,
             password: password,
+            accessToken: accessToken,
             deviceToken: deviceToken
         )
         authSession = session
@@ -45,6 +69,10 @@ final class DefaultAuthenticationStore: AuthenticationStore {
     
     func agreeTerm(mailAddress: String, termsVersion: String) async throws {
         try await agreeTermRepository.agreeTerm(mailAddress: mailAddress, termsVersion: termsVersion)
+    }
+    
+    func saveTerminalID() {
+        userDefaultClient.set(UUID().uuidString, for: .terminalID)
     }
 }
 

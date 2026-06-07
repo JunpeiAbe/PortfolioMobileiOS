@@ -4,9 +4,13 @@ import Foundation
 protocol AuthenticationStore {
     var authSession: AuthSession? { get }
     var isLoggedIn: Bool { get }
-    func login(mailAddress: String, password: String, deviceToken: String) async throws
+    var terminalID: String? { get }
+    var accessToken: String? { get }
+    var mailAddress: String? { get }
+    func login(mailAddress: String, password: String?, accessToken: String?, deviceToken: String) async throws
     func register(mailAddress: String, password: String) async throws
     func tokenRefresh(refreshToken: String) async throws
     func logout() async throws
     func agreeTerm(mailAddress: String, termsVersion: String) async throws
+    func saveTerminalID()
 }

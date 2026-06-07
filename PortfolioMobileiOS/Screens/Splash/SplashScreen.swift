@@ -17,8 +17,8 @@ struct SplashScreen: View {
                 .frame(width: 100, height: 100)
         }
         .screenBackground()
-        .onAppearOnce {
-            state.onAppear()
+        .taskOnce {
+            appRouter.appScene = await state.onAppear()
         }
         .onChange(of: state.alertContent) { _, newContent in
             if let newContent {
