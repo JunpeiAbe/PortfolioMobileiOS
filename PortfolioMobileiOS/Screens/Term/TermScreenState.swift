@@ -10,12 +10,19 @@ final class TermScreenState {
         !isChecked
         || loadingState == .loading
     }
+    let appRouter: AppRouter
+    
+    init(
+        appRouter: AppRouter
+    ) {
+        self.appRouter = appRouter
+    }
     
     func checkButtonPressed() {
         isChecked.toggle()
     }
     
-    func agreeButtonPressed(completion: @escaping () -> Void) {
-        completion()
+    func agreeButtonPressed() {
+        appRouter.push(.main)
     }
 }

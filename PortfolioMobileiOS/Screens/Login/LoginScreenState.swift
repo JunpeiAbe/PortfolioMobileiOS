@@ -28,6 +28,18 @@ final class LoginScreenState {
         || loadingState == .loading
     }
     
+    private let appRouter: AppRouter
+    var authenticationStore: AuthenticationStore
+    var alertContent: PresentAlert?
+    
+    init(
+        appRouter: AppRouter,
+        authenticationStore: AuthenticationStore
+    ) {
+        self.appRouter = appRouter
+        self.authenticationStore = authenticationStore
+    }
+    
     func onEmailTextSubmit(_ text: String) {
         emailText = text
         // 入力文字列が空かどうか
@@ -78,16 +90,45 @@ final class LoginScreenState {
         validateAllowCharacters(text, field: .password, regex: .passwordSymbols)
     }
     
-    func loginButtonPressed(completion: @escaping () -> Void) {
+    func loginButtonPressed() {
+        onEmailTextSubmit(emailText)
+        onPasswordTextSubmit(passwordText)
         guard !isLoginButtonDisabled else { return }
+        loadingState = .loading
         Task {
-            loadingState = .loading
-            try await Task.sleep(for: .milliseconds(500))
-            onEmailTextSubmit(emailText)
-            onPasswordTextSubmit(passwordText)
-            loadingState = .idle
-            completion()
+            defer {
+                loadingState = .idle
+            }
+            do {
+                try await authenticationStore
+                    .login(
+                        mailAddress: emailText,
+                        password: passwordText,
+                        accessToken: nil,
+                        deviceToken: .init()
+                    )
+                loadingState = .idle
+                // 規約同意確認
+                if authenticationStore.appTermsAgreed {
+                    appRouter.push(.main)
+                } else {
+                    appRouter.push(.term)
+                }
+            } catch let error as APIClientError {
+                // TODO: error handling
+                switch error {
+                    // 通信エラーの場合
+                case .notConnectedToInternet: break
+                default: break
+                }
+            } catch {
+                // TODO: error handling
+            }
         }
+    }
+    
+    func signupButtonPressed() {
+        appRouter.push(.register)
     }
     
     func onFocusedFieldChange(_ field: FocusableField?) {

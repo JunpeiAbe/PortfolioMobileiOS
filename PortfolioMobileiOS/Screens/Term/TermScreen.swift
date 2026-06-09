@@ -2,7 +2,6 @@ import SwiftUI
 
 struct TermScreen: View {
     @State var state: TermScreenState
-    @Environment(NavigationFlow.self) private var navigationFlow
     init(state: TermScreenState) {
         self.state = state
     }
@@ -34,9 +33,7 @@ struct TermScreen: View {
                     .bodyFont()
             }
             Button("Agree") {
-                state.agreeButtonPressed {
-                    navigationFlow.push(.home)
-                }
+                state.agreeButtonPressed()
             }
             .buttonStyle(
                 .filled(
@@ -57,6 +54,6 @@ struct TermScreen: View {
 }
 
 #Preview {
-    @Previewable var state: TermScreenState = .init()
+    @Previewable var state: TermScreenState = AppDependency.debug().makeTermState()
     TermScreen(state: state)
 }

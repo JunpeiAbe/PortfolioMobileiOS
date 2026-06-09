@@ -4,7 +4,6 @@ import SwiftUI
 @Observable
 final class RootScreenState {
     var loadingState: LoadingState = .idle
-    var screenBuilder: ScreensBuilder
     var appInfomationStore: AppInfomationStore
     var authenticationStore: AuthenticationStore
     var alertContent: PresentAlert?
@@ -14,7 +13,6 @@ final class RootScreenState {
         appInfomationStore: AppInfomationStore,
         authenticationStore: AuthenticationStore
     ) {
-        self.screenBuilder = ScreensBuilder(dependency: dependency)
         self.appInfomationStore = appInfomationStore
         self.authenticationStore = authenticationStore
     }

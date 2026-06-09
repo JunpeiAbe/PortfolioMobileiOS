@@ -4,7 +4,6 @@ struct LoginScreen: View {
     
     @State var state: LoginScreenState
     @FocusState var focusedField: FocusableField?
-    @Environment(NavigationFlow.self) private var navigationFlow
     @Environment(\.loading) var loading
     init(state: LoginScreenState) {
         self.state = state
@@ -20,58 +19,12 @@ struct LoginScreen: View {
                     .frame(width: 100, height: 100)
             }
             
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Mail")
-                    .headlineFont()
-                    .foregroundStyle(.black)
-                MailTextField(
-                    text: Bindable(state).emailText,
-                    isError: !state.isEmailErrorMessageHidden,
-                    isFocused: focusedField == .email,
-                    onSubmit: { text in
-                        print("email text submit")
-                        state.onEmailTextSubmit(text)
-                    },
-                    onChange: { text in
-                        print("email text change")
-                        state.onEmailTextChange(text)
-                    }
-                )
-                .focused($focusedField, equals: .email)
-                Text(state.emailErrorMessage)
-                    .captionFont()
-                    .foregroundStyle(.red)
-                    .hidden(state.isEmailErrorMessageHidden)
-            }
+            mailSection
             
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Password")
-                    .headlineFont()
-                    .foregroundStyle(.black)
-                PasswordTextField(
-                    text: Bindable(state).passwordText,
-                    isError: !state.isPasswordErrorMessageHidden,
-                    isFocused: focusedField == .password,
-                    onSubmit: { text in
-                        print("password text submit")
-                        state.onPasswordTextSubmit(text)
-                    },
-                    onChange: { text in
-                        print("password text change")
-                        state.onPasswordTextChange(text)
-                    }
-                )
-                .focused($focusedField, equals: .password)
-                Text(state.passwordErrorMessage)
-                    .captionFont()
-                    .foregroundStyle(.red)
-                    .hidden(state.isPasswordErrorMessageHidden)
-            }
+            passwordSection
             
             Button("Login") {
-                state.loginButtonPressed {
-                    navigationFlow.push(.term)
-                }
+                state.loginButtonPressed()
             }
             .buttonStyle(
                 .filled(
@@ -85,7 +38,7 @@ struct LoginScreen: View {
             HStack(spacing: .zero) {
                 Spacer()
                 Button("To Sign Up") {
-                    navigationFlow.push(.register)
+                    state.signupButtonPressed()
                 }
                 .buttonStyle(.plain)
                 .foregroundStyle(.blue)
@@ -122,9 +75,61 @@ struct LoginScreen: View {
             }
         }
     }
+    
+    var mailSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Mail")
+                .headlineFont()
+                .foregroundStyle(.black)
+            MailTextField(
+                text: Bindable(state).emailText,
+                isError: !state.isEmailErrorMessageHidden,
+                isFocused: focusedField == .email,
+                onSubmit: { text in
+                    print("email text submit")
+                    state.onEmailTextSubmit(text)
+                },
+                onChange: { text in
+                    print("email text change")
+                    state.onEmailTextChange(text)
+                }
+            )
+            .focused($focusedField, equals: .email)
+            Text(state.emailErrorMessage)
+                .captionFont()
+                .foregroundStyle(.red)
+                .hidden(state.isEmailErrorMessageHidden)
+        }
+    }
+    
+    var passwordSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Password")
+                .headlineFont()
+                .foregroundStyle(.black)
+            PasswordTextField(
+                text: Bindable(state).passwordText,
+                isError: !state.isPasswordErrorMessageHidden,
+                isFocused: focusedField == .password,
+                onSubmit: { text in
+                    print("password text submit")
+                    state.onPasswordTextSubmit(text)
+                },
+                onChange: { text in
+                    print("password text change")
+                    state.onPasswordTextChange(text)
+                }
+            )
+            .focused($focusedField, equals: .password)
+            Text(state.passwordErrorMessage)
+                .captionFont()
+                .foregroundStyle(.red)
+                .hidden(state.isPasswordErrorMessageHidden)
+        }
+    }
 }
 
 #Preview {
-    @Previewable var state: LoginScreenState = .init()
+    @Previewable var state: LoginScreenState = AppDependency.debug().makeLoginState()
     LoginScreen(state: state)
 }

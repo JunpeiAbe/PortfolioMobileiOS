@@ -4,19 +4,22 @@ import UIKit
 @MainActor
 @Observable
 final class SplashScreenState {
+    var appRouter: AppRouter
     var appInfomationStore: AppInfomationStore
     var authenticationStore: AuthenticationStore
     var alertContent: PresentAlert?
     
     init(
+        appRouter: AppRouter,
         appInfomationStore: AppInfomationStore,
         authenticationStore: AuthenticationStore
     ) {
+        self.appRouter = appRouter
         self.appInfomationStore = appInfomationStore
         self.authenticationStore = authenticationStore
     }
     
-    func onAppear() async -> AppScene {
+    func onAppear() async {
         do {
             // 端末IDのチェック
             if authenticationStore.terminalID == nil {
@@ -49,10 +52,10 @@ final class SplashScreenState {
                         accessToken: accessToken,
                         deviceToken: .init()
                     )
-                return .main
+                appRouter.push(.main)
             } else {
                 // ログイン画面に遷移
-                return .auth
+                appRouter.push(.login)
             }
         } catch let error as APIClientError {
             // TODO: error handling
@@ -64,7 +67,6 @@ final class SplashScreenState {
         } catch {
             // TODO: error handling
         }
-        return .auth
     }
 }
 

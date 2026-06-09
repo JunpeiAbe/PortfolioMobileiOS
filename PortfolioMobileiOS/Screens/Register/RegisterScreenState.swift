@@ -35,6 +35,18 @@ final class RegisterScreenState {
         || loadingState == .loading
     }
     
+    private let appRouter: AppRouter
+    var authenticationStore: AuthenticationStore
+    var alertContent: PresentAlert?
+    
+    init(
+        appRouter: AppRouter,
+        authenticationStore: AuthenticationStore
+    ) {
+        self.appRouter = appRouter
+        self.authenticationStore = authenticationStore
+    }
+    
     func onEmailTextSubmit(_ text: String) {
         emailText = text
         // 入力文字列が空かどうか
@@ -130,6 +142,10 @@ final class RegisterScreenState {
         onPasswordTextChange(passwordText)
         onConfirmPasswordTextSubmit(confirmPasswordText)
         loadingState = .idle
+    }
+    
+    func backButtonPressed() {
+        appRouter.pop()
     }
     
     func onFocusedFieldChange(_ field: FocusableField?) {

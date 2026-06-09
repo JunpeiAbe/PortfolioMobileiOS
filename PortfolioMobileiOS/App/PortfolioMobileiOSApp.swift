@@ -15,7 +15,7 @@ struct PortfolioMobileiOSApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootScreen(state: dependency.makeRootState())
+            RootScreen(dependency: dependency)
         }
     }
 }

@@ -2,7 +2,6 @@ import SwiftUI
 
 struct HomeScreen: View {
     @State var state: HomeScreenState
-    @Environment(AppRouter.self) private var appRouter
     @Environment(\.loading) var loading
     init(state: HomeScreenState) {
         self.state = state
@@ -11,30 +10,7 @@ struct HomeScreen: View {
     var body: some View {
         VStack(spacing: .zero) {
             Button("Show Alert") {
-                appRouter
-                    .showAlert(
-                        .init(
-                            title: AlertContent.sample.title,
-                            message: AlertContent.sample.message,
-                            actions: AlertContent.sample.actions
-                        )
-                    )
-                appRouter
-                    .showAlert(
-                        .init(
-                            title: "2つ目のアラート",
-                            message: AlertContent.sample.message,
-                            actions: AlertContent.sample.actions
-                        )
-                    )
-                appRouter
-                    .showAlert(
-                        .init(
-                            title: "3つ目のアラート",
-                            message: AlertContent.sample.message,
-                            actions: AlertContent.sample.actions
-                        )
-                    )
+                
             }
             .buttonStyle(
                 .filled(
@@ -61,6 +37,6 @@ struct HomeScreen: View {
 }
 
 #Preview {
-    @Previewable var state: HomeScreenState = .init()
+    @Previewable var state: HomeScreenState = AppDependency.debug().makeHomeState()
     HomeScreen(state: state)
 }

@@ -27,6 +27,9 @@ final class DefaultAuthenticationStore: AuthenticationStore {
             return nil
         }
     }
+    var appTermsAgreed: Bool {
+        authSession?.appTermsAgreed ?? false
+    }
     
     init(
         authenticationRepository: AuthenticationRepository,
@@ -48,6 +51,7 @@ final class DefaultAuthenticationStore: AuthenticationStore {
             deviceToken: deviceToken
         )
         authSession = session
+        try keychainClient.save(mailAddress, for: .mailAddress)
     }
     
     func register(mailAddress: String, password: String) async throws {

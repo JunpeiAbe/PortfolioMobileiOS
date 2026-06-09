@@ -3,7 +3,6 @@ import SwiftUI
 struct SplashScreen: View {
     
     @State var state: SplashScreenState
-    @Environment(AppRouter.self) private var appRouter
     @Environment(\.loading) var loading
     init(state: SplashScreenState) {
         self.state = state
@@ -18,11 +17,11 @@ struct SplashScreen: View {
         }
         .screenBackground()
         .taskOnce {
-            appRouter.appScene = await state.onAppear()
+            await state.onAppear()
         }
         .onChange(of: state.alertContent) { _, newContent in
             if let newContent {
-                appRouter.showAlert(newContent)
+                state.appRouter.showAlert(newContent)
             }
         }
     }

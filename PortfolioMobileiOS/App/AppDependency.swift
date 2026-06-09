@@ -1,6 +1,7 @@
 import Foundation
 
 struct AppDependency {
+    let appRouter: AppRouter
     var makeRootState: @MainActor () -> RootScreenState
     var makeSplashState: @MainActor () -> SplashScreenState
     var makeLoginState: @MainActor () -> LoginScreenState
@@ -14,7 +15,7 @@ struct AppDependency {
     @MainActor
     static func debug() -> Self {
         StubResponseConfigurator.configure()
-        
+        let appRouter = DefaultAppRouter()
         let userDefaultsClient = DefaultUserDefaultsClient()
         
         let keychainClient = DefaultKeychainClient(
@@ -53,6 +54,7 @@ struct AppDependency {
         )
         
         return .init(
+            appRouter: appRouter,
             makeRootState: {
                 RootScreenState(
                     dependency: .debug(),
@@ -62,18 +64,25 @@ struct AppDependency {
             },
             makeSplashState: {
                 SplashScreenState(
+                    appRouter: appRouter,
                     appInfomationStore: appInfomationStore,
                     authenticationStore: authenticationStore
                 )
             },
             makeLoginState: {
-                LoginScreenState()
+                LoginScreenState(
+                    appRouter: appRouter,
+                    authenticationStore: authenticationStore
+                )
             },
             makeRegisterState: {
-                RegisterScreenState()
+                RegisterScreenState(
+                    appRouter: appRouter,
+                    authenticationStore: authenticationStore
+                )
             },
             makeTermState: {
-                TermScreenState()
+                TermScreenState(appRouter: appRouter)
             },
             makeHomeState: {
                 HomeScreenState()
@@ -95,6 +104,7 @@ struct AppDependency {
     
     @MainActor
     static func release() -> Self {
+        let appRouter = DefaultAppRouter()
         let userDefaultsClient = DefaultUserDefaultsClient()
         let keychainClient = DefaultKeychainClient()
         
@@ -129,6 +139,7 @@ struct AppDependency {
         )
         
         return .init(
+            appRouter: appRouter,
             makeRootState: {
                 RootScreenState(
                     dependency: .release(),
@@ -138,18 +149,25 @@ struct AppDependency {
             },
             makeSplashState: {
                 SplashScreenState(
+                    appRouter: appRouter,
                     appInfomationStore: appInfomationStore,
                     authenticationStore: authenticationStore
                 )
             },
             makeLoginState: {
-                LoginScreenState()
+                LoginScreenState(
+                    appRouter: appRouter,
+                    authenticationStore: authenticationStore
+                )
             },
             makeRegisterState: {
-                RegisterScreenState()
+                RegisterScreenState(
+                    appRouter: appRouter,
+                    authenticationStore: authenticationStore
+                )
             },
             makeTermState: {
-                TermScreenState()
+                TermScreenState(appRouter: appRouter)
             },
             makeHomeState: {
                 HomeScreenState()

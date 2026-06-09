@@ -2,17 +2,22 @@ import SwiftUI
 
 struct RootScreen: View {
     @Environment(\.scenePhase) private var scenePhase
-    @State private var appRouter: AppRouter = .init()
+    @State private var appRouter: AppRouter
     @State private var state: RootScreenState
+    private let screenBuilder: ScreensBuilder
     
-    init(state: RootScreenState) {
-        self.state = state
+    init(dependency: AppDependency) {
+        self.screenBuilder = ScreensBuilder(dependency: dependency)
+        self._appRouter = State(
+            initialValue: dependency.appRouter
+        )
+        self._state = State(
+            initialValue: dependency.makeRootState()
+        )
     }
     
     var body: some View {
-        @Bindable var bindableAppRouter = appRouter
         rootContent
-            .environment(appRouter)
             .loading(
                 isPresented: $appRouter.isLoading
             )
@@ -59,29 +64,29 @@ struct RootScreen: View {
     
     @ViewBuilder
     private var rootContent: some View {
-        @Bindable var bindableAppRouter = appRouter
-        
-        switch appRouter.appScene {
-        case .splash:
-            state.screenBuilder.splashScreen()
-            
-        case .auth:
-            NavigationFlowContainer(
-                flow: bindableAppRouter.authNavigationFlow,
-                rootScreen: {
-                    state.screenBuilder.loginScreen()
-                },
-                pushDestination: state.screenBuilder.pushDestination
-            )
-            
-        case .main:
-            MainScreen(
-                screenBuilder: state.screenBuilder
-            )
+        NavigationStack(path: $appRouter.pushDestinations) {
+            screenBuilder.splashScreen()
+                .navigationDestination(for: PushDestination.self) { destination in
+                    switch destination {
+                    case .splash:
+                        screenBuilder.splashScreen()
+                    case .login:
+                        screenBuilder.loginScreen()
+                    case .register:
+                        screenBuilder.registerScreen()
+                    case .term:
+                        screenBuilder.termScreen()
+                    case .main:
+                        MainScreen(
+                            screenBuilder: screenBuilder,
+                            appRouter: appRouter
+                        )
+                    }
+                }
         }
     }
 }
 
 #Preview {
-    RootScreen(state: AppDependency.debug().makeRootState())
+    RootScreen(dependency: AppDependency.debug())
 }

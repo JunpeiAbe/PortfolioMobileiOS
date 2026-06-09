@@ -4,7 +4,6 @@ struct RegisterScreen: View {
     
     @State var state: RegisterScreenState
     @FocusState var focusedField: FocusableField?
-    @Environment(NavigationFlow.self) private var navigationFlow
     init(state: RegisterScreenState) {
         self.state = state
     }
@@ -111,7 +110,7 @@ struct RegisterScreen: View {
             title: "Register",
             isRightButtonHidden: true,
             leftButtonAction: {
-                navigationFlow.pop()
+                state.backButtonPressed()
             },
             rightButtonAction: {},
         )
@@ -142,6 +141,6 @@ struct RegisterScreen: View {
     }
 
 #Preview {
-    @Previewable var state: RegisterScreenState = .init()
+    @Previewable var state: RegisterScreenState = AppDependency.debug().makeRegisterState()
     RegisterScreen(state: state)
 }
