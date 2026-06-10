@@ -35,7 +35,7 @@ final class RegisterScreenState {
         || loadingState == .loading
     }
     
-    private let appRouter: AppRouter
+    var appRouter: AppRouter
     var authenticationStore: AuthenticationStore
     var alertContent: PresentAlert?
     
@@ -136,11 +136,35 @@ final class RegisterScreenState {
     }
     
     func registerButtonPressed() {
-        guard !isRegisterButtonDisabled else { return }
-        loadingState = .loading
         onEmailTextChange(emailText)
         onPasswordTextChange(passwordText)
         onConfirmPasswordTextSubmit(confirmPasswordText)
+        guard !isRegisterButtonDisabled else { return }
+        loadingState = .loading
+        Task {
+            defer {
+                loadingState = .idle
+            }
+            do {
+                // ユーザー登録
+                try await authenticationStore
+                    .register(
+                        mailAddress: emailText,
+                        password: passwordText
+                    )
+                // 規約同意画面に遷移
+                appRouter.push(.term)
+            } catch let error as APIClientError {
+                // TODO: error handling
+                switch error {
+                    // 通信エラーの場合
+                case .notConnectedToInternet: break
+                default: break
+                }
+            } catch {
+                // TODO: error handling
+            }
+        }
         loadingState = .idle
     }
     

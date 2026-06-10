@@ -107,7 +107,6 @@ final class LoginScreenState {
                         accessToken: nil,
                         deviceToken: .init()
                     )
-                loadingState = .idle
                 // 規約同意確認
                 if authenticationStore.appTermsAgreed {
                     appRouter.push(.main)

@@ -3,7 +3,7 @@ import WebKit
 
 struct WebView: UIViewRepresentable {
     enum Source: Equatable {
-        case remote(URL)
+        case remote(URL?)
         case localFile(name: String, extension: String)
     }
     let source: Source
@@ -16,7 +16,7 @@ struct WebView: UIViewRepresentable {
     func updateUIView(_ webView: WKWebView, context: Context) {
         switch source {
         case .remote(let url):
-            guard webView.url != url else {
+            guard let url else {
                 return
             }
             webView.load(URLRequest(url: url))

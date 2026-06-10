@@ -82,7 +82,11 @@ struct AppDependency {
                 )
             },
             makeTermState: {
-                TermScreenState(appRouter: appRouter)
+                TermScreenState(
+                    appRouter: appRouter,
+                    appInfomationStore: appInfomationStore,
+                    authenticationStore: authenticationStore
+                )
             },
             makeHomeState: {
                 HomeScreenState()
@@ -167,7 +171,11 @@ struct AppDependency {
                 )
             },
             makeTermState: {
-                TermScreenState(appRouter: appRouter)
+                TermScreenState(
+                    appRouter: appRouter,
+                    appInfomationStore: appInfomationStore,
+                    authenticationStore: authenticationStore
+                )
             },
             makeHomeState: {
                 HomeScreenState()

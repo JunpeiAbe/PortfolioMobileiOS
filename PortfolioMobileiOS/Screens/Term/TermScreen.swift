@@ -2,19 +2,27 @@ import SwiftUI
 
 struct TermScreen: View {
     @State var state: TermScreenState
+    @Environment(\.loading) var loading
     init(state: TermScreenState) {
         self.state = state
     }
     
     var body: some View {
         VStack(spacing: .zero) {
-            WebView(source: .localFile(name: "terms_stub", extension: "html"))
+            WebView(source: .remote(state.appTermURL))
             Divider()
                 .foregroundStyle(.gray)
             bottomContent
         }
         .screenBackground()
         .toolbar(.hidden, for: .navigationBar)
+        .onChange(of: state.loadingState.isLoading) { _, newValue in
+            if newValue {
+                loading.show()
+            } else {
+                loading.hide()
+            }
+        }
     }
     
     private var bottomContent: some View {
