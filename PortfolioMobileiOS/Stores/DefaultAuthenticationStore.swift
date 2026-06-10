@@ -60,6 +60,7 @@ final class DefaultAuthenticationStore: AuthenticationStore {
             password: password
         )
         authSession = session
+        try keychainClient.save(mailAddress, for: .mailAddress)
     }
     
     func tokenRefresh(refreshToken: String) async throws {

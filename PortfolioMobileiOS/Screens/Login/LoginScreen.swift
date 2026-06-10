@@ -49,6 +49,8 @@ struct LoginScreen: View {
         }
         .padding(16)
         .screenBackground(dismissing: $focusedField)
+        .navigationBarBackButtonHidden(true)
+        .toolbarBackground(.visible, for: .navigationBar)
         .onChange(of: state.focusingField) { oldField, newField in
             print("state focusingField change")
             // viewStateのfocusingFieldを更新時にViewのfocusedFieldを更新

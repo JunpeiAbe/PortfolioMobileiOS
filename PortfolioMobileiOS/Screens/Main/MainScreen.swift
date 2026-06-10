@@ -16,23 +16,20 @@ struct MainScreen: View {
     }
     
     var body: some View {
-        @Bindable var bindableAppRouter = state.appRouter
-        TabView(selection: $bindableAppRouter.selectedTab) {
+        TabView(selection: $state.appRouter.selectedTab) {
             Tab(
                 SelectableTab.home.title,
                 systemImage: "house",
                 value: .home
             ) {
-                screenBuilder
-                    .homeRootScreen()
+                screenBuilder.homeRootScreen()
             }
             Tab(
                 SelectableTab.menu.title,
                 systemImage: "list.bullet",
                 value: .menu
             ) {
-                screenBuilder
-                    .menuRootScreen()
+                screenBuilder.menuRootScreen()
             }
             Tab(
                 SelectableTab.history.title,

@@ -17,6 +17,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "684FF09C2FAF39CE00BE1DBE"
                BuildableName = "PortfolioMobileiOS.app"
+               BlueprintName = "PortfolioMobileiOS"
                ReferencedContainer = "container:PortfolioMobileiOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -36,6 +37,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "684FF0A92FAF39D000BE1DBE"
                BuildableName = "PortfolioMobileiOSTests.xctest"
+               BlueprintName = "PortfolioMobileiOSTests"
                ReferencedContainer = "container:PortfolioMobileiOS.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -46,6 +48,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "684FF0B32FAF39D000BE1DBE"
                BuildableName = "PortfolioMobileiOSUITests.xctest"
+               BlueprintName = "PortfolioMobileiOSUITests"
                ReferencedContainer = "container:PortfolioMobileiOS.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -68,6 +71,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "684FF09C2FAF39CE00BE1DBE"
             BuildableName = "PortfolioMobileiOS.app"
+            BlueprintName = "PortfolioMobileiOS"
             ReferencedContainer = "container:PortfolioMobileiOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -84,6 +88,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "684FF09C2FAF39CE00BE1DBE"
             BuildableName = "PortfolioMobileiOS.app"
+            BlueprintName = "PortfolioMobileiOS"
             ReferencedContainer = "container:PortfolioMobileiOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
