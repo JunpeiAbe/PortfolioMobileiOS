@@ -7,6 +7,7 @@ struct AppDependency {
     var makeLoginState: @MainActor () -> LoginScreenState
     var makeRegisterState: @MainActor () -> RegisterScreenState
     var makeTermState: @MainActor () -> TermScreenState
+    var makeMainState: @MainActor () -> MainScreenState
     var makeHomeState: @MainActor () -> HomeScreenState
     var makeMenuState: @MainActor () -> MenuScreenState
     var makeHistoryState: @MainActor () -> HistoryScreenState
@@ -85,6 +86,12 @@ struct AppDependency {
                 TermScreenState(
                     appRouter: appRouter,
                     appInfomationStore: appInfomationStore,
+                    authenticationStore: authenticationStore
+                )
+            },
+            makeMainState: {
+                MainScreenState(
+                    appRouter: appRouter,
                     authenticationStore: authenticationStore
                 )
             },
@@ -174,6 +181,12 @@ struct AppDependency {
                 TermScreenState(
                     appRouter: appRouter,
                     appInfomationStore: appInfomationStore,
+                    authenticationStore: authenticationStore
+                )
+            },
+            makeMainState: {
+                MainScreenState(
+                    appRouter: appRouter,
                     authenticationStore: authenticationStore
                 )
             },

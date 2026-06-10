@@ -25,6 +25,10 @@ struct ScreensBuilder {
         TermScreen(state: dependency.makeTermState())
     }
     @ViewBuilder
+    func mainScreen() -> some View {
+        MainScreen(dependency: dependency)
+    }
+    @ViewBuilder
     func homeRootScreen() -> some View {
         HomeScreen(state: dependency.makeHomeState())
     }

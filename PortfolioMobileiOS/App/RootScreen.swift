@@ -77,10 +77,7 @@ struct RootScreen: View {
                     case .term:
                         screenBuilder.termScreen()
                     case .main:
-                        MainScreen(
-                            screenBuilder: screenBuilder,
-                            appRouter: appRouter
-                        )
+                        screenBuilder.mainScreen()
                     }
                 }
         }
