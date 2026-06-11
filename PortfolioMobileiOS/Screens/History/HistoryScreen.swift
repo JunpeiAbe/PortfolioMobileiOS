@@ -8,7 +8,8 @@ struct HistoryScreen: View {
     
     var body: some View {
         VStack(spacing: .zero) {
-            Color.blue
+            EmptyView()
         }
+        .screenBackground()
     }
 }

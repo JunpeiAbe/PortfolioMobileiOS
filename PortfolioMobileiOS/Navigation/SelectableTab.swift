@@ -17,15 +17,15 @@ enum SelectableTab: Hashable, CaseIterable {
         switch self {
             
         case .home:
-            "home"
+            "Home"
         case .menu:
-            "menu"
+            "Menu"
         case .notification:
-            "notification"
+            "Notification"
         case .history:
-            "history"
+            "History"
         case .setting:
-            "setting"
+            "Setting"
         }
     }
 }

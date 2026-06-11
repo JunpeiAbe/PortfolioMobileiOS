@@ -56,5 +56,10 @@ struct MainScreen: View {
                     .settingRootScreen()
             }
         }
+        .toolBar(
+            title: state.appRouter.selectedTab.title,
+            isLeftButtonHidden: true,
+            leftButtonAction: {},
+            rightButtonAction: {})
     }
 }

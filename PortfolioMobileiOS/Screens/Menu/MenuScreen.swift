@@ -8,7 +8,8 @@ struct MenuScreen: View {
     
     var body: some View {
         VStack(spacing: .zero) {
-            Color.green
+            EmptyView()
         }
+        .screenBackground()
     }
 }

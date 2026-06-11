@@ -9,23 +9,9 @@ struct HomeScreen: View {
     
     var body: some View {
         VStack(spacing: .zero) {
-            Button("Show Alert") {
-                
-            }
-            .buttonStyle(
-                .filled(
-                    backgroundColor: Color.main
-                )
-            )
-            .headlineFont()
-            .frame(height: 48)
+            EmptyView()
         }
         .screenBackground()
-        .toolBar(
-            title: "Home",
-            isLeftButtonHidden: true,
-            leftButtonAction: {},
-            rightButtonAction: {})
         .onChange(of: state.loadingState.isLoading) { _, newValue in
             if newValue {
                 loading.show()

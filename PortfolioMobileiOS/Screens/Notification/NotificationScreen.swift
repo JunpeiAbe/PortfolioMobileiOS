@@ -8,7 +8,8 @@ struct NotificationScreen: View {
     
     var body: some View {
         VStack(spacing: .zero) {
-            Color.yellow
+            EmptyView()
         }
+        .screenBackground()
     }
 }
