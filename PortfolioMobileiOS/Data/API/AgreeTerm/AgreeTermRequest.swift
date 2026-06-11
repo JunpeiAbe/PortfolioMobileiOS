@@ -5,13 +5,13 @@ struct AgreeTermRequest: APIRequest {
     
     typealias HttpBody = AgreeTermRequestBody
     
-    var path: String = "/term"
+    var path: String = "term"
     
     var httpMethod: HttpMethod = .post
     
     var httpHeaderFields: [String : String] = [:]
     
-    var requiresAuthorization: Bool = false
+    var requiresAuthorization: Bool = true
     
     var httpBody: AgreeTermRequestBody?
     

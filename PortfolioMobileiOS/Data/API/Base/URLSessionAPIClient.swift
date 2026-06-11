@@ -45,7 +45,15 @@ struct URLSessionAPIClient: APIClient {
     
     /// URLリクエスト生成
     func makeURLRequest<Request: APIRequest>(_ request: Request) async throws -> URLRequest {
-        let url = configuration.baseURL.appending(path: request.path)
+        let url = configuration.baseURL.appendingPathComponent(request.path)
+        guard var components = URLComponents(
+            url: url,
+            resolvingAgainstBaseURL: false
+        ) else {
+            throw APIClientError.requestBuildFailed
+        }
+        components.queryItems = request.queryItems.isEmpty ? nil : request.queryItems
+        guard let url = components.url else { throw APIClientError.requestBuildFailed }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.httpMethod.rawValue
         let headers = try await makeHeaders(for: request)

@@ -5,7 +5,7 @@ struct AppInformationRequest: APIRequest {
     
     typealias HttpBody = EmptyBody
     
-    var path: String = "/information"
+    var path: String = "information"
     
     var httpMethod: HttpMethod = .get
     

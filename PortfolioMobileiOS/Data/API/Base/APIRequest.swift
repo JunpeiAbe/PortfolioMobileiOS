@@ -13,4 +13,12 @@ protocol APIRequest {
     var requiresAuthorization: Bool { get }
     /// httpボディ
     var httpBody: Body? { get }
+    /// クエリ
+    var queryItems: [URLQueryItem] { get }
+}
+
+extension APIRequest {
+    var queryItems: [URLQueryItem] {
+        []
+    }
 }
