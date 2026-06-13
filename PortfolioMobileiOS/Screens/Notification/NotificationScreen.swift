@@ -51,5 +51,6 @@ struct NotificationScreen: View {
 }
 
 #Preview {
-    NotificationScreen(state: AppDependency.debug().makeNotificationState())
+    let dependency: AppDependency = .debug(keychainClient: StubKeychainClient())
+    NotificationScreen(state: dependency.makeNotificationState())
 }
