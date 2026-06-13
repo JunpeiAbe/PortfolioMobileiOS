@@ -8,6 +8,7 @@ enum SymbolImage {
     static let checkmarkEmpty: Image = .init(systemName: "square")
     static let back: Image = .init(systemName: "chevron.left")
     static let help: Image = .init(systemName: "info.circle")
+    static let logout: Image = .init(systemName: "arrowshape.turn.up.left")
     // MARK: - Tab
     static let home: Image = .init(systemName: "house")
     static let homeFill: Image = .init(systemName: "house.fill")

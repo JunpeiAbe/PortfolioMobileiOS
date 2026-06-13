@@ -53,6 +53,7 @@ struct RootScreen: View {
                 guard state.authenticationStore.isLoggedIn else { return }
                 Task {
                     await state.checkAppStatus()
+                    await state.refreshAccessTokenIfNeeded()
                 }
             }
             .onChange(of: state.alertContent) { _, newContent in

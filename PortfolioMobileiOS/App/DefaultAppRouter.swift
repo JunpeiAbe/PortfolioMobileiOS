@@ -28,7 +28,8 @@ final class DefaultAppRouter: AppRouter {
     }
     /// 指定画面に戻る
     func pop(_ destination: PushDestination) {
-        while let last = pushDestinations.last {
+        while let last = pushDestinations.last,
+              last != destination {
             pushDestinations.removeLast()
             if last == destination {
                 break

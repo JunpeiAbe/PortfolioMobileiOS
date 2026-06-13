@@ -47,7 +47,8 @@ struct RegisterScreen: View {
             leftButtonAction: {
                 state.backButtonPressed()
             },
-            rightButtonAction: {},
+            logoutButtonAction: {},
+            helpButtonAction: {},
         )
         .onChange(of: state.focusingField) { oldField, newField in
             print("state focusingField change")

@@ -11,7 +11,7 @@ struct RefreshRequest: APIRequest {
     
     var httpHeaderFields: [String : String] = [:]
     
-    var requiresAuthorization: Bool = true
+    var requiresAuthorization: Bool = false
     
     var httpBody: RefreshRequestBody?
     

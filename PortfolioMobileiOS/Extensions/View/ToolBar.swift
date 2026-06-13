@@ -8,7 +8,8 @@ extension View {
         isLeftButtonHidden: Bool = false,
         isRightButtonHidden: Bool = false,
         leftButtonAction: @escaping () -> Void,
-        rightButtonAction: @escaping () -> Void
+        logoutButtonAction: @escaping () -> Void,
+        helpButtonAction: @escaping () -> Void
     ) -> some View {
         self.toolbar {
             if !isLeftButtonHidden {
@@ -33,18 +34,32 @@ extension View {
             }
             if !isRightButtonHidden {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(
-                        action: {
-                            rightButtonAction()
-                        },
-                        label: {
-                            SymbolImage.help
-                                .resizable()
-                                .frame(width: 24, height: 24)
-                                .foregroundStyle(.gray)
-                        }
-                    )
-                    .buttonStyle(.plain)
+                    HStack(spacing: 16) {
+                        Button(
+                            action: {
+                                logoutButtonAction()
+                            },
+                            label: {
+                                SymbolImage.logout
+                                    .resizable()
+                                    .frame(width: 24, height: 24)
+                                    .foregroundStyle(.main)
+                            }
+                        )
+                        .buttonStyle(.plain)
+                        Button(
+                            action: {
+                                helpButtonAction()
+                            },
+                            label: {
+                                SymbolImage.help
+                                    .resizable()
+                                    .frame(width: 24, height: 24)
+                                    .foregroundStyle(.main)
+                            }
+                        )
+                        .buttonStyle(.plain)
+                    }
                 }
             }
         }

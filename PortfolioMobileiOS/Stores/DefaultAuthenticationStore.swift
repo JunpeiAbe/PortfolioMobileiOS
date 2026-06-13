@@ -20,6 +20,13 @@ final class DefaultAuthenticationStore: AuthenticationStore {
             return nil
         }
     }
+    var refreshToken: String? {
+        do {
+            return try keychainClient.load(for: .refreshToken)
+        } catch {
+            return nil
+        }
+    }
     var mailAddress: String? {
         do {
             return try keychainClient.load(for: .mailAddress)

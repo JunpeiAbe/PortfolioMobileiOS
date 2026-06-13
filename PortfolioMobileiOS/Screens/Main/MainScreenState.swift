@@ -14,4 +14,17 @@ final class MainScreenState {
         self.appRouter = appRouter
         self.authenticationStore = authenticationStore
     }
+    
+    func logoutButtonPressed() {
+        Task {
+            do {
+                try await authenticationStore.logout()
+                appRouter.pop(.login)
+            } catch let error as APIClientError {
+                print(error)
+            } catch {
+                print(error)
+            }
+        }
+    }
 }

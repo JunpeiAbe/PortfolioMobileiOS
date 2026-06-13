@@ -111,7 +111,10 @@ struct AppDependency {
                 )
             },
             makeHomeState: {
-                HomeScreenState()
+                HomeScreenState(
+                    appRouter: appRouter,
+                    authenticationStore: debugAuthenticationStore
+                )
             },
             makeMenuState: {
                 MenuScreenState()
@@ -216,7 +219,10 @@ struct AppDependency {
                 )
             },
             makeHomeState: {
-                HomeScreenState()
+                HomeScreenState(
+                    appRouter: appRouter,
+                    authenticationStore: authenticationStore
+                )
             },
             makeMenuState: {
                 MenuScreenState()

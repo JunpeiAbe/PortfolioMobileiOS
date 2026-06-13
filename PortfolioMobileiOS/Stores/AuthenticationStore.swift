@@ -6,6 +6,7 @@ protocol AuthenticationStore {
     var isLoggedIn: Bool { get }
     var terminalID: String? { get }
     var accessToken: String? { get }
+    var refreshToken: String? { get }
     var mailAddress: String? { get }
     var appTermsAgreed: Bool { get }
     func login(mailAddress: String, password: String?, accessToken: String?, deviceToken: String) async throws

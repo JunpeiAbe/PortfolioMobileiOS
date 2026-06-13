@@ -7,6 +7,7 @@ final class RootScreenState {
     var appInfomationStore: AppInfomationStore
     var authenticationStore: AuthenticationStore
     var alertContent: PresentAlert?
+    var isRefreshingAccessToken = false
     
     init(
         appInfomationStore: AppInfomationStore,
@@ -42,6 +43,27 @@ final class RootScreenState {
             }
         } catch {
             // TODO: error handling
+        }
+    }
+    
+    func refreshAccessTokenIfNeeded() async {
+        guard !isRefreshingAccessToken else { return }
+        print("refreshAccessTokenIfNeeded")
+        isRefreshingAccessToken = true
+        defer {
+            isRefreshingAccessToken = false
+        }
+        
+        do {
+            if let refreshToken = authenticationStore.refreshToken {
+                try await authenticationStore.tokenRefresh(refreshToken: refreshToken)
+            }
+        } catch let error as APIClientError {
+            // TODO: error handling
+            print(error)
+        } catch {
+            // TODO: error handling
+            print(error)
         }
     }
 }

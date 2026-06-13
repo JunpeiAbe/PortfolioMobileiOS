@@ -24,21 +24,6 @@ struct MainScreen: View {
             ) {
                 screenBuilder.homeRootScreen()
             }
-//            Tab(
-//                SelectableTab.menu.title,
-//                systemImage: "list.bullet",
-//                value: .menu
-//            ) {
-//                screenBuilder.menuRootScreen()
-//            }
-//            Tab(
-//                SelectableTab.history.title,
-//                systemImage: "clock.arrow.circlepath",
-//                value: .history
-//            ) {
-//                screenBuilder
-//                    .historyRootScreen()
-//            }
             Tab(
                 SelectableTab.notification.title,
                 systemImage: "bell",
@@ -47,19 +32,15 @@ struct MainScreen: View {
                 screenBuilder
                     .notificationRootScreen()
             }
-//            Tab(
-//                SelectableTab.setting.title,
-//                systemImage: "gearshape",
-//                value: .setting
-//            ) {
-//                screenBuilder
-//                    .settingRootScreen()
-//            }
         }
         .toolBar(
             title: state.appRouter.selectedTab.title,
             isLeftButtonHidden: true,
             leftButtonAction: {},
-            rightButtonAction: {})
+            logoutButtonAction: {
+                state.logoutButtonPressed()
+            },
+            helpButtonAction: {}
+        )
     }
 }
