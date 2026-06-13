@@ -9,7 +9,6 @@ final class RootScreenState {
     var alertContent: PresentAlert?
     
     init(
-        dependency: AppDependency,
         appInfomationStore: AppInfomationStore,
         authenticationStore: AuthenticationStore
     ) {

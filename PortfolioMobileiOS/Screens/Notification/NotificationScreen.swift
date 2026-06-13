@@ -26,7 +26,6 @@ struct NotificationScreen: View {
             }
         }
         .screenBackground()
-        
         .refreshable {
             await state.refreshNotices()
         }

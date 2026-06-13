@@ -13,19 +13,24 @@ struct AppDependency {
     var makeHistoryState: @MainActor () -> HistoryScreenState
     var makeNotificationState: @MainActor () -> NotificationScreenState
     var makeSettingState: @MainActor () -> SettingScreenState
+    
     @MainActor
-    static func debug() -> Self {
-        StubResponseConfigurator.configure()
-        let appRouter = DefaultAppRouter()
-        let userDefaultsClient = DefaultUserDefaultsClient()
+    static func debug(
+        appRouter: AppRouter = DefaultAppRouter(),
+        userDefaultsClient: UserDefaultsClient = DefaultUserDefaultsClient(),
+        keychainClient: KeychainClient = DefaultKeychainClient(service: "debug"),
+        apiClient: URLSessionAPIClient? = nil,
+        appInfomationRepository: AppInfomationRepository? = nil,
+        authenticationRepository: AuthenticationRepository? = nil,
+        agreeTermRepository: AgreeTermRepository? = nil,
+        noticeRepository: NoticeRepository? = nil
+    ) -> Self {
         
-        let keychainClient = DefaultKeychainClient(
-            service: "debug"
-        )
+        StubResponseConfigurator.configure()
         
         let accessTokenProvider = AccessTokenProvider(keychainClient: keychainClient)
         
-        let apiClient = URLSessionAPIClient(
+        let debugApiClient = apiClient ?? URLSessionAPIClient(
             session: .stub,
             configuration: .init(
                 baseURL: URL(string: "https://debug-api.example.com")!
@@ -33,77 +38,76 @@ struct AppDependency {
             accessTokenProvider: accessTokenProvider
         )
         
-        let appInfomationRepository = DefaultAppInfomationRepository(
-            apiClient: apiClient
+        let debugAppInfomationRepository = appInfomationRepository ?? DefaultAppInfomationRepository(
+            apiClient: debugApiClient
         )
         
-        let authenticationRepository = DefaultAuthenticationRepository(
-            apiClient: apiClient,
+        let debugAuthenticationRepository = DefaultAuthenticationRepository(
+            apiClient: debugApiClient,
             keychainclient: keychainClient
         )
         
-        let agreeTermRepository = DefaultAgreeTermRepository(
-            apiClient: apiClient
+        let debugAgreeTermRepository = DefaultAgreeTermRepository(
+            apiClient: debugApiClient
         )
         
-        let noticeRepository = DefaultNoticeRepository(
-            apiClient: apiClient
+        let debugNoticeRepository = DefaultNoticeRepository(
+            apiClient: debugApiClient
         )
         
-        let appInfomationStore = DefaultAppInfomationStore(
-            appInfomationRepository: appInfomationRepository
+        let debugAppInfomationStore = DefaultAppInfomationStore(
+            appInfomationRepository: debugAppInfomationRepository
         )
         
-        let authenticationStore = DefaultAuthenticationStore(
-            authenticationRepository: authenticationRepository,
-            agreeTermRepository: agreeTermRepository,
+        let debugAuthenticationStore = DefaultAuthenticationStore(
+            authenticationRepository: debugAuthenticationRepository,
+            agreeTermRepository: debugAgreeTermRepository,
             userDefaultClient: userDefaultsClient,
             keychainClient: keychainClient
         )
         
-        let noticeStore = DefaultNoticeStore(
-            noticeRepository: noticeRepository
+        let debugNoticeStore = DefaultNoticeStore(
+            noticeRepository: debugNoticeRepository
         )
         
         return .init(
             appRouter: appRouter,
             makeRootState: {
                 RootScreenState(
-                    dependency: .debug(),
-                    appInfomationStore: appInfomationStore,
-                    authenticationStore: authenticationStore
+                    appInfomationStore: debugAppInfomationStore,
+                    authenticationStore: debugAuthenticationStore
                 )
             },
             makeSplashState: {
                 SplashScreenState(
                     appRouter: appRouter,
-                    appInfomationStore: appInfomationStore,
-                    authenticationStore: authenticationStore
+                    appInfomationStore: debugAppInfomationStore,
+                    authenticationStore: debugAuthenticationStore
                 )
             },
             makeLoginState: {
                 LoginScreenState(
                     appRouter: appRouter,
-                    authenticationStore: authenticationStore
+                    authenticationStore: debugAuthenticationStore
                 )
             },
             makeRegisterState: {
                 RegisterScreenState(
                     appRouter: appRouter,
-                    authenticationStore: authenticationStore
+                    authenticationStore: debugAuthenticationStore
                 )
             },
             makeTermState: {
                 TermScreenState(
                     appRouter: appRouter,
-                    appInfomationStore: appInfomationStore,
-                    authenticationStore: authenticationStore
+                    appInfomationStore: debugAppInfomationStore,
+                    authenticationStore: debugAuthenticationStore
                 )
             },
             makeMainState: {
                 MainScreenState(
                     appRouter: appRouter,
-                    authenticationStore: authenticationStore
+                    authenticationStore: debugAuthenticationStore
                 )
             },
             makeHomeState: {
@@ -118,7 +122,7 @@ struct AppDependency {
             makeNotificationState: {
                 NotificationScreenState(
                     appRouter: appRouter,
-                    noticeStore: noticeStore
+                    noticeStore: debugNoticeStore
                 )
             },
             makeSettingState: {
@@ -175,7 +179,6 @@ struct AppDependency {
             appRouter: appRouter,
             makeRootState: {
                 RootScreenState(
-                    dependency: .release(),
                     appInfomationStore: appInfomationStore,
                     authenticationStore: authenticationStore
                 )
