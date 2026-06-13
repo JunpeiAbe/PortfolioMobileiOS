@@ -35,6 +35,8 @@ enum StubResponseConfigurator {
             return "refresh_success"
         case "/term":
             return "agree_term_success"
+        case "/notices":
+            return "notices_success"
         default:
             throw APIClientError.requestBuildFailed
         }

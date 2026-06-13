@@ -1,6 +1,6 @@
 import Foundation
 
-struct DefaultNoticesRepository: NoticesRepository {
+struct DefaultNoticeRepository: NoticeRepository {
     private let apiClient: APIClient
     
     init(apiClient: APIClient) {

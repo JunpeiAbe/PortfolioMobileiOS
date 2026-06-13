@@ -23,11 +23,14 @@ struct AppDependency {
             service: "debug"
         )
         
+        let accessTokenProvider = AccessTokenProvider(keychainClient: keychainClient)
+        
         let apiClient = URLSessionAPIClient(
             session: .stub,
             configuration: .init(
                 baseURL: URL(string: "https://debug-api.example.com")!
-            )
+            ),
+            accessTokenProvider: accessTokenProvider
         )
         
         let appInfomationRepository = DefaultAppInfomationRepository(
@@ -43,6 +46,10 @@ struct AppDependency {
             apiClient: apiClient
         )
         
+        let noticeRepository = DefaultNoticeRepository(
+            apiClient: apiClient
+        )
+        
         let appInfomationStore = DefaultAppInfomationStore(
             appInfomationRepository: appInfomationRepository
         )
@@ -52,6 +59,10 @@ struct AppDependency {
             agreeTermRepository: agreeTermRepository,
             userDefaultClient: userDefaultsClient,
             keychainClient: keychainClient
+        )
+        
+        let noticeStore = DefaultNoticeStore(
+            noticeRepository: noticeRepository
         )
         
         return .init(
@@ -105,7 +116,10 @@ struct AppDependency {
                 HistoryScreenState()
             },
             makeNotificationState: {
-                NotificationScreenState()
+                NotificationScreenState(
+                    appRouter: appRouter,
+                    noticeStore: noticeStore
+                )
             },
             makeSettingState: {
                 SettingScreenState()
@@ -138,6 +152,10 @@ struct AppDependency {
             apiClient: apiClient
         )
         
+        let noticeRepository = DefaultNoticeRepository(
+            apiClient: apiClient
+        )
+        
         let appInfomationStore = DefaultAppInfomationStore(
             appInfomationRepository: appInfomationRepository
         )
@@ -147,6 +165,10 @@ struct AppDependency {
             agreeTermRepository: agreeTermRepository,
             userDefaultClient: userDefaultsClient,
             keychainClient: keychainClient
+        )
+        
+        let noticeStore = DefaultNoticeStore(
+            noticeRepository: noticeRepository
         )
         
         return .init(
@@ -200,7 +222,10 @@ struct AppDependency {
                 HistoryScreenState()
             },
             makeNotificationState: {
-                NotificationScreenState()
+                NotificationScreenState(
+                    appRouter: appRouter,
+                    noticeStore: noticeStore
+                )
             },
             makeSettingState: {
                 SettingScreenState()

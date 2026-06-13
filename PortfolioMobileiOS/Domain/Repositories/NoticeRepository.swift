@@ -1,6 +1,6 @@
 import Foundation
 
-protocol NoticesRepository: Sendable {
+protocol NoticeRepository: Sendable {
     func fetchNotices(nextCursor: String?) async throws -> ([Notice], nextCursor: String?)
 }
 

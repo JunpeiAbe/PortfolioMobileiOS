@@ -6,8 +6,8 @@ struct Notice: Identifiable, Decodable {
     let summary: String
     let body: String
     let category: NoticeCategory
-    let publishedAt: Date
-    let thumbnailURL: URL?
+    let publishedAt: String
+    let thumbnailURL: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
