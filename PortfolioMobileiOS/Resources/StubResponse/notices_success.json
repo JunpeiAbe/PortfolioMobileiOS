@@ -44,8 +44,143 @@
       "category": 4,
       "published_at": "2026-06-09T03:00:00Z",
       "thumbnail_url": "https://example.com/images/notices/notice_202606090001.png"
+    },
+    {
+      "id": "notice_202606080001",
+      "title": "一部サービスの表示改善について",
+      "summary": "お知らせ一覧とホーム画面の表示を改善しました。",
+      "body": "お知らせ一覧とホーム画面において、情報をより確認しやすくするための表示改善を行いました。",
+      "category": 2,
+      "published_at": "2026-06-08T07:00:00Z",
+      "thumbnail_url": null
+    },
+    {
+      "id": "notice_202606070001",
+      "title": "ログイン機能改善のお知らせ",
+      "summary": "ログイン処理の安定性を改善しました。",
+      "body": "一部環境でログインに時間がかかる場合があったため、認証処理の安定性を改善しました。",
+      "category": 2,
+      "published_at": "2026-06-07T04:30:00Z",
+      "thumbnail_url": null
+    },
+    {
+      "id": "notice_202606060001",
+      "title": "軽微な不具合修正のお知らせ",
+      "summary": "一部画面で発生していた軽微な不具合を修正しました。",
+      "body": "一部画面で文言が正しく表示されない場合があったため、軽微な不具合修正を行いました。",
+      "category": 1,
+      "published_at": "2026-06-06T02:00:00Z",
+      "thumbnail_url": "https://example.com/images/notices/notice_202606060001.png"
+    },
+    {
+      "id": "notice_202606050001",
+      "title": "プライバシーポリシー更新のお知らせ",
+      "summary": "プライバシーポリシーの内容を一部更新しました。",
+      "body": "サービス内容の変更に伴い、プライバシーポリシーの内容を一部更新しました。詳細はアプリ内の設定画面からご確認ください。",
+      "category": 3,
+      "published_at": "2026-06-05T00:00:00Z",
+      "thumbnail_url": null
+    },
+    {
+      "id": "notice_202606040001",
+      "title": "週末限定キャンペーンのお知らせ",
+      "summary": "週末限定の特別キャンペーンを実施します。",
+      "body": "2026年6月6日から2026年6月7日まで、週末限定の特別キャンペーンを実施します。",
+      "category": 4,
+      "published_at": "2026-06-04T10:00:00Z",
+      "thumbnail_url": "https://example.com/images/notices/notice_202606040001.png"
+    },
+    {
+      "id": "notice_202606030001",
+      "title": "メンテナンス完了のお知らせ",
+      "summary": "予定していたメンテナンスが完了しました。",
+      "body": "2026年6月3日に実施していたメンテナンスは予定通り完了しました。現在は通常通りサービスをご利用いただけます。",
+      "category": 0,
+      "published_at": "2026-06-03T05:00:00Z",
+      "thumbnail_url": null
+    },
+    {
+      "id": "notice_202606020001",
+      "title": "通知設定機能を追加しました",
+      "summary": "お知らせの通知設定を変更できるようになりました。",
+      "body": "設定画面から、お知らせやキャンペーンに関する通知設定を変更できるようになりました。",
+      "category": 2,
+      "published_at": "2026-06-02T08:15:00Z",
+      "thumbnail_url": "https://example.com/images/notices/notice_202606020001.png"
+    },
+    {
+      "id": "notice_202606010001",
+      "title": "6月のお知らせ",
+      "summary": "6月のサービス更新予定についてお知らせします。",
+      "body": "6月は一部画面の改善、通知機能の追加、キャンペーンの実施を予定しています。",
+      "category": 2,
+      "published_at": "2026-06-01T01:00:00Z",
+      "thumbnail_url": null
+    },
+    {
+      "id": "notice_202605310001",
+      "title": "月末キャンペーン終了のお知らせ",
+      "summary": "5月の月末キャンペーンは終了しました。",
+      "body": "2026年5月に実施していた月末キャンペーンは終了しました。ご参加いただきありがとうございました。",
+      "category": 4,
+      "published_at": "2026-05-31T14:00:00Z",
+      "thumbnail_url": null
+    },
+    {
+      "id": "notice_202605300001",
+      "title": "アプリ表示速度改善のお知らせ",
+      "summary": "一覧画面の表示速度を改善しました。",
+      "body": "お知らせ一覧や設定画面など、一部画面の表示速度を改善しました。",
+      "category": 1,
+      "published_at": "2026-05-30T09:00:00Z",
+      "thumbnail_url": "https://example.com/images/notices/notice_202605300001.png"
+    },
+    {
+      "id": "notice_202605290001",
+      "title": "サービス利用状況画面を追加しました",
+      "summary": "利用状況を確認できる画面を追加しました。",
+      "body": "アプリ内でサービスの利用状況を確認できる画面を追加しました。",
+      "category": 2,
+      "published_at": "2026-05-29T06:30:00Z",
+      "thumbnail_url": null
+    },
+    {
+      "id": "notice_202605280001",
+      "title": "重要なお知らせ",
+      "summary": "一部機能の提供条件を変更しました。",
+      "body": "一部機能の提供条件を変更しました。詳細はアプリ内のお知らせ詳細をご確認ください。",
+      "category": 3,
+      "published_at": "2026-05-28T00:00:00Z",
+      "thumbnail_url": null
+    },
+    {
+      "id": "notice_202605270001",
+      "title": "キャンペーン予告",
+      "summary": "6月に新しいキャンペーンを開始予定です。",
+      "body": "2026年6月より、新しいキャンペーンを開始予定です。詳細は後日お知らせします。",
+      "category": 4,
+      "published_at": "2026-05-27T11:00:00Z",
+      "thumbnail_url": "https://example.com/images/notices/notice_202605270001.png"
+    },
+    {
+      "id": "notice_202605260001",
+      "title": "定期メンテナンスのお知らせ",
+      "summary": "2026年5月28日 1:00〜3:00 に定期メンテナンスを実施します。",
+      "body": "サービス品質維持のため、2026年5月28日 1:00〜3:00 に定期メンテナンスを実施します。",
+      "category": 0,
+      "published_at": "2026-05-26T09:00:00Z",
+      "thumbnail_url": null
+    },
+    {
+      "id": "notice_202605250001",
+      "title": "初回ログインキャンペーンのお知らせ",
+      "summary": "初回ログインユーザー向けのキャンペーンを実施しています。",
+      "body": "初回ログインを行ったユーザー向けに、期間限定のキャンペーンを実施しています。",
+      "category": 4,
+      "published_at": "2026-05-25T03:00:00Z",
+      "thumbnail_url": "https://example.com/images/notices/notice_202605250001.png"
     }
   ],
-  "next_cursor": "notice_202606090001",
+  "next_cursor": "notice_202605250001",
   "error": null
 }
