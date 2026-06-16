@@ -18,16 +18,17 @@ struct MainScreen: View {
     var body: some View {
         TabView(selection: $state.appRouter.selectedTab) {
             Tab(
-                SelectableTab.home.title,
-                systemImage: "house",
-                value: .home
+                SelectableTab.features.title,
+                systemImage: "square.grid.2x2",
+                value: .features
             ) {
-                screenBuilder.homeRootScreen()
+                screenBuilder
+                    .featuresScreen()
             }
             Tab(
-                SelectableTab.notification.title,
-                systemImage: "bell",
-                value: .notification
+                SelectableTab.design.title,
+                systemImage: "paintpalette",
+                value: .design
             ) {
                 screenBuilder
                     .notificationRootScreen()

@@ -18,7 +18,7 @@ struct URLSessionAPIClient: APIClient {
         let (data, response): (Data, URLResponse)
         do {
             let urlRequest = try await makeURLRequest(request)
-            print("session start")
+            print("session start:",urlRequest)
             (data, response) = try await session.data(for: urlRequest)
         } catch let error as APIClientError {
             print("APIClientError:",error)

@@ -33,6 +33,10 @@ struct ScreensBuilder {
         HomeScreen(state: dependency.makeHomeState())
     }
     @ViewBuilder
+    func featuresScreen() -> some View {
+        FeaturesScreen(state: dependency.makeFeaturesState())
+    }
+    @ViewBuilder
     func menuRootScreen() -> some View {
         MenuScreen(state: dependency.makeMenuState())
     }
@@ -48,15 +52,4 @@ struct ScreensBuilder {
     func settingRootScreen() -> some View {
         SettingScreen(state: dependency.makeSettingState())
     }
-    
-//    @ViewBuilder
-//    func pushDestination(for destination: PushDestination) -> some View {
-//        switch destination {
-//        case .splash: SplashScreen(state: dependency.makeSplashState())
-//        case .login: LoginScreen(state: dependency.makeLoginState())
-//        case .register: RegisterScreen(state: dependency.makeRegisterState())
-//        case .term: TermScreen(state: dependency.makeTermState())
-//        case .main: MainScreen(screenBuilder: .init(dependency: dependency))
-//        }
-//    }
 }

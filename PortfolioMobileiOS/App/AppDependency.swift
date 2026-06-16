@@ -13,6 +13,7 @@ struct AppDependency {
     var makeHistoryState: @MainActor () -> HistoryScreenState
     var makeNotificationState: @MainActor () -> NotificationScreenState
     var makeSettingState: @MainActor () -> SettingScreenState
+    var makeFeaturesState: @MainActor () -> FeaturesScreenState
     
     @MainActor
     static func debug(
@@ -55,6 +56,10 @@ struct AppDependency {
             apiClient: debugApiClient
         )
         
+        let debugFeaturesRepository = DefaultFeaturesRepository(
+            apiClient: debugApiClient
+        )
+        
         let debugAppInfomationStore = DefaultAppInfomationStore(
             appInfomationRepository: debugAppInfomationRepository
         )
@@ -68,6 +73,10 @@ struct AppDependency {
         
         let debugNoticeStore = DefaultNoticeStore(
             noticeRepository: debugNoticeRepository
+        )
+        
+        let debugFeaturesStore = DefaultFeaturesStore(
+            featuresRepository: debugFeaturesRepository
         )
         
         return .init(
@@ -130,6 +139,12 @@ struct AppDependency {
             },
             makeSettingState: {
                 SettingScreenState()
+            },
+            makeFeaturesState: {
+                FeaturesScreenState(
+                    appRouter: appRouter,
+                    featuresStore: debugFeaturesStore
+                )
             }
         )
     }
@@ -163,6 +178,10 @@ struct AppDependency {
             apiClient: apiClient
         )
         
+        let featuresRepository = DefaultFeaturesRepository(
+            apiClient: apiClient
+        )
+        
         let appInfomationStore = DefaultAppInfomationStore(
             appInfomationRepository: appInfomationRepository
         )
@@ -176,6 +195,10 @@ struct AppDependency {
         
         let noticeStore = DefaultNoticeStore(
             noticeRepository: noticeRepository
+        )
+        
+        let featuresStore = DefaultFeaturesStore(
+            featuresRepository: featuresRepository
         )
         
         return .init(
@@ -238,6 +261,12 @@ struct AppDependency {
             },
             makeSettingState: {
                 SettingScreenState()
+            },
+            makeFeaturesState: {
+                FeaturesScreenState(
+                    appRouter: appRouter,
+                    featuresStore: featuresStore
+                )
             }
         )
     }

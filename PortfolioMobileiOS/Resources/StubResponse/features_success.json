@@ -1,0 +1,116 @@
+{
+    "items": [
+        {
+            "id": "feature_location",
+            "title": "Location",
+            "category": 0
+        },
+        {
+            "id": "feature_swift_data",
+            "title": "SwiftData",
+            "category": 1
+        },
+        {
+            "id": "feature_camera",
+            "title": "Camera",
+            "category": 2
+        },
+        {
+            "id": "feature_deep_link",
+            "title": "Deep Link",
+            "category": 3
+        },
+        {
+            "id": "feature_map",
+            "title": "Map",
+            "category": 4
+        },
+        {
+            "id": "feature_share",
+            "title": "Share",
+            "category": 5
+        },
+        {
+            "id": "feature_service_search",
+            "title": "Service Search",
+            "category": 6
+        },
+        {
+            "id": "feature_web_socket",
+            "title": "WebSocket",
+            "category": 7
+        },
+        {
+            "id": "feature_bluetooth",
+            "title": "Bluetooth",
+            "category": 8
+        },
+        {
+            "id": "feature_qr_code_read",
+            "title": "QR Code Read",
+            "category": 9
+        },
+        {
+            "id": "feature_widget",
+            "title": "Widget",
+            "category": 10
+        },
+        {
+            "id": "feature_push_notification",
+            "title": "Push Notification",
+            "category": 11
+        },
+        {
+            "id": "feature_local_notification",
+            "title": "Local Notification",
+            "category": 12
+        },
+        {
+            "id": "feature_biometric_auth",
+            "title": "Biometric Auth",
+            "category": 13
+        },
+        {
+            "id": "feature_photo_library",
+            "title": "Photo Library",
+            "category": 14
+        },
+        {
+            "id": "feature_file_import",
+            "title": "File Import",
+            "category": 15
+        },
+        {
+            "id": "feature_file_export",
+            "title": "File Export",
+            "category": 16
+        },
+        {
+            "id": "feature_speech_recognition",
+            "title": "Speech Recognition",
+            "category": 17
+        },
+        {
+            "id": "feature_text_recognition",
+            "title": "Text Recognition",
+            "category": 18
+        },
+        {
+            "id": "feature_network_monitor",
+            "title": "Network Monitor",
+            "category": 19
+        },
+        {
+            "id": "feature_app_review",
+            "title": "App Review",
+            "category": 20
+        },
+        {
+            "id": "feature_in_app_browser",
+            "title": "In-App Browser",
+            "category": 21
+        }
+    ],
+    "next_cursor": "feature_location",
+    "error": null
+}

@@ -4,6 +4,10 @@ import SwiftUI
 enum SelectableTab: Hashable, CaseIterable {
     /// ホーム
     case home
+    /// 機能
+    case features
+    /// デザイン
+    case design
     /// メニュー
     case menu
     /// 通知
@@ -18,6 +22,10 @@ enum SelectableTab: Hashable, CaseIterable {
             
         case .home:
             "Home"
+        case .features:
+            "Features"
+        case .design:
+            "Design"
         case .menu:
             "Menu"
         case .notification:

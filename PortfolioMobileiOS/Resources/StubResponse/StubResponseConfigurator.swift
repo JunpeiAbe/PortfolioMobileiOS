@@ -37,6 +37,8 @@ enum StubResponseConfigurator {
             return "agree_term_success"
         case "/notices":
             return "notices_success"
+        case "/features":
+            return "features_success"
         default:
             throw APIClientError.requestBuildFailed
         }
