@@ -1,6 +1,6 @@
 import Foundation
 
-struct Feature: Identifiable, Decodable {
+struct Feature: Identifiable, Decodable, Hashable {
     let id: String
     let title: String
     let category: FeatureCategory

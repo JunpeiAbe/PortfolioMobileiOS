@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-enum FeatureCategory: Int, Decodable {
+enum FeatureCategory: Int, Decodable, Hashable {
     case location = 0
     case swiftData = 1
     case camera = 2

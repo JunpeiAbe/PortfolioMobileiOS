@@ -81,5 +81,9 @@ final class FeaturesScreenState {
     private func shouldLoadMore(currentFeature: Feature) -> Bool {
         currentFeature.id == features.last?.id
     }
+    
+    func featureRowPressed(feature: Feature) {
+        appRouter.push(.featureDetail(feature))
+    }
 }
 

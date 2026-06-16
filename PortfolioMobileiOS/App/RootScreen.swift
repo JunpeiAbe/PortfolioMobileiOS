@@ -79,6 +79,8 @@ struct RootScreen: View {
                         screenBuilder.termScreen()
                     case .main:
                         screenBuilder.mainScreen()
+                    case .featureDetail(let feature):
+                        screenBuilder.featureDetailScreen(feature: feature)
                     }
                 }
         }

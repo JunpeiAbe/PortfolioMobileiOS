@@ -13,6 +13,9 @@ struct FeaturesScreen: View {
                     LazyVStack(spacing: 8) {
                         ForEach(state.features) { feature in
                             FeatureRow(feature: feature)
+                                .onTapGesture {
+                                    state.featureRowPressed(feature: feature)
+                                }
                                 .task {
                                     await state.loadMoreIfNeeded(currentFeature: feature)
                                 }

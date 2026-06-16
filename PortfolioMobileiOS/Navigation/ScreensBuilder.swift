@@ -37,6 +37,10 @@ struct ScreensBuilder {
         FeaturesScreen(state: dependency.makeFeaturesState())
     }
     @ViewBuilder
+    func featureDetailScreen(feature: Feature) -> some View {
+        FeatureDetailScreen(state: dependency.makeFeatureDetailState(feature))
+    }
+    @ViewBuilder
     func menuRootScreen() -> some View {
         MenuScreen(state: dependency.makeMenuState())
     }

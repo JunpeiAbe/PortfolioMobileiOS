@@ -3,6 +3,7 @@ import Foundation
 @MainActor
 @Observable
 final class DefaultFeaturesStore: FeaturesStore {
+    var selectedFeature: Feature?
     private(set) var features: [Feature] = []
     private(set) var nextCursor: String?
     private let featuresRepository: FeaturesRepository

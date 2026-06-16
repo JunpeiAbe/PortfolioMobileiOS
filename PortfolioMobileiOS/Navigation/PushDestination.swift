@@ -11,4 +11,6 @@ enum PushDestination: Hashable {
     case term
     /// メイン
     case main
+    /// 機能詳細
+    case featureDetail(_ feature: Feature)
 }

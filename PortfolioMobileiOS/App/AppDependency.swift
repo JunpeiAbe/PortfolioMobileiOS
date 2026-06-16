@@ -14,6 +14,7 @@ struct AppDependency {
     var makeNotificationState: @MainActor () -> NotificationScreenState
     var makeSettingState: @MainActor () -> SettingScreenState
     var makeFeaturesState: @MainActor () -> FeaturesScreenState
+    var makeFeatureDetailState: @MainActor (Feature) -> FeatureDetailScreenState
     
     @MainActor
     static func debug(
@@ -145,6 +146,13 @@ struct AppDependency {
                     appRouter: appRouter,
                     featuresStore: debugFeaturesStore
                 )
+            },
+            makeFeatureDetailState: { feature in
+                debugFeaturesStore.selectedFeature = feature
+                return FeatureDetailScreenState(
+                    appRouter: appRouter,
+                    featuresStore: debugFeaturesStore
+                )
             }
         )
     }
@@ -264,6 +272,13 @@ struct AppDependency {
             },
             makeFeaturesState: {
                 FeaturesScreenState(
+                    appRouter: appRouter,
+                    featuresStore: featuresStore
+                )
+            },
+            makeFeatureDetailState: { feature in
+                featuresStore.selectedFeature = feature
+                return FeatureDetailScreenState(
                     appRouter: appRouter,
                     featuresStore: featuresStore
                 )
