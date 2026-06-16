@@ -52,6 +52,7 @@ final class SplashScreenState {
                         accessToken: accessToken,
                         deviceToken: .init()
                     )
+                appRouter.push(.login)
                 appRouter.push(.main)
             } else {
                 // ログイン画面に遷移
