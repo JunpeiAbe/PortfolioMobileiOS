@@ -22,6 +22,8 @@ extension View {
                             SymbolImage.back
                                 .font(.system(size: 20))
                                 .foregroundStyle(.gray)
+                                .frame(width: 44, height: 44)
+                                .contentShape(Rectangle())
                         }
                     )
                     .buttonStyle(.plain)
