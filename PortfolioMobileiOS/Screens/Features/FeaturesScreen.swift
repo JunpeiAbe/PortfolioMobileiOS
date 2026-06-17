@@ -12,17 +12,20 @@ struct FeaturesScreen: View {
                 ScrollView {
                     LazyVStack(spacing: 8) {
                         ForEach(state.features) { feature in
-                            FeatureRow(feature: feature)
-                                .onTapGesture {
-                                    state.featureRowPressed(feature: feature)
-                                }
-                                .task {
-                                    await state.loadMoreIfNeeded(currentFeature: feature)
-                                }
+                            Button {
+                                state.featureRowPressed(feature: feature)
+                            } label: {
+                                FeatureRow(feature: feature)
+                            }
+                            .buttonStyle(.filled(backgroundColor: .clear))
+                            .task {
+                                await state.loadMoreIfNeeded(currentFeature: feature)
+                            }
                         }
                     }
                     .padding(16)
                 }
+                .scrollEdgeEffectStyle(.soft, for: .all)
             } else {
                 emptyContent()
             }
