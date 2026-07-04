@@ -21,6 +21,7 @@ struct AppDependency {
         appRouter: AppRouter = DefaultAppRouter(),
         userDefaultsClient: UserDefaultsClient = DefaultUserDefaultsClient(),
         keychainClient: KeychainClient = DefaultKeychainClient(service: "debug"),
+        pushNotificationClient: PushNotificationClient = DefaultPushNotificationClient(),
         apiClient: URLSessionAPIClient? = nil,
         appInfomationRepository: AppInfomationRepository? = nil,
         authenticationRepository: AuthenticationRepository? = nil,
@@ -38,6 +39,10 @@ struct AppDependency {
                 baseURL: Bundle.main.apiBaseURL
             ),
             accessTokenProvider: accessTokenProvider
+        )
+        
+        let debugPushNotificationRepository = DefaultPushNotificationRepository(
+            pushNotificationClient: pushNotificationClient
         )
         
         let debugAppInfomationRepository = appInfomationRepository ?? DefaultAppInfomationRepository(
@@ -59,6 +64,10 @@ struct AppDependency {
         
         let debugFeaturesRepository = DefaultFeaturesRepository(
             apiClient: debugApiClient
+        )
+        
+        let debugPushNotificationStore = DefaultPushNotificationStore(
+            pushNotificationRepository: debugPushNotificationRepository
         )
         
         let debugAppInfomationStore = DefaultAppInfomationStore(
@@ -91,6 +100,7 @@ struct AppDependency {
             makeSplashState: {
                 SplashScreenState(
                     appRouter: appRouter,
+                    pushNotificationStore: debugPushNotificationStore,
                     appInfomationStore: debugAppInfomationStore,
                     authenticationStore: debugAuthenticationStore
                 )
@@ -160,6 +170,7 @@ struct AppDependency {
     @MainActor
     static func staging(
         keychainClient: KeychainClient = DefaultKeychainClient(service: "staging"),
+        pushNotificationClient: PushNotificationClient = DefaultPushNotificationClient(),
         apiClient: URLSessionAPIClient? = nil,
     ) -> Self {
         let appRouter = DefaultAppRouter()
@@ -170,6 +181,10 @@ struct AppDependency {
                 baseURL: Bundle.main.apiBaseURL
             ),
             accessTokenProvider: accessTokenProvider
+        )
+        
+        let pushNotificationRepository = DefaultPushNotificationRepository(
+            pushNotificationClient: pushNotificationClient
         )
         
         let appInfomationRepository = DefaultAppInfomationRepository(
@@ -191,6 +206,10 @@ struct AppDependency {
         
         let featuresRepository = DefaultFeaturesRepository(
             apiClient: apiClient
+        )
+        
+        let pushNotificationStore = DefaultPushNotificationStore(
+            pushNotificationRepository: pushNotificationRepository
         )
         
         let appInfomationStore = DefaultAppInfomationStore(
@@ -223,6 +242,7 @@ struct AppDependency {
             makeSplashState: {
                 SplashScreenState(
                     appRouter: appRouter,
+                    pushNotificationStore: pushNotificationStore,
                     appInfomationStore: appInfomationStore,
                     authenticationStore: authenticationStore
                 )
@@ -294,11 +314,16 @@ struct AppDependency {
         let appRouter = DefaultAppRouter()
         let userDefaultsClient = DefaultUserDefaultsClient()
         let keychainClient = DefaultKeychainClient()
+        let pushNotificationClient = DefaultPushNotificationClient()
         
         let apiClient = URLSessionAPIClient(
             configuration: .init(
                 baseURL: Bundle.main.apiBaseURL
             )
+        )
+        
+        let pushNotificationRepository = DefaultPushNotificationRepository(
+            pushNotificationClient: pushNotificationClient
         )
         
         let appInfomationRepository = DefaultAppInfomationRepository(
@@ -320,6 +345,10 @@ struct AppDependency {
         
         let featuresRepository = DefaultFeaturesRepository(
             apiClient: apiClient
+        )
+        
+        let pushNotificationStore = DefaultPushNotificationStore(
+            pushNotificationRepository: pushNotificationRepository
         )
         
         let appInfomationStore = DefaultAppInfomationStore(
@@ -352,6 +381,7 @@ struct AppDependency {
             makeSplashState: {
                 SplashScreenState(
                     appRouter: appRouter,
+                    pushNotificationStore: pushNotificationStore,
                     appInfomationStore: appInfomationStore,
                     authenticationStore: authenticationStore
                 )

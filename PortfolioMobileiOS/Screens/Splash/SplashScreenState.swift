@@ -5,22 +5,27 @@ import UIKit
 @Observable
 final class SplashScreenState {
     var appRouter: AppRouter
+    var pushNotificationStore: PushNotificationStore
     var appInfomationStore: AppInfomationStore
     var authenticationStore: AuthenticationStore
     var alertContent: PresentAlert?
     
     init(
         appRouter: AppRouter,
+        pushNotificationStore: PushNotificationStore,
         appInfomationStore: AppInfomationStore,
         authenticationStore: AuthenticationStore
     ) {
         self.appRouter = appRouter
+        self.pushNotificationStore = pushNotificationStore
         self.appInfomationStore = appInfomationStore
         self.authenticationStore = authenticationStore
     }
     
     func onAppear() async {
         do {
+            // push通知権限の要求
+            await pushNotificationStore.requestAuthorization()
             // 端末IDのチェック
             if authenticationStore.terminalID == nil {
                 authenticationStore.saveTerminalID()

@@ -3,6 +3,8 @@ import SwiftUI
 @main
 struct PortfolioMobileiOSApp: App {
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     private var dependency: AppDependency {
         #if DEBUG
         return .debug()

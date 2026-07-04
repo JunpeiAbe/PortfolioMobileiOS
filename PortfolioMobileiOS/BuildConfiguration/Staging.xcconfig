@@ -1,2 +1,2 @@
-API_BASE_URL = "https:/$()/sampleserver-l4ah.onrender.com"
+API_BASE_URL = https:/$()/sampleserver-l4ah.onrender.com
 SWIFT_ACTIVE_COMPILATION_CONDITIONS = STAGING
