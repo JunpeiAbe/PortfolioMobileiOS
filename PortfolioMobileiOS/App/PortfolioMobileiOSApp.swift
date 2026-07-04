@@ -7,7 +7,7 @@ struct PortfolioMobileiOSApp: App {
         #if DEBUG
         return .debug()
         #elseif STAGING
-        return .debug()
+        return .staging()
         #else
         return .release()
         #endif

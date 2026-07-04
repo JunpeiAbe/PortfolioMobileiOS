@@ -35,7 +35,7 @@ struct AppDependency {
         let debugApiClient = apiClient ?? URLSessionAPIClient(
             session: .stub,
             configuration: .init(
-                baseURL: URL(string: "https://debug-api.example.com")!
+                baseURL: Bundle.main.apiBaseURL
             ),
             accessTokenProvider: accessTokenProvider
         )
@@ -158,6 +158,138 @@ struct AppDependency {
     }
     
     @MainActor
+    static func staging(
+        keychainClient: KeychainClient = DefaultKeychainClient(service: "staging"),
+        apiClient: URLSessionAPIClient? = nil,
+    ) -> Self {
+        let appRouter = DefaultAppRouter()
+        let userDefaultsClient = DefaultUserDefaultsClient()
+        let accessTokenProvider = AccessTokenProvider(keychainClient: keychainClient)
+        let apiClient = URLSessionAPIClient(
+            configuration: .init(
+                baseURL: Bundle.main.apiBaseURL
+            ),
+            accessTokenProvider: accessTokenProvider
+        )
+        
+        let appInfomationRepository = DefaultAppInfomationRepository(
+            apiClient: apiClient
+        )
+        
+        let authenticationRepository = DefaultAuthenticationRepository(
+            apiClient: apiClient,
+            keychainclient: keychainClient
+        )
+        
+        let agreeTermRepository = DefaultAgreeTermRepository(
+            apiClient: apiClient
+        )
+        
+        let noticeRepository = DefaultNoticeRepository(
+            apiClient: apiClient
+        )
+        
+        let featuresRepository = DefaultFeaturesRepository(
+            apiClient: apiClient
+        )
+        
+        let appInfomationStore = DefaultAppInfomationStore(
+            appInfomationRepository: appInfomationRepository
+        )
+        
+        let authenticationStore = DefaultAuthenticationStore(
+            authenticationRepository: authenticationRepository,
+            agreeTermRepository: agreeTermRepository,
+            userDefaultClient: userDefaultsClient,
+            keychainClient: keychainClient
+        )
+        
+        let noticeStore = DefaultNoticeStore(
+            noticeRepository: noticeRepository
+        )
+        
+        let featuresStore = DefaultFeaturesStore(
+            featuresRepository: featuresRepository
+        )
+        
+        return .init(
+            appRouter: appRouter,
+            makeRootState: {
+                RootScreenState(
+                    appInfomationStore: appInfomationStore,
+                    authenticationStore: authenticationStore
+                )
+            },
+            makeSplashState: {
+                SplashScreenState(
+                    appRouter: appRouter,
+                    appInfomationStore: appInfomationStore,
+                    authenticationStore: authenticationStore
+                )
+            },
+            makeLoginState: {
+                LoginScreenState(
+                    appRouter: appRouter,
+                    authenticationStore: authenticationStore
+                )
+            },
+            makeRegisterState: {
+                RegisterScreenState(
+                    appRouter: appRouter,
+                    authenticationStore: authenticationStore
+                )
+            },
+            makeTermState: {
+                TermScreenState(
+                    appRouter: appRouter,
+                    appInfomationStore: appInfomationStore,
+                    authenticationStore: authenticationStore
+                )
+            },
+            makeMainState: {
+                MainScreenState(
+                    appRouter: appRouter,
+                    authenticationStore: authenticationStore
+                )
+            },
+            makeHomeState: {
+                HomeScreenState(
+                    appRouter: appRouter,
+                    authenticationStore: authenticationStore
+                )
+            },
+            makeMenuState: {
+                MenuScreenState()
+            },
+            makeHistoryState: {
+                HistoryScreenState()
+            },
+            makeNotificationState: {
+                NotificationScreenState(
+                    appRouter: appRouter,
+                    noticeStore: noticeStore
+                )
+            },
+            makeSettingState: {
+                SettingScreenState()
+            },
+            makeFeaturesState: {
+                FeaturesScreenState(
+                    appRouter: appRouter,
+                    featuresStore: featuresStore
+                )
+            },
+            makeFeatureDetailState: { feature in
+                featuresStore.selectedFeature = feature
+                return FeatureDetailScreenState(
+                    appRouter: appRouter,
+                    featuresStore: featuresStore
+                )
+            }
+        )
+    }
+    
+    @MainActor
     static func release() -> Self {
         let appRouter = DefaultAppRouter()
         let userDefaultsClient = DefaultUserDefaultsClient()
@@ -165,7 +297,7 @@ struct AppDependency {
         
         let apiClient = URLSessionAPIClient(
             configuration: .init(
-                baseURL: URL(string: "https://release-api.example.com")!
+                baseURL: Bundle.main.apiBaseURL
             )
         )
         
