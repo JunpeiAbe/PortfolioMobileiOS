@@ -43,6 +43,7 @@ struct URLSessionAPIClient: APIClient {
             let response = try JSONDecoder().decode(Request.Response.self, from: data)
             return response
         } catch {
+            print("error:\(error)")
             throw APIClientError.decodingFailed
         }
     }
@@ -90,6 +91,7 @@ struct URLSessionAPIClient: APIClient {
                 throw APIClientError.getAccessTokenFailed
             }
             headers["Authorization"] = "Bearer \(token)"
+            print("token:\(token)")
         }
         return headers
     }

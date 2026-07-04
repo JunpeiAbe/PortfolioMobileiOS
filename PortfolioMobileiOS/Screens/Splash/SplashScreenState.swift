@@ -24,6 +24,7 @@ final class SplashScreenState {
     
     func onAppear() async {
         do {
+            try await authenticationStore.logout()
             // push通知権限の要求
             await pushNotificationStore.requestAuthorization()
             // 端末IDのチェック

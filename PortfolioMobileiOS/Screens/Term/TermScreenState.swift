@@ -53,10 +53,12 @@ final class TermScreenState {
                       let accessToken = authenticationStore.accessToken,
                       let termsVersion = appInfomationStore.appInfomation?.appTermVersion
                 else { return }
+                print("mailAddress:\(mailAddress)")
+                print("accessToken:\(accessToken)")
+                print("termsVersion:\(termsVersion)")
                 // 規約同意
                 try await authenticationStore
                     .agreeTerm(
-                        mailAddress: mailAddress,
                         termsVersion: termsVersion
                     )
                 // ログイン

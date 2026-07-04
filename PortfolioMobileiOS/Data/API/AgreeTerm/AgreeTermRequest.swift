@@ -5,7 +5,7 @@ struct AgreeTermRequest: APIRequest {
     
     typealias HttpBody = AgreeTermRequestBody
     
-    var path: String = "term"
+    var path: String = "terms/agree"
     
     var httpMethod: HttpMethod = .post
     

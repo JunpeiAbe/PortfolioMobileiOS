@@ -5,7 +5,7 @@ struct RefreshRequest: APIRequest {
     
     typealias HttpBody = RefreshRequestBody
     
-    var path: String = "refresh"
+    var path: String = "auth/refresh"
     
     var httpMethod: HttpMethod = .post
     

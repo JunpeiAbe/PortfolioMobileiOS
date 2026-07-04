@@ -5,7 +5,7 @@ struct LoginRequest: APIRequest {
     
     typealias HttpBody = LoginRequestBody
     
-    var path: String = "login"
+    var path: String = "auth/login"
     
     var httpMethod: HttpMethod = .post
     

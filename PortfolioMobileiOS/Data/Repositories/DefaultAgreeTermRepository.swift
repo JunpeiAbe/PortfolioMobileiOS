@@ -7,8 +7,8 @@ struct DefaultAgreeTermRepository: AgreeTermRepository {
         self.apiClient = apiClient
     }
     
-    func agreeTerm(mailAddress: String, termsVersion: String) async throws {
-        let response = try await apiClient.send(AgreeTermRequest(httpBody: .init(mailAddress: mailAddress, termsVersion: termsVersion)))
+    func agreeTerm(termsVersion: String) async throws {
+        let response = try await apiClient.send(AgreeTermRequest(httpBody: .init(termsVersion: termsVersion)))
         if let error = response.error {
             throw error
         }

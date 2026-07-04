@@ -79,8 +79,8 @@ final class DefaultAuthenticationStore: AuthenticationStore {
         try await authenticationRepository.logout()
     }
     
-    func agreeTerm(mailAddress: String, termsVersion: String) async throws {
-        try await agreeTermRepository.agreeTerm(mailAddress: mailAddress, termsVersion: termsVersion)
+    func agreeTerm(termsVersion: String) async throws {
+        try await agreeTermRepository.agreeTerm(termsVersion: termsVersion)
     }
     
     func saveTerminalID() {

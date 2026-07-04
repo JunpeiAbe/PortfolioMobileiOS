@@ -5,7 +5,7 @@ struct RegisterRequest: APIRequest {
     
     typealias HttpBody = RegisterRequestBody
     
-    var path: String = "register"
+    var path: String = "auth/register"
     
     var httpMethod: HttpMethod = .post
     
