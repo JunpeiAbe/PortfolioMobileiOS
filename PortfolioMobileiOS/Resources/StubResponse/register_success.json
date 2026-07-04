@@ -1,6 +1,5 @@
 {
     "access_token": "debug_access_token",
     "refresh_token": "debug_refresh_token",
-    "expires_in": 3600,
     "error": null
 }

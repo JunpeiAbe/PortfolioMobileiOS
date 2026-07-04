@@ -50,11 +50,10 @@ final class DefaultAuthenticationStore: AuthenticationStore {
         self.keychainClient = keychainClient
     }
     
-    func login(mailAddress: String, password: String?, accessToken: String?, deviceToken: String) async throws {
+    func login(mailAddress: String, password: String, deviceToken: String) async throws {
         let session = try await authenticationRepository.login(
             mailAddress: mailAddress,
             password: password,
-            accessToken: accessToken,
             deviceToken: deviceToken
         )
         authSession = session
@@ -87,4 +86,3 @@ final class DefaultAuthenticationStore: AuthenticationStore {
         userDefaultClient.set(UUID().uuidString, for: .terminalID)
     }
 }
-

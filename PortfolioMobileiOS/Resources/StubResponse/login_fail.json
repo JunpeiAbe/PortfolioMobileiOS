@@ -1,7 +1,6 @@
 {
     "access_token": null,
     "refresh_token": null,
-    "expires_in": null,
     "app_terms_agreed": null,
     "error": {
         "code": "LOGIN_FAILED",

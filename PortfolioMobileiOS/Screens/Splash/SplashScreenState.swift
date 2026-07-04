@@ -24,7 +24,6 @@ final class SplashScreenState {
     
     func onAppear() async {
         do {
-            try await authenticationStore.logout()
             // push通知権限の要求
             await pushNotificationStore.requestAuthorization()
             // 端末IDのチェック
@@ -47,19 +46,16 @@ final class SplashScreenState {
                     }
                 }
             }
-            // ログイン済判定
-            // トークンとメールアドレスが保存されているかどうか
-            if let mailAddress = authenticationStore.mailAddress,
-               let accessToken = authenticationStore.accessToken {
-                try await authenticationStore
-                    .login(
-                        mailAddress: mailAddress,
-                        password: nil,
-                        accessToken: accessToken,
-                        deviceToken: .init()
-                    )
-                appRouter.push(.login)
-                appRouter.push(.main)
+            // Keychainにリフレッシュトークンがあればセッションを更新する
+            if let refreshToken = authenticationStore.refreshToken {
+                do {
+                    try await authenticationStore.tokenRefresh(refreshToken: refreshToken)
+                    appRouter.push(.login)
+                    appRouter.push(.main)
+                } catch {
+                    try? await authenticationStore.logout()
+                    appRouter.push(.login)
+                }
             } else {
                 // ログイン画面に遷移
                 appRouter.push(.login)
@@ -76,4 +72,3 @@ final class SplashScreenState {
         }
     }
 }
-

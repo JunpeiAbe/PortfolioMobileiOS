@@ -49,25 +49,13 @@ final class TermScreenState {
                 loadingState = .idle
             }
             do {
-                guard let mailAddress = authenticationStore.mailAddress,
-                      let accessToken = authenticationStore.accessToken,
+                guard authenticationStore.accessToken != nil,
                       let termsVersion = appInfomationStore.appInfomation?.appTermVersion
                 else { return }
-                print("mailAddress:\(mailAddress)")
-                print("accessToken:\(accessToken)")
-                print("termsVersion:\(termsVersion)")
                 // 規約同意
                 try await authenticationStore
                     .agreeTerm(
                         termsVersion: termsVersion
-                    )
-                // ログイン
-                try await authenticationStore
-                    .login(
-                        mailAddress: mailAddress,
-                        password: nil,
-                        accessToken: accessToken,
-                        deviceToken: .init()
                     )
                 appRouter.push(.main)
             } catch let error as APIClientError {

@@ -25,15 +25,15 @@ enum StubResponseConfigurator {
             throw APIClientError.requestBuildFailed
         }
         switch path {
-        case "/information":
+        case "/app/information":
             return "app_information_success"
-        case "/login":
+        case "/auth/login":
             return "login_success"
-        case "/register":
+        case "/auth/register":
             return "register_success"
-        case "/refresh":
+        case "/auth/refresh":
             return "refresh_success"
-        case "/term":
+        case "/terms/agree":
             return "agree_term_success"
         case "/notices":
             return "notices_success"

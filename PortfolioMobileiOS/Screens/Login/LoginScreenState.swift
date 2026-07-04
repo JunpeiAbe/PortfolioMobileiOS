@@ -104,7 +104,6 @@ final class LoginScreenState {
                     .login(
                         mailAddress: emailText,
                         password: passwordText,
-                        accessToken: nil,
                         deviceToken: .init()
                     )
                 // 規約同意確認

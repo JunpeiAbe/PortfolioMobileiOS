@@ -12,12 +12,14 @@ struct DefaultAuthenticationRepository: AuthenticationRepository {
         self.keychainclient = keychainclient
     }
     
-    func login(mailAddress: String, password: String?, accessToken: String?, deviceToken: String) async throws -> AuthSession {
+    func login(mailAddress: String, password: String, deviceToken: String) async throws -> AuthSession {
         let response = try await apiClient.send(
             LoginRequest(
-                httpBody: accessToken == nil && password != nil
-                ? .init(mailAddress: mailAddress, password: password, deviceToken: deviceToken)
-                : .init(mailAddress: mailAddress, accessToken: accessToken, deviceToken: deviceToken)
+                httpBody: .init(
+                    mailAddress: mailAddress,
+                    password: password,
+                    deviceToken: deviceToken
+                )
             )
         )
         if let error = response.error {
@@ -31,7 +33,6 @@ struct DefaultAuthenticationRepository: AuthenticationRepository {
         return AuthSession(
             accessToken: response.accessToken,
             refreshToken: response.refreshToken,
-            expiresIn: response.expiresIn,
             appTermsAgreed: response.appTermsAgreed
         )
     }
@@ -56,7 +57,6 @@ struct DefaultAuthenticationRepository: AuthenticationRepository {
         return AuthSession(
             accessToken: response.accessToken,
             refreshToken: response.refreshToken,
-            expiresIn: response.expiresIn,
             appTermsAgreed: nil
         )
     }
@@ -80,8 +80,7 @@ struct DefaultAuthenticationRepository: AuthenticationRepository {
         return AuthSession(
             accessToken: response.accessToken,
             refreshToken: response.refreshToken,
-            expiresIn: response.expiresIn,
-            appTermsAgreed: nil
+            appTermsAgreed: response.appTermsAgreed
         )
     }
     
