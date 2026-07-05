@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		689BF1A12FFA25A500419BCE /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 689BF1A02FFA25A500419BCE /* FirebaseMessaging */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		684FF0AB2FAF39D000BE1DBE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				689BF1A12FFA25A500419BCE /* FirebaseMessaging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +130,7 @@
 			);
 			name = PortfolioMobileiOS;
 			packageProductDependencies = (
+				689BF1A02FFA25A500419BCE /* FirebaseMessaging */,
 			);
 			productName = PortfolioMobileiOS;
 			productReference = 684FF09D2FAF39CE00BE1DBE /* PortfolioMobileiOS.app */;
@@ -208,6 +214,9 @@
 			);
 			mainGroup = 684FF0942FAF39CE00BE1DBE;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				689BF19F2FFA25A500419BCE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 684FF09E2FAF39CE00BE1DBE /* Products */;
 			projectDirPath = "";
@@ -758,6 +767,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		689BF19F2FFA25A500419BCE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 12.15.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		689BF1A02FFA25A500419BCE /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 689BF19F2FFA25A500419BCE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 684FF0952FAF39CE00BE1DBE /* Project object */;
 }

@@ -1,5 +1,7 @@
 import UIKit
 import UserNotifications
+import FirebaseCore
+import FirebaseMessaging
 
 final class AppDelegate: NSObject {}
 
@@ -8,7 +10,9 @@ extension AppDelegate: UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
+        FirebaseApp.configure()
         UNUserNotificationCenter.current().delegate = self
+        Messaging.messaging().delegate = self
         return true
     }
     
@@ -16,7 +20,7 @@ extension AppDelegate: UIApplicationDelegate {
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-        // TODO: tokenを自前サーバーへ送信
+        Messaging.messaging().apnsToken = deviceToken
     }
     
     func application(
@@ -24,6 +28,13 @@ extension AppDelegate: UIApplicationDelegate {
         didFailToRegisterForRemoteNotificationsWithError error: Error
     ) {
         print("Failed to register APNs:", error)
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        guard let fcmToken else { return }
+        print("fcmToken:\(fcmToken)")
     }
 }
 
