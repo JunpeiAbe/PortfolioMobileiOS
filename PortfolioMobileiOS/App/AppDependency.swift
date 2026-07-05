@@ -42,7 +42,8 @@ struct AppDependency {
         )
         
         let debugPushNotificationRepository = DefaultPushNotificationRepository(
-            pushNotificationClient: pushNotificationClient
+            pushNotificationClient: pushNotificationClient,
+            apiClient: debugApiClient
         )
         
         let debugAppInfomationRepository = appInfomationRepository ?? DefaultAppInfomationRepository(
@@ -108,13 +109,15 @@ struct AppDependency {
             makeLoginState: {
                 LoginScreenState(
                     appRouter: appRouter,
-                    authenticationStore: debugAuthenticationStore
+                    authenticationStore: debugAuthenticationStore,
+                    pushNotificationStore: debugPushNotificationStore
                 )
             },
             makeRegisterState: {
                 RegisterScreenState(
                     appRouter: appRouter,
-                    authenticationStore: debugAuthenticationStore
+                    authenticationStore: debugAuthenticationStore,
+                    pushNotificationStore: debugPushNotificationStore
                 )
             },
             makeTermState: {
@@ -184,7 +187,8 @@ struct AppDependency {
         )
         
         let pushNotificationRepository = DefaultPushNotificationRepository(
-            pushNotificationClient: pushNotificationClient
+            pushNotificationClient: pushNotificationClient,
+            apiClient: apiClient
         )
         
         let appInfomationRepository = DefaultAppInfomationRepository(
@@ -250,13 +254,15 @@ struct AppDependency {
             makeLoginState: {
                 LoginScreenState(
                     appRouter: appRouter,
-                    authenticationStore: authenticationStore
+                    authenticationStore: authenticationStore,
+                    pushNotificationStore: pushNotificationStore
                 )
             },
             makeRegisterState: {
                 RegisterScreenState(
                     appRouter: appRouter,
-                    authenticationStore: authenticationStore
+                    authenticationStore: authenticationStore,
+                    pushNotificationStore: pushNotificationStore
                 )
             },
             makeTermState: {
@@ -319,11 +325,13 @@ struct AppDependency {
         let apiClient = URLSessionAPIClient(
             configuration: .init(
                 baseURL: Bundle.main.apiBaseURL
-            )
+            ),
+            accessTokenProvider: AccessTokenProvider(keychainClient: keychainClient)
         )
         
         let pushNotificationRepository = DefaultPushNotificationRepository(
-            pushNotificationClient: pushNotificationClient
+            pushNotificationClient: pushNotificationClient,
+            apiClient: apiClient
         )
         
         let appInfomationRepository = DefaultAppInfomationRepository(
@@ -389,13 +397,15 @@ struct AppDependency {
             makeLoginState: {
                 LoginScreenState(
                     appRouter: appRouter,
-                    authenticationStore: authenticationStore
+                    authenticationStore: authenticationStore,
+                    pushNotificationStore: pushNotificationStore
                 )
             },
             makeRegisterState: {
                 RegisterScreenState(
                     appRouter: appRouter,
-                    authenticationStore: authenticationStore
+                    authenticationStore: authenticationStore,
+                    pushNotificationStore: pushNotificationStore
                 )
             },
             makeTermState: {

@@ -50,11 +50,10 @@ final class DefaultAuthenticationStore: AuthenticationStore {
         self.keychainClient = keychainClient
     }
     
-    func login(mailAddress: String, password: String, deviceToken: String) async throws {
+    func login(mailAddress: String, password: String) async throws {
         let session = try await authenticationRepository.login(
             mailAddress: mailAddress,
-            password: password,
-            deviceToken: deviceToken
+            password: password
         )
         authSession = session
         try keychainClient.save(mailAddress, for: .mailAddress)

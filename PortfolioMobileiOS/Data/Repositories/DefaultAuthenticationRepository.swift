@@ -12,13 +12,12 @@ struct DefaultAuthenticationRepository: AuthenticationRepository {
         self.keychainclient = keychainclient
     }
     
-    func login(mailAddress: String, password: String, deviceToken: String) async throws -> AuthSession {
+    func login(mailAddress: String, password: String) async throws -> AuthSession {
         let response = try await apiClient.send(
             LoginRequest(
                 httpBody: .init(
                     mailAddress: mailAddress,
-                    password: password,
-                    deviceToken: deviceToken
+                    password: password
                 )
             )
         )

@@ -1,5 +1,6 @@
 import UIKit
 import UserNotifications
+import FirebaseMessaging
 
 struct DefaultPushNotificationClient: PushNotificationClient {
     func requestAuthorization() async {
@@ -13,5 +14,9 @@ struct DefaultPushNotificationClient: PushNotificationClient {
         } catch {
             print(error)
         }
+    }
+
+    func fetchFCMToken() async throws -> String {
+        try await Messaging.messaging().token()
     }
 }

@@ -30,14 +30,17 @@ final class LoginScreenState {
     
     private let appRouter: AppRouter
     var authenticationStore: AuthenticationStore
+    private let pushNotificationStore: PushNotificationStore
     var alertContent: PresentAlert?
     
     init(
         appRouter: AppRouter,
-        authenticationStore: AuthenticationStore
+        authenticationStore: AuthenticationStore,
+        pushNotificationStore: PushNotificationStore
     ) {
         self.appRouter = appRouter
         self.authenticationStore = authenticationStore
+        self.pushNotificationStore = pushNotificationStore
     }
     
     func onEmailTextSubmit(_ text: String) {
@@ -103,9 +106,15 @@ final class LoginScreenState {
                 try await authenticationStore
                     .login(
                         mailAddress: emailText,
-                        password: passwordText,
-                        deviceToken: .init()
+                        password: passwordText
                     )
+                if let deviceID = authenticationStore.terminalID {
+                    do {
+                        try await pushNotificationStore.registerToken(deviceID: deviceID)
+                    } catch {
+                        print("Failed to register FCM token:", error)
+                    }
+                }
                 // 規約同意確認
                 if authenticationStore.appTermsAgreed {
                     appRouter.push(.main)

@@ -13,4 +13,8 @@ final class DefaultPushNotificationStore: PushNotificationStore {
     func requestAuthorization() async {
         await pushNotificationRepository.requestAuthorization()
     }
+
+    func registerToken(deviceID: String) async throws {
+        try await pushNotificationRepository.registerToken(deviceID: deviceID)
+    }
 }

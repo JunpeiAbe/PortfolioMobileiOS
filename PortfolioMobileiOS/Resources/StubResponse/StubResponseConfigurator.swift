@@ -39,6 +39,8 @@ enum StubResponseConfigurator {
             return "notices_success"
         case "/features":
             return "features_success"
+        case "/devices/push-token":
+            return "register_push_token_success"
         default:
             throw APIClientError.requestBuildFailed
         }

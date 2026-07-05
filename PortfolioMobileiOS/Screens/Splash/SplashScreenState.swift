@@ -50,6 +50,13 @@ final class SplashScreenState {
             if let refreshToken = authenticationStore.refreshToken {
                 do {
                     try await authenticationStore.tokenRefresh(refreshToken: refreshToken)
+                    if let deviceID = authenticationStore.terminalID {
+                        do {
+                            try await pushNotificationStore.registerToken(deviceID: deviceID)
+                        } catch {
+                            print("Failed to register FCM token:", error)
+                        }
+                    }
                     appRouter.push(.login)
                     appRouter.push(.main)
                 } catch {
