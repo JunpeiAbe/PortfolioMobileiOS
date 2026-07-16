@@ -1,18 +1,18 @@
 import Foundation
 
-struct DefaultAppInfomationRepository: AppInfomationRepository {
+struct DefaultAppInformationRepository: AppInformationRepository {
     private let apiClient: APIClient
     
     init(apiClient: APIClient) {
         self.apiClient = apiClient
     }
     
-    func fetchAppInfomation() async throws -> AppInfomation {
+    func fetchAppInformation() async throws -> AppInformation {
         let response = try await apiClient.send(AppInformationRequest())
         if let error = response.error {
             throw error
         }
-        return AppInfomation(
+        return AppInformation(
             isMaintenance: response.isMaintenance,
             iOSMinAppVersion: response.iOSMinAppVersion,
             appTermURL: response.appTermURL,

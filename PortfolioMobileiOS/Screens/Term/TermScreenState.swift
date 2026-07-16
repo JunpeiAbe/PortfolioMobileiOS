@@ -11,17 +11,17 @@ final class TermScreenState {
         || loadingState == .loading
     }
     var appRouter: AppRouter
-    var appInfomationStore: AppInfomationStore
+    var appInformationStore: AppInformationStore
     var authenticationStore: AuthenticationStore
     var appTermURL: URL?
     
     init(
         appRouter: AppRouter,
-        appInfomationStore: AppInfomationStore,
+        appInformationStore: AppInformationStore,
         authenticationStore: AuthenticationStore
     ) {
         self.appRouter = appRouter
-        self.appInfomationStore = appInfomationStore
+        self.appInformationStore = appInformationStore
         self.authenticationStore = authenticationStore
     }
     
@@ -33,7 +33,7 @@ final class TermScreenState {
         // トークンとメールアドレス、利用規約URLの取得
         guard let _ = authenticationStore.mailAddress,
               let _ = authenticationStore.accessToken,
-              let url = appInfomationStore.appInfomation?.appTermURL
+              let url = appInformationStore.appInformation?.appTermURL
         else { return }
         appTermURL = URL(string: url)
     }
@@ -50,7 +50,7 @@ final class TermScreenState {
             }
             do {
                 guard authenticationStore.accessToken != nil,
-                      let termsVersion = appInfomationStore.appInfomation?.appTermVersion
+                      let termsVersion = appInformationStore.appInformation?.appTermVersion
                 else { return }
                 // 規約同意
                 try await authenticationStore
@@ -59,14 +59,12 @@ final class TermScreenState {
                     )
                 appRouter.push(.main)
             } catch let error as APIClientError {
-                // TODO: error handling
                 switch error {
                     // 通信エラーの場合
                 case .notConnectedToInternet: break
                 default: break
                 }
             } catch {
-                // TODO: error handling
             }
         }
     }

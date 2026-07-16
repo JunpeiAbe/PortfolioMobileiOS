@@ -25,10 +25,8 @@ struct WebView: UIViewRepresentable {
                 forResource: name,
                 withExtension: fileExtension
             ) else {
-                print("not url")
                 return
             }
-            print("HTML fileURL:", fileURL)
             webView.loadFileURL(
                 fileURL,
                 allowingReadAccessTo: fileURL.deletingLastPathComponent()

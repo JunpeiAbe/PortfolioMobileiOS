@@ -51,7 +51,6 @@ struct RegisterScreen: View {
             helpButtonAction: {},
         )
         .onChange(of: state.focusingField) { oldField, newField in
-            print("state focusingField change")
             // viewStateのfocusingFieldを更新時にViewのfocusedFieldを更新
             focusedField = newField
             if newField == nil,
@@ -70,7 +69,6 @@ struct RegisterScreen: View {
             }
         }
         .onChange(of: focusedField) { _, newFocusedField in
-            print("focusedField change")
             state.onFocusedFieldChange(newFocusedField)
         }
         .onChange(of: state.loadingState.isLoading) { _, newValue in
@@ -92,11 +90,9 @@ struct RegisterScreen: View {
                 isError: !state.isEmailErrorMessageHidden,
                 isFocused: focusedField == .email,
                 onSubmit: { text in
-                    print("email text submit")
                     state.onEmailTextSubmit(text)
                 },
                 onChange: { text in
-                    print("email text change")
                     state.onEmailTextChange(text)
                 }
             )
@@ -118,11 +114,9 @@ struct RegisterScreen: View {
                 isError: !state.isPasswordErrorMessageHidden,
                 isFocused: focusedField == .password,
                 onSubmit: { text in
-                    print("password text submit")
                     state.onPasswordTextSubmit(text)
                 },
                 onChange: { text in
-                    print("password text change")
                     state.onPasswordTextChange(text)
                 }
             )
@@ -144,11 +138,9 @@ struct RegisterScreen: View {
                 isError: !state.isConfirmPasswordErrorMessageHidden,
                 isFocused: focusedField == .confirmPassword,
                 onSubmit: { text in
-                    print("confirm password text submit")
                     state.onConfirmPasswordTextSubmit(text)
                 },
                 onChange: { text in
-                    print("confirm password text change")
                     state.onConfirmPasswordTextChange(text)
                 }
             )

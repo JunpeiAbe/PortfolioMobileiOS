@@ -12,7 +12,6 @@ extension AppDelegate: UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         UNUserNotificationCenter.current().delegate = self
-        Messaging.messaging().delegate = self
         return true
     }
     
@@ -22,37 +21,14 @@ extension AppDelegate: UIApplicationDelegate {
     ) {
         Messaging.messaging().apnsToken = deviceToken
     }
-    
-    func application(
-        _ application: UIApplication,
-        didFailToRegisterForRemoteNotificationsWithError error: Error
-    ) {
-        print("Failed to register APNs:", error)
-    }
-}
-
-extension AppDelegate: MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        guard let fcmToken else { return }
-        print("fcmToken:\(fcmToken)")
-    }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        willPresent notification: UNNotification
+        _: UNUserNotificationCenter,
+        willPresent _: UNNotification
     ) async -> UNNotificationPresentationOptions {
         // アプリ起動中に通知を表示したい場合
         [.banner, .sound, .badge]
-    }
-    
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        didReceive response: UNNotificationResponse
-    ) async {
-        let userInfo = response.notification.request.content.userInfo
-        print("Notification tapped:", userInfo)
-        // TODO: 通知タップ時の画面遷移など
     }
 }

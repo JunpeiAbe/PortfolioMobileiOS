@@ -1,6 +1,6 @@
 import Foundation
 
-struct AppInfomation {
+struct AppInformation {
     let isMaintenance: Bool?
     let iOSMinAppVersion: String?
     let appTermURL: String?

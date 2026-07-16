@@ -28,17 +28,14 @@ final class NotificationScreenState {
         do {
             try await noticeStore.fetchNotices()
             let notices = noticeStore.notices
-            print(notices.count)
             self.notices.append(contentsOf: notices)
         } catch let error as APIClientError {
-            // TODO: error handling
             switch error {
                 // 通信エラーの場合
             case .notConnectedToInternet: break
             default: break
             }
         } catch {
-            // TODO: error handling
         }
     }
     
@@ -49,11 +46,9 @@ final class NotificationScreenState {
     
     func loadMoreIfNeeded(currentNotice: Notice) async {
         guard let nextCursor = noticeStore.nextCursor else {
-            // TODO: 追加読み込み対象がないことを示す
             return
         }
         guard shouldLoadMore(currentNotice: currentNotice) else {
-            // TODO: 追加読み込み対象がないことを示す
             return
         }
         isLoadingMore = true
@@ -64,16 +59,13 @@ final class NotificationScreenState {
         do {
             try await noticeStore.loadMore(nextCursor: nextCursor)
             self.notices = noticeStore.notices
-            print(notices.count)
         } catch let error as APIClientError {
-            // TODO: error handling
             switch error {
                 // 通信エラーの場合
             case .notConnectedToInternet: break
             default: break
             }
         } catch {
-            // TODO: error handling
         }
     }
     

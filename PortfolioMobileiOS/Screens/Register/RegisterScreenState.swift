@@ -159,20 +159,17 @@ final class RegisterScreenState {
                     do {
                         try await pushNotificationStore.registerToken(deviceID: deviceID)
                     } catch {
-                        print("Failed to register FCM token:", error)
                     }
                 }
                 // 規約同意画面に遷移
                 appRouter.push(.term)
             } catch let error as APIClientError {
-                // TODO: error handling
                 switch error {
                     // 通信エラーの場合
                 case .notConnectedToInternet: break
                 default: break
                 }
             } catch {
-                // TODO: error handling
             }
         }
         loadingState = .idle

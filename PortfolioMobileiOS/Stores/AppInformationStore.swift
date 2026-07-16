@@ -1,9 +1,9 @@
 import Foundation
 
 @MainActor
-protocol AppInfomationStore {
-    var appInfomation: AppInfomation? { get }
-    func fetchAppInfomation() async throws
+protocol AppInformationStore {
+    var appInformation: AppInformation? { get }
+    func fetchAppInformation() async throws
     /// 現在のアプリバージョン
     var currentAppVersion: AppVersion? { get }
     /// 最新のアプリバージョン

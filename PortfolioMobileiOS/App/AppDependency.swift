@@ -23,7 +23,7 @@ struct AppDependency {
         keychainClient: KeychainClient = DefaultKeychainClient(service: "debug"),
         pushNotificationClient: PushNotificationClient = DefaultPushNotificationClient(),
         apiClient: URLSessionAPIClient? = nil,
-        appInfomationRepository: AppInfomationRepository? = nil,
+        appInformationRepository: AppInformationRepository? = nil,
         authenticationRepository: AuthenticationRepository? = nil,
         agreeTermRepository: AgreeTermRepository? = nil,
         noticeRepository: NoticeRepository? = nil
@@ -46,7 +46,7 @@ struct AppDependency {
             apiClient: debugApiClient
         )
         
-        let debugAppInfomationRepository = appInfomationRepository ?? DefaultAppInfomationRepository(
+        let debugAppInformationRepository = appInformationRepository ?? DefaultAppInformationRepository(
             apiClient: debugApiClient
         )
         
@@ -71,8 +71,8 @@ struct AppDependency {
             pushNotificationRepository: debugPushNotificationRepository
         )
         
-        let debugAppInfomationStore = DefaultAppInfomationStore(
-            appInfomationRepository: debugAppInfomationRepository
+        let debugAppInformationStore = DefaultAppInformationStore(
+            appInformationRepository: debugAppInformationRepository
         )
         
         let debugAuthenticationStore = DefaultAuthenticationStore(
@@ -94,7 +94,7 @@ struct AppDependency {
             appRouter: appRouter,
             makeRootState: {
                 RootScreenState(
-                    appInfomationStore: debugAppInfomationStore,
+                    appInformationStore: debugAppInformationStore,
                     authenticationStore: debugAuthenticationStore
                 )
             },
@@ -102,7 +102,7 @@ struct AppDependency {
                 SplashScreenState(
                     appRouter: appRouter,
                     pushNotificationStore: debugPushNotificationStore,
-                    appInfomationStore: debugAppInfomationStore,
+                    appInformationStore: debugAppInformationStore,
                     authenticationStore: debugAuthenticationStore
                 )
             },
@@ -123,7 +123,7 @@ struct AppDependency {
             makeTermState: {
                 TermScreenState(
                     appRouter: appRouter,
-                    appInfomationStore: debugAppInfomationStore,
+                    appInformationStore: debugAppInformationStore,
                     authenticationStore: debugAuthenticationStore
                 )
             },
@@ -191,7 +191,7 @@ struct AppDependency {
             apiClient: apiClient
         )
         
-        let appInfomationRepository = DefaultAppInfomationRepository(
+        let appInformationRepository = DefaultAppInformationRepository(
             apiClient: apiClient
         )
         
@@ -216,8 +216,8 @@ struct AppDependency {
             pushNotificationRepository: pushNotificationRepository
         )
         
-        let appInfomationStore = DefaultAppInfomationStore(
-            appInfomationRepository: appInfomationRepository
+        let appInformationStore = DefaultAppInformationStore(
+            appInformationRepository: appInformationRepository
         )
         
         let authenticationStore = DefaultAuthenticationStore(
@@ -239,7 +239,7 @@ struct AppDependency {
             appRouter: appRouter,
             makeRootState: {
                 RootScreenState(
-                    appInfomationStore: appInfomationStore,
+                    appInformationStore: appInformationStore,
                     authenticationStore: authenticationStore
                 )
             },
@@ -247,7 +247,7 @@ struct AppDependency {
                 SplashScreenState(
                     appRouter: appRouter,
                     pushNotificationStore: pushNotificationStore,
-                    appInfomationStore: appInfomationStore,
+                    appInformationStore: appInformationStore,
                     authenticationStore: authenticationStore
                 )
             },
@@ -268,7 +268,7 @@ struct AppDependency {
             makeTermState: {
                 TermScreenState(
                     appRouter: appRouter,
-                    appInfomationStore: appInfomationStore,
+                    appInformationStore: appInformationStore,
                     authenticationStore: authenticationStore
                 )
             },
@@ -334,7 +334,7 @@ struct AppDependency {
             apiClient: apiClient
         )
         
-        let appInfomationRepository = DefaultAppInfomationRepository(
+        let appInformationRepository = DefaultAppInformationRepository(
             apiClient: apiClient
         )
         
@@ -359,8 +359,8 @@ struct AppDependency {
             pushNotificationRepository: pushNotificationRepository
         )
         
-        let appInfomationStore = DefaultAppInfomationStore(
-            appInfomationRepository: appInfomationRepository
+        let appInformationStore = DefaultAppInformationStore(
+            appInformationRepository: appInformationRepository
         )
         
         let authenticationStore = DefaultAuthenticationStore(
@@ -382,7 +382,7 @@ struct AppDependency {
             appRouter: appRouter,
             makeRootState: {
                 RootScreenState(
-                    appInfomationStore: appInfomationStore,
+                    appInformationStore: appInformationStore,
                     authenticationStore: authenticationStore
                 )
             },
@@ -390,7 +390,7 @@ struct AppDependency {
                 SplashScreenState(
                     appRouter: appRouter,
                     pushNotificationStore: pushNotificationStore,
-                    appInfomationStore: appInfomationStore,
+                    appInformationStore: appInformationStore,
                     authenticationStore: authenticationStore
                 )
             },
@@ -411,7 +411,7 @@ struct AppDependency {
             makeTermState: {
                 TermScreenState(
                     appRouter: appRouter,
-                    appInfomationStore: appInfomationStore,
+                    appInformationStore: appInformationStore,
                     authenticationStore: authenticationStore
                 )
             },

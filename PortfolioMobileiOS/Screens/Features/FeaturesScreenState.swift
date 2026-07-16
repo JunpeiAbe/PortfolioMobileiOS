@@ -29,17 +29,14 @@ final class FeaturesScreenState {
         do {
             try await featuresStore.fetchFeatures()
             let features = featuresStore.features
-            print(features.count)
             self.features.append(contentsOf: features)
         } catch let error as APIClientError {
-            // TODO: error handling
             switch error {
                 // 通信エラーの場合
             case .notConnectedToInternet: break
             default: break
             }
         } catch {
-            // TODO: error handling
         }
     }
     
@@ -50,11 +47,9 @@ final class FeaturesScreenState {
     
     func loadMoreIfNeeded(currentFeature: Feature) async {
         guard let nextCursor = featuresStore.nextCursor else {
-            // TODO: 追加読み込み対象がないことを示す
             return
         }
         guard shouldLoadMore(currentFeature: currentFeature) else {
-            // TODO: 追加読み込み対象がないことを示す
             return
         }
         isLoadingMore = true
@@ -65,16 +60,13 @@ final class FeaturesScreenState {
         do {
             try await featuresStore.loadMore(nextCursor: nextCursor)
             self.features = featuresStore.features
-            print(features.count)
         } catch let error as APIClientError {
-            // TODO: error handling
             switch error {
                 // 通信エラーの場合
             case .notConnectedToInternet: break
             default: break
             }
         } catch {
-            // TODO: error handling
         }
     }
     

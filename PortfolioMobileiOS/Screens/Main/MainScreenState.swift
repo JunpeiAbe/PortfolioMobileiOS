@@ -21,9 +21,7 @@ final class MainScreenState {
                 try await authenticationStore.logout()
                 appRouter.pop(.login)
             } catch let error as APIClientError {
-                print(error)
             } catch {
-                print(error)
             }
         }
     }

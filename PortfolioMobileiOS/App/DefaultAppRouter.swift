@@ -18,7 +18,6 @@ final class DefaultAppRouter: AppRouter {
     /// 一画面先に遷移
     func push(_ destination: PushDestination) {
         pushDestinations.append(destination)
-        print("pushDestinations:", pushDestinations)
     }
     /// 一画面前に戻る
     func pop() {
@@ -28,7 +27,6 @@ final class DefaultAppRouter: AppRouter {
     }
     /// 指定画面に戻る
     func pop(_ destination: PushDestination) {
-        print("pop:\(pushDestinations)")
         while let last = pushDestinations.last,
               last != destination {
             pushDestinations.removeLast()
@@ -65,7 +63,6 @@ final class DefaultAppRouter: AppRouter {
             // すでに表示済かどうかに関わらず置き換え
             presentedAlert = alert
         }
-        print("presentedAlert:\(String(describing: presentedAlert))")
     }
     /// 標準アラートの非表示
     func dismissAlert() {

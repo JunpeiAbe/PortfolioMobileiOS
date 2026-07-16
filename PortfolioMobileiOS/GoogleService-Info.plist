@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyCP1KRci7JT3NvQRI1la05xlYIX0VFVGiw</string>
+	<string>YOUR_FIREBASE_API_KEY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>837349278169</string>
+	<string>YOUR_GCM_SENDER_ID</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>org.junpeiabe.PortfolioMobileiOS</string>
 	<key>PROJECT_ID</key>
-	<string>sampleserver-db7e9</string>
+	<string>YOUR_FIREBASE_PROJECT_ID</string>
 	<key>STORAGE_BUCKET</key>
-	<string>sampleserver-db7e9.firebasestorage.app</string>
+	<string>YOUR_FIREBASE_STORAGE_BUCKET</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:837349278169:ios:9fb09ed2757c1c73cc19c8</string>
+	<string>YOUR_GOOGLE_APP_ID</string>
 </dict>
 </plist>

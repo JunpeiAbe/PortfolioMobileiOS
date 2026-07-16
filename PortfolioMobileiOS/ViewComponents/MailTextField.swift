@@ -42,7 +42,7 @@ struct MailTextField: View {
         .onSubmit {
             onSubmit(text)
         }
-        .onChange(of: text) { _, newValue in
+        .onChange(of: text) { _, _ in
             onChange(text)
         }
     }
@@ -52,8 +52,8 @@ struct MailTextField: View {
     @Previewable @State var text: String = .init()
     MailTextField(
         text: $text,
-        onSubmit: { text in print(text)},
-        onChange: { text in print(text)}
+        onSubmit: { _ in },
+        onChange: { _ in }
     )
     .padding(16)
 }

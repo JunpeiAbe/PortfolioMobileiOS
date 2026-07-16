@@ -1,9 +1,9 @@
 import Foundation
 @MainActor
 @Observable
-final class DefaultAppInfomationStore: AppInfomationStore {
-    private let appInfomationRepository: AppInfomationRepository
-    private(set) var appInfomation: AppInfomation?
+final class DefaultAppInformationStore: AppInformationStore {
+    private let appInformationRepository: AppInformationRepository
+    private(set) var appInformation: AppInformation?
     /// 現在のアプリバージョン
     var currentAppVersion: AppVersion? {
         guard let version = Bundle.main.object(
@@ -15,7 +15,7 @@ final class DefaultAppInfomationStore: AppInfomationStore {
     }
     /// 最新のアプリバージョン
     var latestAppVersion: AppVersion? {
-        guard let version = appInfomation?.iOSMinAppVersion else {
+        guard let version = appInformation?.iOSMinAppVersion else {
             return nil
         }
         return AppVersion(value: version)
@@ -30,18 +30,18 @@ final class DefaultAppInfomationStore: AppInfomationStore {
     }
     /// メンテナンス中かどうか
     var isMaintenance: Bool {
-        guard let isMaintenance = appInfomation?.isMaintenance else {
+        guard let isMaintenance = appInformation?.isMaintenance else {
             return false
         }
         return isMaintenance
     }
     
-    init(appInfomationRepository: AppInfomationRepository) {
-        self.appInfomationRepository = appInfomationRepository
+    init(appInformationRepository: AppInformationRepository) {
+        self.appInformationRepository = appInformationRepository
     }
     
-    func fetchAppInfomation() async throws {
-        let infomation = try await appInfomationRepository.fetchAppInfomation()
-        appInfomation = infomation
+    func fetchAppInformation() async throws {
+        let information = try await appInformationRepository.fetchAppInformation()
+        appInformation = information
     }
 }
