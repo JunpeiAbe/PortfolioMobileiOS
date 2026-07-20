@@ -1,0 +1,46 @@
+name: Unit Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: unit-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-tests:
+    name: Swift Testing
+    runs-on: macos-26
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Select Xcode 26.2
+        run: sudo xcode-select --switch /Applications/Xcode_26.2.app/Contents/Developer
+
+      - name: Show build environment
+        run: |
+          xcodebuild -version
+          xcrun simctl list devices available
+
+      - name: Run unit tests
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project PortfolioMobileiOS.xcodeproj \
+            -scheme Debug \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max' \
+            -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -only-testing:PortfolioMobileiOSTests \
+            CODE_SIGNING_ALLOWED=NO \
+            test

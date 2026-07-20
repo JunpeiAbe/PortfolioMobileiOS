@@ -1,5 +1,7 @@
 # PortfolioMobileiOS
 
+[![Unit Tests](https://github.com/JunpeiAbe/PortfolioMobileiOS/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/JunpeiAbe/PortfolioMobileiOS/actions/workflows/unit-tests.yml)
+
 SwiftUIで実装したポートフォリオ用iOSアプリです。  
 ログイン、新規登録、利用規約同意、ホーム、通知一覧、機能一覧、詳細画面など、実務アプリで頻出する画面遷移と状態管理を一通り確認できる構成にしています。
 
@@ -38,6 +40,8 @@ Debug用スクリーンショットは、iPhone Simulatorを起動してから�
 ## Unit Test
 
 Swift Testingを使用し、Validation、API Request、API Client、永続化、Repository、Store、画面状態、Navigationをテストしています。入力値の境界条件はParameterized Testにまとめ、各テストには検証内容が分かるコメントを記載しています。
+
+GitHub Actionsにより、`master`へのpushとPull Requestの作成・更新時にUnit Testを自動実行します。必要に応じてActions画面から手動実行することもできます。
 
 テストコードはプロダクションコードに対応したディレクトリ構成で、`PortfolioMobileiOSTests/` 以下に配置しています。テストケースの一覧は [Unit Testケース一覧](docs/unit-test-cases.md) を参照してください。
 
@@ -96,5 +100,4 @@ Debug Schemeではスタブレスポンスを利用するため、バックエ�
 
 - APIエラーごとのユーザー向けメッセージ最適化
 - UI Testの追加
-- CIでのビルド・テスト自動化
 - デザインシステムとしてのUIコンポーネント整理
