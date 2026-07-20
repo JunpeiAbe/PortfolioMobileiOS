@@ -14,9 +14,27 @@ SwiftUIで実装したポートフォリオ用iOSアプリです。
 ## 技術スタック
 
 - Swift 6.0 / SwiftUI
+- Swift Testing
 - Swift Concurrency / Observation
 - URLSession / Keychain / UserDefaults
 - Firebase Messaging
+
+## Unit Test
+
+Swift Testingを使用し、Validation、API Request、API Client、永続化、Repository、Store、画面状態、Navigationをテストしています。入力値の境界条件はParameterized Testにまとめ、各テストには検証内容が分かるコメントを記載しています。
+
+テストコードはプロダクションコードに対応したディレクトリ構成で、`PortfolioMobileiOSTests/` 以下に配置しています。テストケースの一覧は [Unit Testケース一覧](docs/unit-test-cases.md) を参照してください。
+
+Xcodeから`Debug` SchemeのUnit Testを実行するか、次のコマンドで実行できます。
+
+```shell
+xcodebuild -project PortfolioMobileiOS.xcodeproj \
+  -scheme Debug \
+  -configuration Debug \
+  -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max' \
+  -only-testing:PortfolioMobileiOSTests \
+  test
+```
 
 ## アーキテクチャ
 
@@ -61,6 +79,6 @@ Debug Schemeではスタブレスポンスを利用するため、バックエ�
 ## 今後の改善候補
 
 - APIエラーごとのユーザー向けメッセージ最適化
-- Unit Test / UI Testの追加
+- UI Testの追加
 - CIでのビルド・テスト自動化
 - デザインシステムとしてのUIコンポーネント整理
