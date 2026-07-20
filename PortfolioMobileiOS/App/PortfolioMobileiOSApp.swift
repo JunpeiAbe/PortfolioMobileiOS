@@ -17,7 +17,18 @@ struct PortfolioMobileiOSApp: App {
     
     var body: some Scene {
         WindowGroup {
+#if DEBUG
+            if let screenshotScreen = ScreenshotScreen.launchArgument {
+                ScreenshotRootScreen(
+                    screen: screenshotScreen,
+                    dependency: dependency
+                )
+            } else {
+                RootScreen(dependency: dependency)
+            }
+#else
             RootScreen(dependency: dependency)
+#endif
         }
     }
 }

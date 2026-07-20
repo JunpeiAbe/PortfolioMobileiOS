@@ -3,6 +3,22 @@
 SwiftUIで実装したポートフォリオ用iOSアプリです。  
 ログイン、新規登録、利用規約同意、ホーム、通知一覧、機能一覧、詳細画面など、実務アプリで頻出する画面遷移と状態管理を一通り確認できる構成にしています。
 
+## Screenshots
+
+| Login | Register | Terms |
+|---|---|---|
+| <img src="READMEAssets/Screenshots/02-login.png" width="260"> | <img src="READMEAssets/Screenshots/03-register.png" width="260"> | <img src="READMEAssets/Screenshots/04-terms.png" width="260"> |
+
+| Features |
+|---|
+| <img src="READMEAssets/Screenshots/05-features.png" width="260"> |
+
+Debug用スクリーンショットは、iPhone Simulatorを起動してから次のコマンドで再生成できます。
+
+```shell
+./Scripts/capture_readme_screenshots.sh
+```
+
 ## 主な機能
 
 - 認証機能: ログイン、新規登録、セッション復元、ログアウト

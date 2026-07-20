@@ -10,6 +10,12 @@ extension AppDelegate: UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
+#if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-screenshot-screen")
+            || ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
+            return true
+        }
+#endif
         FirebaseApp.configure()
         UNUserNotificationCenter.current().delegate = self
         return true
