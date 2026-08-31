@@ -31,6 +31,7 @@
 		684FF09D2FAF39CE00BE1DBE /* PortfolioMobileiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PortfolioMobileiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		684FF0AA2FAF39D000BE1DBE /* PortfolioMobileiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PortfolioMobileiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		684FF0B42FAF39D000BE1DBE /* PortfolioMobileiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PortfolioMobileiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		68B1334D3045A8270038F9B8 /* PMiOSPreview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PMiOSPreview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -41,13 +42,193 @@
 			);
 			target = 684FF09C2FAF39CE00BE1DBE /* PortfolioMobileiOS */;
 		};
+		68B133F63045A8740038F9B8 /* Exceptions for "PortfolioMobileiOS" folder in "PMiOSPreview" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				App/AppDependency.swift,
+				App/AppRouter.swift,
+				App/DefaultAppRouter.swift,
+				App/RootScreen.swift,
+				App/RootScreenState.swift,
+				App/ScreenshotRootScreen.swift,
+				Constants/AlertContent.swift,
+				Constants/AllowedCharacterRegex.swift,
+				Constants/APIClientError.swift,
+				Constants/FeatureCategory.swift,
+				Constants/FocusableField.swift,
+				Constants/HttpMethod.swift,
+				Constants/KeychainError.swift,
+				Constants/KeychainKey.swift,
+				Constants/LoadingState.swift,
+				Constants/NetworkProtocolType.swift,
+				Constants/NoticeCategory.swift,
+				Constants/SymbolImage.swift,
+				Constants/UserDefaultsKey.swift,
+				Data/API/AgreeTerm/AgreeTermRequest.swift,
+				Data/API/AgreeTerm/AgreeTermRequestBody.swift,
+				Data/API/AgreeTerm/AgreeTermResponse.swift,
+				Data/API/AppInformation/AppInformationRequest.swift,
+				Data/API/AppInformation/AppInformationResponse.swift,
+				Data/API/Base/AccessTokenProvider.swift,
+				Data/API/Base/AccessTokenProviding.swift,
+				Data/API/Base/APIClient.swift,
+				Data/API/Base/APIConfiguration.swift,
+				Data/API/Base/APIRequest.swift,
+				Data/API/Base/APIResponse.swift,
+				Data/API/Base/EmptyBody.swift,
+				Data/API/Base/MockURLProtocol.swift,
+				Data/API/Base/URLSessionAPIClient.swift,
+				Data/API/CommonResponseError.swift,
+				Data/API/Features/FeaturesRequest.swift,
+				Data/API/Features/FeaturesResponse.swift,
+				Data/API/Login/LoginRequest.swift,
+				Data/API/Login/LoginRequestBody.swift,
+				Data/API/Login/LoginResponse.swift,
+				Data/API/Notice/NoticesRequest.swift,
+				Data/API/Notice/NoticesResponse.swift,
+				Data/API/PushNotification/RegisterPushTokenRequest.swift,
+				Data/API/PushNotification/RegisterPushTokenRequestBody.swift,
+				Data/API/PushNotification/RegisterPushTokenResponse.swift,
+				Data/API/Refresh/RefreshRequest.swift,
+				Data/API/Refresh/RefreshRequestBody.swift,
+				Data/API/Refresh/RefreshResponse.swift,
+				Data/API/Register/RegisterRequest.swift,
+				Data/API/Register/RegisterRequestBody.swift,
+				Data/API/Register/RegisterResponse.swift,
+				Data/Database/Keychain/DefaultKeychainClient.swift,
+				Data/Database/Keychain/KeychainClient.swift,
+				Data/Database/Keychain/StubKeychainClient.swift,
+				Data/Database/UserDefaults/DefaultUserDefaultsClient.swift,
+				Data/Database/UserDefaults/UserDefaultsClient.swift,
+				Data/Network/NetworkServiceBrowser.swift,
+				Data/PushNotification/PushNotificationClient.swift,
+				Data/PushNotification/StubPushNotificationClient.swift,
+				Data/Repositories/DefaultAgreeTermRepository.swift,
+				Data/Repositories/DefaultAppInformationRepository.swift,
+				Data/Repositories/DefaultAuthenticationRepository.swift,
+				Data/Repositories/DefaultFeaturesRepository.swift,
+				Data/Repositories/DefaultNoticeRepository.swift,
+				Data/Repositories/DefaultPushNotificationRepository.swift,
+				Domain/Models/AppInformation.swift,
+				Domain/Models/AppVersion.swift,
+				Domain/Models/AuthSession.swift,
+				Domain/Models/Feature.swift,
+				Domain/Models/NetworkService.swift,
+				Domain/Models/Notice.swift,
+				Domain/Repositories/AgreeTermRepository.swift,
+				Domain/Repositories/AppInformationRepository.swift,
+				Domain/Repositories/AuthenticationRepository.swift,
+				Domain/Repositories/FeaturesRepository.swift,
+				Domain/Repositories/NoticeRepository.swift,
+				Domain/Repositories/PushNotificationRepository.swift,
+				Domain/Validation/MailAddressValidator.swift,
+				Domain/Validation/PasswordValidator.swift,
+				Domain/Validation/TextValidatable.swift,
+				"Extensions/AppDependency+Debug.swift",
+				Extensions/Bundle.swift,
+				Extensions/String.swift,
+				Extensions/URLSession.swift,
+				Extensions/View/AppFont.swift,
+				Extensions/View/EnvironmentValue.swift,
+				Extensions/View/FilledButtonStyle.swift,
+				Extensions/View/GlassButtonStyle.swift,
+				Extensions/View/Hidden.swift,
+				Extensions/View/Loading.swift,
+				Extensions/View/OnAppearOnce.swift,
+				Extensions/View/ScreenBackground.swift,
+				Extensions/View/TaskOnce.swift,
+				Extensions/View/ToolBar.swift,
+				Navigation/AppScene.swift,
+				Navigation/PresentAlert.swift,
+				Navigation/PushDestination.swift,
+				Navigation/ScreensBuilder.swift,
+				Navigation/SelectableTab.swift,
+				Resources/StubResponse/StubResponseConfigurator.swift,
+				Screens/FeatureDetail/FeatureDetailScreen.swift,
+				Screens/FeatureDetail/FeatureDetailScreenState.swift,
+				Screens/Features/FeatureRow.swift,
+				Screens/Features/FeaturesScreen.swift,
+				Screens/Features/FeaturesScreenState.swift,
+				Screens/History/HistoryScreen.swift,
+				Screens/History/HistoryScreenState.swift,
+				Screens/Home/HomeScreen.swift,
+				Screens/Home/HomeScreenState.swift,
+				Screens/Login/LoginScreen.swift,
+				Screens/Login/LoginScreenState.swift,
+				Screens/Main/MainScreen.swift,
+				Screens/Main/MainScreenState.swift,
+				Screens/Menu/MenuScreen.swift,
+				Screens/Menu/MenuScreenState.swift,
+				Screens/Notification/NotificationRow.swift,
+				Screens/Notification/NotificationScreen.swift,
+				Screens/Notification/NotificationScreenState.swift,
+				Screens/Register/RegisterScreen.swift,
+				Screens/Register/RegisterScreenState.swift,
+				Screens/Setting/SettingScreen.swift,
+				Screens/Setting/SettingScreenState.swift,
+				Screens/Splash/SplashScreen.swift,
+				Screens/Splash/SplashScreenState.swift,
+				Screens/Term/TermScreen.swift,
+				Screens/Term/TermScreenState.swift,
+				Stores/AppInformationStore.swift,
+				Stores/AuthenticationStore.swift,
+				Stores/DefaultAppInformationStore.swift,
+				Stores/DefaultAuthenticationStore.swift,
+				Stores/DefaultFeaturesStore.swift,
+				Stores/DefaultNoticeStore.swift,
+				Stores/DefaultPushNotificationStore.swift,
+				Stores/FeaturesStore.swift,
+				Stores/NoticeStore.swift,
+				Stores/PushNotificationStore.swift,
+				ViewComponents/MailTextField.swift,
+				ViewComponents/PasswordTextField.swift,
+				ViewComponents/WebView.swift,
+			);
+			target = 68B1334C3045A8270038F9B8 /* PMiOSPreview */;
+		};
+		68B134113045B3A50038F9B8 /* Exceptions for "PMiOSPreview" folder in "PMiOSPreview" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 68B1334C3045A8270038F9B8 /* PMiOSPreview */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		68B133F73045A8740038F9B8 /* Exceptions for "PortfolioMobileiOS" folder in "Compile Sources" phase from "PMiOSPreview" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 68B133493045A8270038F9B8 /* Sources */;
+			membershipExceptions = (
+				BuildConfiguration/Debug.xcconfig,
+				BuildConfiguration/Release.xcconfig,
+				BuildConfiguration/Staging.xcconfig,
+				Resources/Assets.xcassets,
+				Resources/StubResponse/agree_term_fail.json,
+				Resources/StubResponse/agree_term_success.json,
+				Resources/StubResponse/app_information_fail.json,
+				Resources/StubResponse/app_information_success.json,
+				Resources/StubResponse/features_success.json,
+				Resources/StubResponse/login_fail.json,
+				Resources/StubResponse/login_success.json,
+				Resources/StubResponse/notices_success.json,
+				Resources/StubResponse/refresh_fail.json,
+				Resources/StubResponse/refresh_success.json,
+				Resources/StubResponse/register_fail.json,
+				Resources/StubResponse/register_push_token_success.json,
+				Resources/StubResponse/register_success.json,
+				Resources/WebContents/terms_stub.html,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		684FF09F2FAF39CE00BE1DBE /* PortfolioMobileiOS */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				687519E92FF90D9D00EFF7D1 /* Exceptions for "PortfolioMobileiOS" folder in "PortfolioMobileiOS" target */,
+				68B133F63045A8740038F9B8 /* Exceptions for "PortfolioMobileiOS" folder in "PMiOSPreview" target */,
+				68B133F73045A8740038F9B8 /* Exceptions for "PortfolioMobileiOS" folder in "Compile Sources" phase from "PMiOSPreview" target */,
 			);
 			path = PortfolioMobileiOS;
 			sourceTree = "<group>";
@@ -60,6 +241,14 @@
 		684FF0B72FAF39D000BE1DBE /* PortfolioMobileiOSUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = PortfolioMobileiOSUITests;
+			sourceTree = "<group>";
+		};
+		68B130503045A6C60038F9B8 /* PMiOSPreview */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				68B134113045B3A50038F9B8 /* Exceptions for "PMiOSPreview" folder in "PMiOSPreview" target */,
+			);
+			path = PMiOSPreview;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -87,6 +276,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68B1334A3045A8270038F9B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -96,6 +292,7 @@
 				684FF09F2FAF39CE00BE1DBE /* PortfolioMobileiOS */,
 				684FF0AD2FAF39D000BE1DBE /* PortfolioMobileiOSTests */,
 				684FF0B72FAF39D000BE1DBE /* PortfolioMobileiOSUITests */,
+				68B130503045A6C60038F9B8 /* PMiOSPreview */,
 				684FF09E2FAF39CE00BE1DBE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,6 +303,7 @@
 				684FF09D2FAF39CE00BE1DBE /* PortfolioMobileiOS.app */,
 				684FF0AA2FAF39D000BE1DBE /* PortfolioMobileiOSTests.xctest */,
 				684FF0B42FAF39D000BE1DBE /* PortfolioMobileiOSUITests.xctest */,
+				68B1334D3045A8270038F9B8 /* PMiOSPreview.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -182,6 +380,28 @@
 			productReference = 684FF0B42FAF39D000BE1DBE /* PortfolioMobileiOSUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		68B1334C3045A8270038F9B8 /* PMiOSPreview */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68B133553045A8280038F9B8 /* Build configuration list for PBXNativeTarget "PMiOSPreview" */;
+			buildPhases = (
+				68B133493045A8270038F9B8 /* Sources */,
+				68B1334A3045A8270038F9B8 /* Frameworks */,
+				68B1334B3045A8270038F9B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				68B130503045A6C60038F9B8 /* PMiOSPreview */,
+			);
+			name = PMiOSPreview;
+			packageProductDependencies = (
+			);
+			productName = PMiOSPreview;
+			productReference = 68B1334D3045A8270038F9B8 /* PMiOSPreview.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -189,7 +409,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2630;
+				LastSwiftUpdateCheck = 2700;
 				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					684FF09C2FAF39CE00BE1DBE = {
@@ -202,6 +422,9 @@
 					684FF0B32FAF39D000BE1DBE = {
 						CreatedOnToolsVersion = 26.3;
 						TestTargetID = 684FF09C2FAF39CE00BE1DBE;
+					};
+					68B1334C3045A8270038F9B8 = {
+						CreatedOnToolsVersion = 27.0;
 					};
 				};
 			};
@@ -225,6 +448,7 @@
 				684FF09C2FAF39CE00BE1DBE /* PortfolioMobileiOS */,
 				684FF0A92FAF39D000BE1DBE /* PortfolioMobileiOSTests */,
 				684FF0B32FAF39D000BE1DBE /* PortfolioMobileiOSUITests */,
+				68B1334C3045A8270038F9B8 /* PMiOSPreview */,
 			);
 		};
 /* End PBXProject section */
@@ -251,6 +475,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68B1334B3045A8270038F9B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -269,6 +500,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		684FF0B02FAF39D000BE1DBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68B133493045A8270038F9B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -723,6 +961,111 @@
 			};
 			name = Staging;
 		};
+		68B133563045A8280038F9B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				API_BASE_URL = "https:/$()/debug-api.example.com";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 788DC5C46S;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PMiOSPreview/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.junpeiabe.PMiOSPreview;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		68B133573045A8280038F9B8 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				API_BASE_URL = "https:/$()/debug-api.example.com";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 788DC5C46S;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PMiOSPreview/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.junpeiabe.PMiOSPreview;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+		68B133583045A8280038F9B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				API_BASE_URL = "https:/$()/debug-api.example.com";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 788DC5C46S;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PMiOSPreview/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.junpeiabe.PMiOSPreview;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -762,6 +1105,16 @@
 				684FF0C52FAF39D000BE1DBE /* Debug */,
 				687518822FF90C2500EFF7D1 /* Staging */,
 				684FF0C62FAF39D000BE1DBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68B133553045A8280038F9B8 /* Build configuration list for PBXNativeTarget "PMiOSPreview" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68B133563045A8280038F9B8 /* Debug */,
+				68B133573045A8280038F9B8 /* Staging */,
+				68B133583045A8280038F9B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
