@@ -71,7 +71,7 @@ final class DefaultAppRouter: AppRouter {
         if !alertQueue.isEmpty {
             let nextAlert = alertQueue.removeFirst()
             // 前のアラートの非表示後に表示されないため遅延処理を追加
-            Task { @MainActor in
+            Task {
                 try await Task.sleep(for: .milliseconds(300))
                 presentedAlert = nextAlert
             }

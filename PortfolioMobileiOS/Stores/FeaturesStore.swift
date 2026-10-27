@@ -1,7 +1,7 @@
 import Foundation
 
 @MainActor
-protocol FeaturesStore {
+protocol FeaturesStore: Sendable {
     var features: [Feature] { get }
     var selectedFeature: Feature? { get }
     var nextCursor: String? { get }

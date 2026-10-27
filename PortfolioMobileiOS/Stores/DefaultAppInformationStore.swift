@@ -1,4 +1,5 @@
 import Foundation
+
 @MainActor
 @Observable
 final class DefaultAppInformationStore: AppInformationStore {

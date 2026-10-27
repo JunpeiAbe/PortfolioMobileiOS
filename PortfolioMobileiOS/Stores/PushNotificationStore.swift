@@ -1,7 +1,7 @@
 import Foundation
 
 @MainActor
-protocol PushNotificationStore {
+protocol PushNotificationStore: Sendable {
     func requestAuthorization() async
     func registerToken(deviceID: String) async throws
 }

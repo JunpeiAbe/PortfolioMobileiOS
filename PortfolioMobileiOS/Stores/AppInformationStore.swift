@@ -1,7 +1,7 @@
 import Foundation
 
 @MainActor
-protocol AppInformationStore {
+protocol AppInformationStore: Sendable {
     var appInformation: AppInformation? { get }
     func fetchAppInformation() async throws
     /// 現在のアプリバージョン

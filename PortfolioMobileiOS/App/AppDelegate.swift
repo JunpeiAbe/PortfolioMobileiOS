@@ -16,8 +16,10 @@ extension AppDelegate: UIApplicationDelegate {
             return true
         }
 #endif
+#if !DEBUG
         FirebaseApp.configure()
         UNUserNotificationCenter.current().delegate = self
+#endif
         return true
     }
     

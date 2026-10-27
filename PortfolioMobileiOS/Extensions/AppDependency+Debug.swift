@@ -1,6 +1,7 @@
 import Foundation
 
 extension AppDependency {
+    @MainActor
     static func debug(
         appRouter: AppRouter? = nil,
         userDefaultsClient: UserDefaultsClient? = nil,
@@ -79,7 +80,7 @@ extension AppDependency {
         )
         
         return .init(
-            appRouter: DefaultAppRouter(),
+            appRouter: debugAppRouter,
             makeRootState: {
                 RootScreenState(
                     appInformationStore: debugAppInformationStore,

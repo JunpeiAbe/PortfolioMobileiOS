@@ -1,7 +1,7 @@
 import Foundation
 
 @MainActor
-protocol AuthenticationStore {
+protocol AuthenticationStore: Sendable {
     var authSession: AuthSession? { get }
     var isLoggedIn: Bool { get }
     var terminalID: String? { get }

@@ -1,7 +1,6 @@
 import SwiftUI
-
 @MainActor
-protocol AppRouter {
+protocol AppRouter: Sendable {
     /// 選択状態のタブ
     var selectedTab: SelectableTab { get set }
     var isLoading: Bool { get set }
